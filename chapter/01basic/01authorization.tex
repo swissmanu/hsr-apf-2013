@@ -1,0 +1,42 @@
+\section{Authorization}
+
+Das Authorization Pattern beschreibt auf einfache Art und Weise die Zugriffsberechtigungen eines Subjekts auf ein bestimmtes Objekt. Es spezifiziert zudem die Art des erlaubten Zugriffes (Lesend, schreibend etc.)
+
+\subsection*{Kontext}
+Jegliche Umgebungen in denen der Zugriff auf enthaltene Objekte kontrolliert werden muss.
+
+\subsection*{Problem}
+In einer kontrollierten Umgebung muss sichergestellt werden, dass nur berechtigte Subjekte auf entsprechende Objekte zugreifen können. Es stellt sich also die Herausforderung, diese Information losgelöst von den eigentlichen Objekte abzulegen. Dabei soll aber eine gewisse Flexibilität bei der Definition von Berechtigungen, Objekten und Subjekten erhalten bleiben.
+
+Desweiteren sollen diese Informationen so einfach wie möglich im nachhinein änderbar sein.
+
+\subsection*{Lösung}
+Strukturell fällt die Lösung zum Authorization Pattern relativ simpel aus:
+
+\includegraphics[width=50mm]{chapter/01basic/authorization.png}
+
+\begin{itemize}
+	\item Subject beschreibt jegliche Aspekte des zu berechtigendn Subjekts
+	\item Das ProtectionObject ist das zu schützende Objekte
+	\item Right enthält alle Informationen, wie Subject auf ProtectioObject zugriefen darf/kann
+\end{itemize}
+
+\subsection*{Erweiterungen}
+Die vorgestellte Struktur kann um komplexere Aspekte erweitert werden. So kann bspw. mittels einem ''Copy''-Flag eine Stellvertretung eines Subjektes durch ein anderes ermöglicht werden.
+Weiter ist die Verwendung eines Prädikats denkbar, welches eine Regel mit zusätzlicher ''Intelligenz'' austatten kann (-> ''Darf nur zugreifen wenn Zeit innerhalb Arbeitszeit'')
+
+Diese Anpassungen können direkt auf dem Rights-Objekt modelliert werden.
+
+\subsection*{Vor- \& Nachteile}
+\begin{itemize}
+	\item Durch seine Offen- und Allgemeinheit kann dieses Pattern auf jegliche Umgebung appliziert werden (Filesysteme, Organistaitonsstrukturen, Zugangskontrollen etc.)
+	\item In der beschriebenen Form sind administrative Aufgaben (Änderung der Zugriffsrechte) nicht gesondert definiert. Für bessere Sicherheit ist dies jedoch von Vorteil
+	\item Für viele Subjekte/Objekte müssen entsprechend viele Berechtigungsregeln erfasst und auch verwaltet werden
+	\item Viele Regeln machen die Verwaltung für einen Administrator zu einer heikeln Aufgabe (Verkettung von Berechtigungen etc.)
+\end{itemize}
+
+\subsection*{Beispielanwendungen}
+\begin{itemize}
+	\item Dateisysteme
+	\item Firewalls greifen teilweise auf dieses Pattern zurück, um Regeln für den analysierten Traffic zu modellieren
+\end{itemize}

@@ -1,0 +1,48 @@
+\section{Role Based Access Control}
+
+Diese Pattern basiert stark auf dem Authorization Pattern und versucht dessen Nachteile durch einen zusätzlichen Abstraktionslayer auszugleichen.
+Das ''Role Based Access Control'' Pattern definiert Berechtigungen nicht direkt auf Stufe der Subjekte, sondern versucht diese in Gruppen (Aufgabenbereiche, Kaderposition, Arbeitsort etc.) einzuteilen und anschliessend auf dieser Ebene quasi übergeordnet zu berechtigen.
+
+\subsection*{Kontext}
+Eine Umgebung mit vielen Objekten und Subjekten. Deren Berechtigungen ändern häufig. Zudem ist damit zu rechnen dass eben so oft neue Subjekte und Objekte hinzukommen oder wieder wegfallen.
+
+\subsection*{Problem}
+Die Rechteverwaltung in dem beschriebenen Kontext generiert einen hohen administrativen Aufwand. Um die Anzahl individueller Berechtigungen zu minimieren soll versucht werden, alle Subjekte in Gruppen einzuteilen. Die Einteilung basiert darauf, dass Subjekte mit ähnlichen Aufgaben zumeist auch ähnliche oder identische Berechtigungen benötigen.
+Trotzdem sollen die Berechtigungen weiterhin präzise abgebildet werden können (''Need to know'').
+
+\subsection*{Lösung}
+In den 
+
+
+
+
+
+
+
+
+
+\begin{itemize}
+	\item Subject beschreibt jegliche Aspekte des zu berechtigendn Subjekts
+	\item Das ProtectionObject ist das zu schützende Objekte
+	\item Right enthält alle Informationen, wie Subject auf ProtectioObject zugriefen darf/kann
+\end{itemize}
+
+\subsection*{Erweiterungen}
+Die vorgestellte Struktur kann um komplexere Aspekte erweitert werden. So kann bspw. mittels einem ''Copy''-Flag eine Stellvertretung eines Subjektes durch ein anderes ermöglicht werden.
+Weiter ist die Verwendung eines Prädikats denkbar, welches eine Regel mit zusätzlicher ''Intelligenz'' austatten kann (-> ''Darf nur zugreifen wenn Zeit innerhalb Arbeitszeit'')
+
+Diese Anpassungen können direkt auf dem Rights-Objekt modelliert werden.
+
+\subsection*{Vor- \& Nachteile}
+\begin{itemize}
+	\item Durch seine Offen- und Allgemeinheit kann dieses Pattern auf jegliche Umgebung appliziert werden (Filesysteme, Organistaitonsstrukturen, Zugangskontrollen etc.)
+	\item In der beschriebenen Form sind administrative Aufgaben (Änderung der Zugriffsrechte) nicht gesondert definiert. Für bessere Sicherheit ist dies jedoch von Vorteil
+	\item Für viele Subjekte/Objekte müssen entsprechend viele Berechtigungsregeln erfasst und auch verwaltet werden
+	\item Viele Regeln machen die Verwaltung für einen Administrator zu einer heikeln Aufgabe (Verkettung von Berechtigungen etc.)
+\end{itemize}
+
+\subsection*{Beispielanwendungen}
+\begin{itemize}
+	\item Dateisysteme
+	\item Firewalls greifen teilweise auf dieses Pattern zurück, um Regeln für den analysierten Traffic zu modellieren
+\end{itemize}
