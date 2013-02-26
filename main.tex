@@ -41,6 +41,9 @@
 \makeglossaries
 
 
+
+
+
 \begin{document}
 
 \input{chapter/00title}
@@ -48,8 +51,6 @@
 \tableofcontents
 \newpage
 
-% The main content
-%%%%%%%%%%%%%%%%%%
 \chapter{Access Control Models}
 \input{chapter/01/01authorization}
 \input{chapter/01/02rolebasedaccesscontrol}
@@ -57,14 +58,7 @@
 \chapter{Workshop Notizen}
 \includepdf[pages=-,pagecommand=\thispagestyle{plain},scale=0.75]{chapter/99/Workshops.pdf}
 
-% List of figures & glossary
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \listoffigures
 \printglossary[style=altlist,title=Glossar]
-
-% Bibliography
-%%%%%%%%%%%%%%
-\bibliographystyle {alpha}
-\bibliography{index/bibliography}
 
 \end{document}
