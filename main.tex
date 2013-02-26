@@ -1,34 +1,38 @@
-%
-% HSR LaTex Template
-% Copyright 2012, Florian Bentele
-%
-% Additions by BA Team:
-%  - Manuel Alabor
-%  - Alexandre Joly
-%  - Michael Weibel
-%
-% Complete LaTex template for thesis at HSR, customized
-% for Prof. Dr. Peter Heinzmann
-%
-%
-% This document is free software: you can redistribute
-% it and/or modify it under the terms of the GNU
-% General Public License as published by the Free
-% Software Foundation, either version 3 of the License,
-% or (at your option) any later version.
-%
-% This document is distributed in the hope that it will
-% be useful, but WITHOUT ANY WARRANTY; without even the
-% implied warranty of MERCHANTABILITY or FITNESS FOR A
-% PARTICULAR PURPOSE. See the GNU General Public
-% License for more details.
-%
-% You should have received a copy of the GNU General
-% Public License along with this document. If not, see
-% <http://www.gnu.org/licenses/>.
-%
+\NeedsTeXFormat{LaTeX2e}
+\ProcessOptions
+\documentclass[a4paper]{report}
 
-\documentclass{hsrthesis}
+\newcommand{\nothing}{}
+
+\RequirePackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{mathptmx}
+\usepackage[scaled=0.85]{helvet}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{ngerman}
+\usepackage{glossaries}
+\usepackage{color}
+\usepackage{listings} \lstset{backgroundcolor=\color{lightgray}} \lstset{language=Java}
+\usepackage{wrapfig}
+\usepackage{url}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\usepackage{pdfpages}
+
+% Sylings for Tables
+%%%%%%%%%%%%%%%%%%%%
+\newcommand*\heading[1]{\bfseries{#1}}
+\newcommand*\beforeheading{\toprule}
+\newcommand*\afterheading{\midrule}
+\newcommand*\normalline{}
+\newcommand*\lastline{\bottomrule}
+
 
 \makeindex
 
@@ -36,26 +40,19 @@
 \input{index/glossar}
 \makeglossaries
 
+
 \begin{document}
 
-%\input{chapter/00title}
+\input{chapter/00title}
 
 \tableofcontents
-
 \newpage
 
 % The main content
 %%%%%%%%%%%%%%%%%%
 \chapter{Access Control Models}
-\input{chapter/01accesscontrolmodels/01authorization}
-\input{chapter/01accesscontrolmodels/02rolebasedaccesscontrol}
-
-%\input{chapter/02examples}
-%\input{chapter/03introduction}
-%\input{chapter/04projectmanagement}
-% \input{chapter/04mychapter}
-% ...
-
+\input{chapter/01/01authorization}
+\input{chapter/01/02rolebasedaccesscontrol}
 
 % List of figures & glossary
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,11 +63,5 @@
 %%%%%%%%%%%%%%
 \bibliographystyle {alpha}
 \bibliography{index/bibliography}
-
-
-% Attached sources
-%%%%%%%%%%%%%%%%%%
-%\input{attachments}
-
 
 \end{document}
