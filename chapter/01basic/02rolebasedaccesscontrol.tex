@@ -11,38 +11,33 @@ Die Rechteverwaltung in dem beschriebenen Kontext generiert einen hohen administ
 Trotzdem sollen die Berechtigungen weiterhin präzise abgebildet werden können (''Need to know'').
 
 \subsection*{Lösung}
-In den 
+Organisationen bieten normalerweise bereits mehr oder weniger wohldefinierte Gruppenstrukturen (Abteilungen, Aufgabenbereiche).
+Ein gutes Sicherheitskonzept sollte bestrebt sein, dass jedes Subjekt genau auf die Objekte Zugriff hat, mit welchen es täglich arbeitet (wiederum ''Need to know'').
 
+\includegraphics[width=\textwidth]{chapter/01basic/rolebasedaccesscontrol.png}
 
+Im Vergleich zum Authorization Pattern kommt lediglich ein neues Element hinzu: Die Role fasst mehrere User (Subjekte) zu einer Menge zusammen und berechtigt sie über Right für ein spezifisches ProtectionObject.
 
-
-
-
-
-
-
-\begin{itemize}
-	\item Subject beschreibt jegliche Aspekte des zu berechtigendn Subjekts
-	\item Das ProtectionObject ist das zu schützende Objekte
-	\item Right enthält alle Informationen, wie Subject auf ProtectioObject zugriefen darf/kann
-\end{itemize}
 
 \subsection*{Erweiterungen}
-Die vorgestellte Struktur kann um komplexere Aspekte erweitert werden. So kann bspw. mittels einem ''Copy''-Flag eine Stellvertretung eines Subjektes durch ein anderes ermöglicht werden.
-Weiter ist die Verwendung eines Prädikats denkbar, welches eine Regel mit zusätzlicher ''Intelligenz'' austatten kann (-> ''Darf nur zugreifen wenn Zeit innerhalb Arbeitszeit'')
+\includegraphics[width=\textwidth]{chapter/01basic/rolebasedaccesscontroladvanced.png}
 
-Diese Anpassungen können direkt auf dem Rights-Objekt modelliert werden.
+\subsubsection*{Composite Pattern}
+Statt einer simplen Assoziation zwischen User und Role könnte auch mit dem Composite-Pattern gearbeitet werden, um diese Abhängigkeit zu modellieren.
+
+\subsubsection*{Administration}
+Wie ebenfalls bereits im Authorization-Pattern erwähnt kann auch dieses Modell zielgerichtet um Administrations-Elemente erweitert werden.
+Auf diese Weise kann zusätzliche Klarheit im System geschaffen werden, wer genau für was zuständig ist.
+
+\subsubsection*{Abstract Session}
+Um die Möglichkeiten auf die Spitze zu treiben, sei hier auch das Abstract Session Pattern erwähnt: Die Abhängigkeit einer Session kann so direkt ins Security Modell ''miteinmodelliert'' werden.
 
 \subsection*{Vor- \& Nachteile}
 \begin{itemize}
-	\item Durch seine Offen- und Allgemeinheit kann dieses Pattern auf jegliche Umgebung appliziert werden (Filesysteme, Organistaitonsstrukturen, Zugangskontrollen etc.)
-	\item In der beschriebenen Form sind administrative Aufgaben (Änderung der Zugriffsrechte) nicht gesondert definiert. Für bessere Sicherheit ist dies jedoch von Vorteil
-	\item Für viele Subjekte/Objekte müssen entsprechend viele Berechtigungsregeln erfasst und auch verwaltet werden
-	\item Viele Regeln machen die Verwaltung für einen Administrator zu einer heikeln Aufgabe (Verkettung von Berechtigungen etc.)
+	\item 
 \end{itemize}
 
 \subsection*{Beispielanwendungen}
 \begin{itemize}
-	\item Dateisysteme
-	\item Firewalls greifen teilweise auf dieses Pattern zurück, um Regeln für den analysierten Traffic zu modellieren
+	\item 
 \end{itemize}
