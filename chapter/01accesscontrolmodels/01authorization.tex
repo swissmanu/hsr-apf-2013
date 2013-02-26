@@ -8,7 +8,7 @@ Jegliche Umgebungen in denen der Zugriff auf enthaltene Objekte kontrolliert wer
 \subsection*{Problem}
 In einer kontrollierten Umgebung muss sichergestellt werden, dass nur berechtigte Subjekte auf entsprechende Objekte zugreifen können. Es stellt sich also die Herausforderung, diese Information losgelöst von den eigentlichen Objekte abzulegen. Dabei soll aber eine gewisse Flexibilität bei der Definition von Berechtigungen, Objekten und Subjekten erhalten bleiben.
 
-Desweiteren sollen diese Informationen so einfach wie möglich im nachhinein änderbar sein.
+Des weiteren sollen diese Informationen so einfach wie möglich im Nachhinein änderbar sein.
 
 \subsection*{Lösung}
 Strukturell fällt die Lösung zum Authorization Pattern relativ simpel aus:
@@ -16,7 +16,7 @@ Strukturell fällt die Lösung zum Authorization Pattern relativ simpel aus:
 \includegraphics[width=50mm]{chapter/01accesscontrolmodels/authorization.png}
 
 \begin{itemize}
-	\item Subject beschreibt jegliche Aspekte des zu berechtigendn Subjekts
+	\item Subject beschreibt jegliche Aspekte des zu berechtigenden Subjekts
 	\item Das ProtectionObject ist das zu schützende Objekte
 	\item Right enthält alle Informationen, wie Subject auf ProtectioObject zugriefen darf/kann
 \end{itemize}
@@ -32,7 +32,7 @@ Diese Anpassungen können direkt auf dem Rights-Objekt modelliert werden.
 	\item Durch seine Offen- und Allgemeinheit kann dieses Pattern auf jegliche Umgebung appliziert werden (Filesysteme, Organistaitonsstrukturen, Zugangskontrollen etc.)
 	\item In der beschriebenen Form sind administrative Aufgaben (Änderung der Zugriffsrechte) nicht gesondert definiert. Für bessere Sicherheit ist dies jedoch von Vorteil
 	\item Für viele Subjekte/Objekte müssen entsprechend viele Berechtigungsregeln erfasst und auch verwaltet werden
-	\item Viele Regeln machen die Verwaltung für einen Administrator zu einer heikeln Aufgabe (Verkettung von Berechtigungen etc.)
+	\item Viele Regeln machen die Verwaltung für einen Administrator zu einer heiklen Aufgabe (Verkettung von Berechtigungen etc.)
 \end{itemize}
 
 \subsection*{Beispielanwendungen}

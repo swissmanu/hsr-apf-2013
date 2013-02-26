@@ -5,7 +5,7 @@
 BASENAME = main
 MAIN_TEX = $(BASENAME).tex
 BULD_CMD = ./bin/latexmk.pl -pdf $(MAIN_TEX)
-DEST_NAME = SecurityPatterns
+DEST_NAME = Patterns
 
 # Don't ask me why.
 all: build
