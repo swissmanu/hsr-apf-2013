@@ -1,0 +1,44 @@
+\begin{titlepage}
+	% Page Settings:
+	\newgeometry{top=110mm,right=30mm,bottom=20mm,left=30mm}
+	\backgroundsetup{scale=1,angle=0,opacity=1,contents={
+		\begin{tikzpicture}[remember picture,overlay]
+			\path [fill=titlepagecolor]
+			(0,-175mm)circle[x radius=290mm, y radius=250mm];;
+		\end{tikzpicture}}
+	}
+
+	% Apply Page settings:
+	\thispagestyle{empty}
+	\BgThispage
+
+	% Content:
+	\sffamily\color{titlepagefontcolor}
+	\begin{center}
+		\Large
+		Advanced Patterns And Frameworks\\[5mm]
+	   
+		\Huge\bfseries
+		Zusammenfassung \& Notizen\\[15mm]
+
+		\large\normalfont\sffamily
+		Hochschule für Technik Rapperswil\\[1mm]
+		Frühjahressemester 2013
+	\end{center}
+	\vfill
+
+	\begin{multicols}{2}
+		\begin{tabularx}{\textwidth}{l X}
+			\bfseries Autoren & Manuel Alabor (MAL)\tabularnewline
+		\end{tabularx}
+
+		%\begin{tabularx}{\textwidth}{l X}
+		%	\bfseries Betreuer & Prof. Hans Rudin (HRU)\tabularnewline
+		%	\bfseries Experte & Daniel Hiltebrand (DHI)\tabularnewline
+		%	\bfseries Gegenleser & tbd.\tabularnewline
+		%\end{tabularx}
+	\end{multicols}
+
+\end{titlepage}
+
+\restoregeometry

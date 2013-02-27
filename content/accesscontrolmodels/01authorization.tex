@@ -15,9 +15,14 @@ Strukturell fällt die Lösung zum Authorization Pattern relativ simpel aus:
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=0.75\textwidth]{chapter/01/authorization.png}
+	\begin{tikzpicture}
+		\umlclass[x=0,y=0]{Subject}{id\\name}{} 
+		\umlclass[x=10,y=0]{ProtectionObject}{id\\name}{} 
+		\umlassoc[name=assoc,mult1=*,mult2=*,arg=isAuthorizedFor]{Subject}{ProtectionObject}
+		\umlassocclass[geometry=|-|,x=5,y=-1.5]{Right}{assoc-1}{accessType}{checkRights()}
+	\end{tikzpicture}
 	\end{center}
-	\caption{Authorization Struktur}
+\caption{Authorization}
 \end{figure}
 
 \begin{itemize}

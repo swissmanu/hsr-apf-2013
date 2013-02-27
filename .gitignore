@@ -64,3 +64,6 @@ Thumbs.db
 *.bak
 *.fls
 *.fdb_latexmk
+*.lol
+*.bcf
+*.run.xml
