@@ -11,3 +11,7 @@ cd `ls -d */`
 wget https://raw.github.com/swissmanu/hsr-apf-2013/master/texlive-installation.profile
 
 sudo ./install-tl --profile=texlive-installation.profile
+
+ls -la /usr/local/texlive/2012/bin/
+
+PATH=$PATH:/usr/local/texlive/2012/bin/i386-linux
