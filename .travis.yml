@@ -1,1 +1,3 @@
 script: "make"
+
+before_install: ./before_install
