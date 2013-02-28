@@ -1,3 +1,4 @@
 script: "make"
 
-before_install: sudo ./before_install
+before_install:
+ - before_install
