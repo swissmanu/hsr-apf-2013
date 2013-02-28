@@ -1,1 +1,4 @@
 script: "make"
+
+before_script:
+	- apt-get install texlive-full
