@@ -6,4 +6,6 @@ wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar xvfz install-tl-unx.tar.gz
 cd install-tl-20130227
 
-sudo ./install-tl --profile=tlpkg/texlive.profile
+wget https://raw.github.com/swissmanu/hsr-apf-2013/master/texlive-installation.profile
+
+sudo ./install-tl --profile=texlive-installation.profile
