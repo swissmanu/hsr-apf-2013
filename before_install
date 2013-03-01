@@ -23,6 +23,9 @@ sudo ./install-tl --profile=texlive-installation.profile
 echo '---- Modify PATH environment variable ----'
 export PATH=$PATH:/usr/local/texlive/2012/bin/i386-linux
 
+echo '---- Check lualatex ----'
+which lualatex
+
 echo '######################################'
 echo '#           BEFORE_INSTALL           #'
 echo '#            - FINISHED -            #'
