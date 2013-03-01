@@ -20,7 +20,6 @@ collection-fontsextra 1
 collection-fontsrecommended 1
 collection-fontutils 1
 collection-formatsextra 1
-collection-games 1
 collection-genericextra 1
 collection-genericrecommended 1
 collection-htmlxml 1
