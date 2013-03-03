@@ -18,10 +18,28 @@ Dabei soll ein Maximum an Flexibilität für das Verändern von Parametern beste
 \end{itemize}
 
 \subsection*{Lösung}
-Jeder Information wird ein \emph{Sensitivity Level} zugwiesen. \emph{Policies} definieren, welche Elemente aus der Organistaionstruktur auf welche \emph{Sensitivity Levels} zugriff erhalten.
+Jeder Information wird ein \emph{Sensitivity Level} zugwiesen. \emph{Policies} definieren, welche Subjekte aus der Organistaionstruktur auf welche \emph{Sensitivity Levels} Zugriff erhalten.
 
-\emph{Policies} werden von \emph{Trusted Processes} erstellt und verwaltet. 
+\emph{Policies} werden von \emph{Trusted Processes} erstellt und verwaltet. Sie werden gem. dem Bell-LaPadula Sicherheitsmodell\cite{BellLaPadula} umgesetzt/überprüft:
 
+\begin{enumerate}
+	\item \emph{No-Read-Up}\\
+	Niedriger eingestufte Subjekte dürfen keine Informationen höher eingestufter Subjekte lesen
+	\item \emph{No-Write-Down}\\
+	Höher eingestufte Subjekte dürfen keine Informationen in Resourcen tiefer eingestufter Subjekte schreiben (Informationsweitergabe!)
+	\item \emph{Zugriffsmatrix}\\
+	Matrix, welche Zugriffberechtigungen von Subjekten auf Resourcen festlegt
+\end{enumerate}
+
+
+Die Korrektheit der \emph{Policies} wiederum wird über das Biba-Modell\cite{Biba} (der Umgehrung des Bell-LaPadula Konzepts) sichergestellt:
+
+\begin{enumerate}
+	\item \emph{No-Read-Down}\\
+	Höher eingestufte Subjekte dürfen keine Informationen tiefer eingestufter Subjekte lesen
+	\item \emph{No-Write-Up}\\
+	Tiefer eingestufte Stubjekte dürfen nicht in Informationen höher eingestufter Subjekte schreiben
+\end{enumerate}
 
 
 \begin{figure}[H]
@@ -62,9 +80,11 @@ Jeder Information wird ein \emph{Sensitivity Level} zugwiesen. \emph{Policies} d
 \subsection*{Nachteile}
 \begin{itemize}
 	\item Bei der Umsetzung dieses Patterns sollte darauf geachtet werden, dass normierte Bezeichnungen für die entsprechenden Sensitivity und Clearance Levels verwendet wird (--> Glossar)
-	\item Der definierte Trusted Process muss auch als solcher umgesetzt werden (Prozessdefinition als auch effektive Umsetzung)
+	\item Der \emph{Trusted Process} ist eine kiritsche Stelle im System.\\
+	\emph{``Aber wer wird über die Wächter selbst wachen?''}
 	\item Daten als auch Benutzer müssen optimalerweise in hierarchische Berechtigungstrukturen eingeteilt werden können.
-	Insbesondere in kommerziellen Umgebungen ist dies schwierig bis fast unmöglich (vgl. Militär)
+	Dementsprechend kann dieses Pattern nur schwer auf alltägliche Systeme übertragen werden. (vgl. Militär)
+	\item Nur weil ein Subjekt mit einer hohen Sicherheitsklassifizierung ausgestattet wurde, muss dies nicht bedeuten, dass keine Informationen nach Aussen getragen werden.\\Beispiel: Banker telefoniert im Zug lautstark und gibt sensible Kundeninformationen preis.
 \end{itemize}
 
 \subsection*{Erweiterungen}
