@@ -15,16 +15,15 @@ tar xvfz install-tl-unx.tar.gz
 cd `ls -d */`
 
 echo '---- Get install-tl profile ----'
-wget https://raw.github.com/swissmanu/hsr-apf-2013/master/texlive-installation.profile
+wget https://raw.github.com/swissmanu/hsr-apf-2013/master/travis/texlive-installation.profile
 
 echo '---- Install texlive with install-tl ----'
 sudo ./install-tl --profile=texlive-installation.profile
 
-echo '---- Modify PATH environment variable ----'
-export PATH=$PATH:/usr/local/texlive/2012/bin/i386-linux
-
-echo '---- Check lualatex ----'
-which lualatex
+echo '---- Install tikz-uml ----'
+cd /tmp
+wget http://www.ensta-paristech.fr/~kielbasi/tikzuml/src/tikzuml-v1.0b-2013-02-01.tbz
+tar xvfz tikzuml-v1.0b-2013-02-01.tbz
 
 echo '######################################'
 echo '#           BEFORE_INSTALL           #'

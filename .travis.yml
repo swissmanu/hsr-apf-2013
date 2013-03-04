@@ -1,4 +1,4 @@
-script: "make"
-
 before_install:
- - ./before_install
+ - ./travis/before_install.sh
+
+script: ./travis/setup.sh
