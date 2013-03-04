@@ -1,22 +1,31 @@
 #!/bin/sh
 
+echo '######################################'
+echo '#            AFTER SUCCESS           #'
+echo '#              - START -             #'
+echo '######################################'
 
+echo '---- Cloning repo into /tmp ----'
 cd /tmp
-git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} site 2>&1
+git clone https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} gh-pages 2>&1
+cd gh-pages
+
+echo '---- Switch to gh-pages branch ----'
 git checkout gh-pages
-ls
 
+echo '---- Copy latest PDF build ----'
+cp $RESULT_PDF_PATH ./
 
-    # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
-    #- git submodule add -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} site 2>&1
-    #- cd site
-    #- git checkout gh-pages
-    #- git rm -r .
-    #- cp -R ../dist/* .
-    #- cp ../dist/.* .
-    #- git add -f .
-    #- git config user.email "patrick@bittorrent.com"
-    #- git config user.name "Patrick Williams"
-    #- git commit -am "adding the yeoman build files to gh-pages"
-    # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
-    #- git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} gh-pages > /dev/null 2>&1
+echo '---- Set git settings ----'
+git config --global user.name $GIT_AUTHOR_NAME
+git config --global user.email $GIT_AUTHOR_EMAIL
+
+echo '---- Add files, commit and push ----'
+git add -A
+git commit -m "adding latest build pdf to gh-pages"
+git push https://${GH_OAUTH_TOKEN}@github.com/${GH_USER_NAME}/${GH_PROJECT_NAME} 2>&1
+
+echo '######################################'
+echo '#            AFTER SUCCESS           #'
+echo '#            - FINISHED -            #'
+echo '######################################'
