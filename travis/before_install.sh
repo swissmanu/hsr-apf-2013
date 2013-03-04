@@ -24,6 +24,8 @@ echo '---- Install tikz-uml ----'
 cd /tmp
 wget http://www.ensta-paristech.fr/~kielbasi/tikzuml/src/tikzuml-v1.0b-2013-02-01.tbz
 tar xvfz tikzuml-v1.0b-2013-02-01.tbz
+sudo mv tikzuml-v1.0b /usr/local/texlive/2012/texmf/tex/latex/tikzuml
+sudo texhash /usr/local/texlive/2012/texmf
 
 echo '######################################'
 echo '#           BEFORE_INSTALL           #'
