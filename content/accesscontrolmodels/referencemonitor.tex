@@ -41,8 +41,8 @@ Die Collection aus \emph{Authorization Rules} ist konkret mit einer \gls{ACL} ve
 Die effektive Überprüfung, ob ein Subjekt für den Zugriff berechtigt ist, ist denkbar einfach: Jeder Zugriff auf eine Resource (ein Protection Object) wird durch den Reference Monitor geführt. Dieser prüft, ob eine entsprechende Zugriffsregel vorhanden ist und gewährt ggf. den Zugriff.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{content/accesscontrolmodels/referencemonitor_sequence.png}
-	\caption{Reference Monitor - Sequenzdiagramm}
+	\includegraphics[width=\textwidth]{content/accesscontrolmodels/images/referencemonitor_sequence.png}
+	\caption{Reference Monitor - Sequenzdiagramm \cite{SecPatterns06}}
 \end{figure}
 
 Dieses Vorgehen leitet vom \emph{Interceptor} Pattern ab, und findet an vielen anderen Orten Verwendung (JEE Servlet Filter usw.)

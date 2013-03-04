@@ -22,20 +22,37 @@ Wie können wir \emph{Role Based Access Control} mit Sicherheitsrichtlinien füt
 
 
 \subsection*{Lösung}
+Die Idee ist denkbar einfach: Ein (hoffentlich bestehendes) Use Case Model und die damit verbundenen Sequenzdiagramme werden dazu verwendet, alle von \emph{Role Based Access Controls} benötigten Elemente zu erfassen:
 
 \begin{itemize}
-	\item 
+	\item Ein \emph{Actor} entspricht einer \emph{Role}
+	\item Jegliche \emph{Objects} entsprechen einem potentiellen \emph{ProtectionObject}
+	\item Jede \emph{Operation} welche ein \emph{Actor} auf einem \emph{Object} ausführt, ist ein potentielles \emph{Right} einer \emph{Role}
+	\item Eine \emph{Use Case Exception} bestimmt das Verhalten im Falle einer Verletzung einer Sicherheitsrichtlinie
 \end{itemize}
 
-\subsection*{Erweiterungen}
 
-
-\subsection*{Vor- \& Nachteile}
+\subsection*{Vorteile}
 \begin{itemize}
-	\item 
+	\item Sicherheitsrichtlinien können, bei entsprechendem Projektvorgehen, bereits sehr früh definiert und erkannt werden.
+	\item Wird ein ``\emph{model driven}''-Ansatz für die Softwareentwicklung gewählt, können Sicherheitsrichtlinien im optimalsten fall ``einfach'' aus den bestehenden Requirements Artefakten generiert werden
+	\item \emph{Role Rights Definition} erstellt ``perfekte'' Sicherheitsrichtlinien für \emph{\gls{RBAC}}
+	\item Sind alle Use Cases modelliert, und das System kann auf diese Weise komplett abgebildet werden, so ist ein Maximum an Sicherheit garantiert
+	\item Verändert sich die Funktionalität (sprich die Use Cases) des Systems (neuer Release etc.), so können auch die damit verbundenen Änderungen im Sicherheitskonzept problemlos abgebildet werden.
+	\item \emph{Role Rights Definition} bleibt komplett implementationsneutral
 \end{itemize}
 
-\subsection*{Beispielanwendungen}
+\subsection*{Nachteile}
 \begin{itemize}
-	\item 
+	\item Ohne ausführliches, durchgehendes und kompetentes Requirements Engineering hat dieses Pattern so gut wie keinen Nutzen
+\end{itemize}
+
+\subsection*{Mögliche Prüfungsfragen}
+\begin{itemize}
+	\item \emph{Für welches Pattern ist der ``Output'' von Role Rights Definition bestens geeignet? Warum?}\\
+	\emph{Role Rights Definition} analysiert Use Cases und extrahiert daraus aufgaben- und funktionsbezogene Zugriffsberechtigungen für alle vorhandenen \emph{Actors}.\\
+	Diese Regeln entsprechen dem \emph{Need to know} Prinzip: Jeder \emph{Actor} kann genau das tun/sehen, was er zu Ausübung seiner Aufgaben tun/sehen können muss.\\Damit sind eben diese Regeln optimal für die Verwendung im \emph{\gls{RBAC}} Pattern geeignet.
+
+	\item \emph{Warum reicht es nicht aus, lediglich das Use Case Model zur Gewinnung von Roles und Rights zu analysieren?}\\
+	Die Sequenzdiagramme geben detailierte Auskunft darüber, zu welchem Zeitpunkt welcher \emph{Actor} welches \emph{Right} für welches explizite \emph{Protection Object} benötigt. Ohne diese Informationen ergibt sich ein unvollständiges Gesamtbild.
 \end{itemize}
