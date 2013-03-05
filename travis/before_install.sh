@@ -19,6 +19,7 @@ wget https://raw.github.com/swissmanu/hsr-apf-2013/master/travis/texlive-install
 
 echo '---- Install texlive with install-tl ----'
 sudo ./install-tl --profile=texlive-installation.profile
+PATH=$PATH:/usr/local/texlive/2012/bin/i386-linux
 
 echo '---- Install tikz-uml ----'
 cd /tmp
