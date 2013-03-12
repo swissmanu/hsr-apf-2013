@@ -60,3 +60,7 @@ env:
         # RESULT_PDF_PATH
         # A shortcut to the built PDF document
         - RESULT_PDF_PATH=$CI_HOME/patterns.pdf
+        
+        # TZ
+        # Timezone
+        - TZ="Europe/Zurich"
