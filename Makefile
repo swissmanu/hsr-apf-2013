@@ -1,7 +1,3 @@
-#
-# Makefile for HSR-LateX-Template
-#
-
 BASENAME = patterns
 MAIN_TEX = $(BASENAME).tex
 BULD_CMD = ./bin/latexmk.pl -pdflatex=lualatex -pdf $(MAIN_TEX)
@@ -11,6 +7,9 @@ all: build
 
 build:
 	@@$(BULD_CMD)
+
+forcebuild:
+	@@$(BULD_CMD) -f
 
 live:
 	@@$(BULD_CMD) --pvc
