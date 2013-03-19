@@ -1,13 +1,69 @@
 \section{Single Access Point}
+Der Single Access Point definiert einen klaren Zugangspunkt zu einem System. Die so entstehende Schnittstelle kann dazu verwendet werden, effektive Sicherheitsrichtlinien praktisch umzusetzen.
+
+\subsection*{Kontext}
+Subjekten soll Zugang zu einem System gewährt werden. Die Subjekte sollen bevor sie Zugang erhalten geprüft werden. Das System soll vor Beschädigung und Missbrauch geschützt werden.
+
+\subsection*{Problem}
+Gewährt man Subjekten Zugang zu den Komponenten eines Systems, ist deren Integrität automatisch in Gefahr.
+
+Nun könnte man den Zugang zu jeder Komponente im System gesondert überprüfen. Dies macht im Bezug auf Performance und/oder Accessability meistens weniger Sinn (Subjekte wollen nicht mehrfach ein Passwort eingeben müssen oder sich wiederholt von einem Security-Mitarbeiter abchecken lassen müssen).
+
+Weiter führt die wiederholte Implementierung der Sicherheitsrichtlinien unweigerlich zu höheren Kosten. Sei dies im Bereich der späteren Wartung oder bei Initialaufwänden. Erschwerend kommt im Bezug auf die Kosten hinzu, dass die meisten Komponenten im System nicht 1:1 miteinander vergleichbar sind und so evtl. nicht unbedingt gleich geschützt werden können.
+
+
+\subsection*{Lösung}
+Es wird ein Single Access Point (``ein einziger Zugangspunkt'') definiert, welcher die Sicherheitsrichtlinien umsetzen kann und welcher jegliche Subjekte, welche Zugang zum System erhalten wollen passieren müssen.
+
+Dieser Single Access Point muss prominent platziert sein. Kann ein Subjekt ihn nicht finden, wird dieses kaum glücklich über die Sicherheitsmassnahme sein. 
+
+Hat ein Subjekt den Single Access Point passiert, kann es sich im System frei bewegen.
+
+Ist eine feinere Steuerung für den Zugriff auf Komponenten gewünscht, können Komponenten im System wiederum einen Single Access Point implementieren und so den Zugang zu sich selber prüfen.
+
+Durch die Definition des Single Access Points definiert man auch eine Grenze, welche das System schützt. Es ist dabi wichtig nicht zu vergessen, dass entsprechender Aufwand nötig ist diese Grenze zu schützen/aufrecht zu erhalten (Bsp. Bau des Gitters um ein Areal, setzen der Firewall-Einstellungen etc.). Denn mit dieser Grenze steht und fällt die Sicherheitswirkung dieses Patterns.
+
+Somit besteht die Umsetzung des Single Access Point Patters aus folgenden Punkten:
+
+\begin{enumerate}
+	\item Sicherheitsrichtlinien definieren
+	\item Single Access Point definieren (prominente Stelle etc.)
+	\item Effektive Prüfung der Sicherheitsrichtlinien umsetzen (Single Access Point kann auch einfach nur für Auditing/Logging verwendet werden)
+	\item Initialisierung des Systems (Session aufsetzen usw.)
+	\item Grenzen des Systems schützen (fortlaufend)
+\end{enumerate}
+
+
+\subsection*{Vorteile}
+\begin{itemize}
+	\item Ein einziger Zugangspunkt zum System vereinfacht die Komplexität und verbessert die User Experience
+	\item Es muss keine wiederholte Implementierung der gleichen Sicherheitsprüfung umgesetzt werden
+	\item Das Single Access Point Pattern kann auf verschiedensten Abstraktionsebenen umgesetzt werden
+	\item Die interne Komplexität eines Systems kann möglicherweise vereinfacht werden, da der Sicherheitsaspekt ``zentral'' umgesetzt wird
+\end{itemize}
+
+\subsection*{Nachteile}
+\begin{itemize}
+	\item Verfehlt ein Subjekt den Zugangspunkt, kann das System für ihn als nutzlos betrachtet werden
+	\item Single Access Point <=> Single Point of Failure: Beim Ausfall des Zugangspunktes kann möglicherweise das gesamte System nicht mehr verwendet werden
+	\item Der Zugangskontrolle muss vertraut werden können (erhöhter Aufwand für Lohn eines Wachmanns oder Schutzmassnahmen gegen Hacker etc.)
+	\item Die Grenze des Systems ist und bleibt die schwächste Stelle im Sicherheitsdispositiv
+\end{itemize}
 
 \subsection*{Reallife Beispiele}
 \begin{itemize}
 	\item Anmeldescreens verschiedenster Betriebssysteme
-	\item Single-Sign-On im Intranet von Grosskonzernen
+	\item Eingangskontrolle an einem Openair Festival \\
+	Prominenz des Eingangs ist wichtig, da die Besucher sonst den Eingang nicht finden und vor den Absperrungen randalieren ;)
+	\item Freizeitpark \\
+	Nach einmaligem Bezahlen am Eingang hat man Zutritt zu allen Attraktionen (abgesehen von den Grössenkontrollen bei den Achterbahnen). Ein Shuttlebus vom Parkplatz zum Eingang erleichtert es dem Besucher, den Eingang zu finden.
+	\item Nachtclub \\
+	Nach der Kontrolle beim Securitypersonal hat man freien Zugang zu allen Bars. Möchte man in den VIP-Bereich, ist eine weitere Kontrolle durch das Securitypersonal nötig (Eingeladen? Reserviert? Genug Bargeld? ;-) ) \\
+	Beispiel einer schlechten Systemgrenze: Der Notausgang kann auch verwendet werden, um sich Zutritt zu verschaffen
 \end{itemize}
 
 \subsection*{Mögliche Prüfungsfragen}
 \begin{itemize}
-	\item \emph{Frage}
-	Antwort
+	\item \emph{Nennen Sie ein Beispiel ausserhalb der IT-Welt, welche das Single Acces Point Pattern umsetzen}\\
+	Siehe ``Reallife Beispiele''
 \end{itemize}
