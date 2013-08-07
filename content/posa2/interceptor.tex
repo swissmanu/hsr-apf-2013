@@ -44,7 +44,7 @@ Typischerweise existiert ein Dispatcher pro Interceptor.
 
 
 \subsection{Varianten}
-\begin{enumerate}
+\begin{itemize}
 	\item \emph{Interceptor}\\
 	Wird häufig auf der Server-Seite von Verteilten Systemen verwendet. Dabei wird ein Proxy (POSA1) instanziert, welcher eine Referenz auf das concrete framework bzw. den lokalen server hält. Sobald ein Client eine Anfrage macht, erhält das Proxy-Objekt diesen und führt u.U. Pre-Processing Funktionalität aus. Danach wird es dem Lokalen Server übergeben, welcher dann wiederum mittels dem Proxy dem Client antwortet.
 	\item \emph{Single Interceptor-per-Dispatcher}\\
@@ -53,18 +53,18 @@ Typischerweise existiert ein Dispatcher pro Interceptor.
 	Wenn das Framework die gleiche Klasse mehrere Male instanziert. Statt dass für jedes Objekt die Registration auf dem Dispatcher geschieht, werden Factories registriert, welche dann vom Framework aufgerufen werden.
 	\item \emph{Implicit Interceptor Registration}\\
 	Statt explizit Interceptors beim Dispatcher zu registrieren, kann das Framework auch Methoden zur Verfügung stellen, um dynamisch an spezifischen Orten oder mittels Konfigurationen (Component Configurator) diese automatisch zu registrieren.
-\end{enumerate}
+\end{itemize}
 
 
 \subsection{Verwendung}
 
-\begin{enumerate}
+\begin{itemize}
 	\item \emph{Component-based application servers}
 	\item \emph{CORBA} implementation
 	\item \emph{COM}
 	\item \emph{Web Browsers} (Extensions)
 	\item \emph{Reference Monitor} (Security Patterns)
-\end{enumerate}
+\end{itemize}
 
 
 \subsection{Vorteile}
