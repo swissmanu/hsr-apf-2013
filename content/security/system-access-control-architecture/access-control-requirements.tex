@@ -1,0 +1,95 @@
+\subsection{Access Control Requirements}
+
+Das Pattern Access Control Requirements ist sehr mit dem aus I\&A bekannten Pattern ``\nameref{sec:ianda-requriements}'' zu vergleichen.
+
+Statt Anforderungen für I\&A zu defineren und zu erarbeiten, stellt ``Access Control Requirements'' eine Sammlung von allgemein gültigen Anforderungsschablonen zur Verfügung, welche das spezifizieren eine Massgeschneiderten Zugriffskontrolle ermöglichen.
+
+
+\subsection*{Kontext}
+Eine Organisation oder ein Projekt konzipiert die Verwendung von Access Controls.
+
+\subsection*{Problem}
+Der Natur nach können Anforderungen oftmals im Konflikt zueinander stehen. Insbesondere im Bereich von Access Control können hohe Sicherheitsanforderungen nicht mit dem tiefen Projektbudget vereinbar sein.
+
+Wie können nun aber eben diese Anforderungen auf die aktuelle Situation angepasst miteinander in Einklang gebracht werden?
+
+\subsection*{Lösung}
+Das Access Control Requirements Pattern definiert folgende Vorgehensweise:
+
+\begin{enumerate}
+	\item \emph{Requirements Specification}\\
+	Generische Requirementsvorlagen im Systemdesign-Prozess aufgreifen und auf eigene Situation anpassen
+	\item \emph{Prioritization Process}\\
+	Die Menge an angepassten, generischen Requirements wird nun gem. der aktuellen Situation priorisiert
+\end{enumerate}
+
+\subsubsection*{Generische Requirementsvorlagen}
+
+Folgende Anforderungen gilt es im Rahmen dieses Patterns zu analysieren und lösungsgerecht auszubalancieren:
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X}
+\tableheadcolor
+	\tablehead Anforderung &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+	Deny unauthorized access &
+	Unberechtigten Subjekten soll der Zutritt zu schützenswerten Objekten verwehrt werden
+	\tabularnewline
+	Permit authorized access &
+
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Access Control Requirements Requirements: Funktionale Anforderungen}
+\end{table}
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X}
+\tableheadcolor
+	\tablehead Anforderung &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+	Limit the damage when unauthorized access is permitted &
+	Kann ein unbefugtes Subjekt trotzdem Zugang zum System erhalten, soll der entstehende Schaden so klein wie möglich sein. Dies führt möglicherweise zu erneuten Sicherheitsprüfungen und erschwert für berechtigte Subjekte die alltägliche Nutzung des gesicherten Systems.
+	\tabularnewline
+	Limit the blockage when authorized access is deined &
+	Wird ein grundsätzlich berechtigtes Subjekt abgewiesen, so sollen die Auswirkungen für dieses so klein wie möglich sein (Produktivität etc.)
+	\tabularnewline
+	Minimize burden of access control &
+	Die Zugriffskontrolle soll nicht zur Bürde werden. Schlagworte wie Performance, Reaktionszeit usw. sind hier von grosser Bedeutung.
+	\tabularnewline
+	Support desired authorization policies &
+	Meet the requirements ;-)
+	\tabularnewline
+	Make acces control service flexible &
+	Die Zugriffskontrolle soll nach Möglichkeit schnell anpassbar sein. Beispiel: Nach Terroranschlag erhöhte Sicherheitsstufe für zwei Monate, anschliessend wieder gewohntes Dispositiv.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Access Control Requirements: Nichtfunktionale Anforderungen}
+\end{table}
+
+\subsection*{Vorteile}
+\begin{itemize}
+	\item Eine ausführliche Domain- und Anforderungsanalyse wird gefördert.
+	\item Die vorliegenden Requirementsvorlagen fördern die ausführliche Auseinandersetzung mit den verschiedensten Einflüsse auf Access Control.
+	\item Als angenehmen Nebeneffekt erhält man eine Umfangreiche Dokumentation über den Access Control Aspekt des Systems.
+\end{itemize}
+
+\subsection*{Nachteile}
+\begin{itemize}
+	\item Der Aufwand zur Umsetzung dieses Patterns kann tendenziell sehr Resourcenintensiv sein (Anforderungsanalyse, Priorisierung etc. etc.)
+	\item Die vielen Ausprägungen der einzelnen Anforderungen können leicht in einem Over-Engineering enden. Diese Gefahr kann jedoch durch pragmatische Herangehensweise (Verwendung als Guidelines) minimiert werden
+	\item Da eine umfangreiche Dokumentation als Resultat des Patterns ensteht, besteht natürlich auch die Gefahr, dass diese im Laufe der Zeit nicht mehr aktualisiert wird.
+\end{itemize}
+
+\subsection*{Mögliche Prüfungsfragen}
+\begin{itemize}
+	\item \emph{Gibt es ein Access Control Patentrezept?}\\
+	Nein. Jedes System kommt mit seinen eigenen, spezifischen Anforderungen an Access Control. Aus diesem Grund kann und sollte das Access Control Requirements Pattern nur als Guideline/Vorlage zu eigenen spezifischen Implementierungen verwendet werden.
+\end{itemize}

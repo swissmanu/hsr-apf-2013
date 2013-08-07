@@ -2,7 +2,7 @@
 \ProvidesClass{manu}
 \ProcessOptions
 
-\LoadClass[a4paper]{scrreprt} % KOMAscript
+\LoadClass[a4paper,twoside]{scrreprt} % KOMAscript
 
 % Packages:
 \usepackage{graphicx}

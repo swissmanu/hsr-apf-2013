@@ -1,0 +1,51 @@
+\subsection{Proxy Based Firewall}
+\label{sec:proxy-based-firewall}
+
+Als Nachteil der ``\nameref{sec:packet-filter-firewall}'' wird erwähnt, dass lediglich der Inhalt des IP-Headers im Zuge der Überprüfung analysiert wird.
+
+Die \emph{Proxy Based Firewall} fügt der ``\nameref{sec:packet-filter-firewall}'' spezifische Applikations-Proxies hinzu, welche den ein- und ausgehenden Traffic überprüfen und ggf. an den internen, eigentlichen Dienst weiterleiten.
+
+Der interne Dienst wird auf diese Weise für den externen Host  komplett unsichtbar; er kommuniziert lediglich mit dem Proxy.
+
+
+\subsection*{Kontext}
+Netzwerkverkehr soll auf der Ebene des Application-Layers gefiltert werden können (vgl. ``\nameref{sec:packet-filter-firewall}'' tut dies lediglich auf dem Network-Layer). Auf diese Weise soll sichergestellt werden, dass keine schädlichen Befehl/schädlicher Code ins eigene Netz hinein gelangt resp. aus dem eigenen Netz heraus gesendet werden kann (Würmer, Trojaner etc.).
+
+\subsection*{Problem}
+Wie kann die ``\nameref{sec:packet-filter-firewall}'' so erweitert werden, dass nicht nur der IP-Header zur Filterung von Netzwerkverkehr verwendet werden kann? Wie kann auch der IP-Payload in die Filterung miteinbezogen werden?
+
+Ergänzend zu den für die \nameref{sec:packet-filter-firewall} definierten Forces kommen folgende ergänzend hinzu:
+
+\begin{itemize}
+	\item In unserem Netzwerk werden verschiedenste Dienste angeboten. Entsprechend Umfangreich muss auch das Wissen der Firewall über die jeweiligen Dienste sein.
+\end{itemize}
+
+
+\subsection*{Lösung}
+Die Firewall stellt für jeden zu schützenden Dienst einen Proxy zur Verfügung. Will ein fremder Host mit einem Dienst kommunizieren, kommuniziert er lediglich mit dem entsprechenden Proxy.
+
+Aufgrund von definierten Regeln analysiert der Proxy den ein- oder ausgehenden Verkehr. Dabei bleibt es ihm frei überlassen ob er diesen weiterleiten, blockieren oder gar modifizieren will.
+
+\subsection*{Vorteile}
+\begin{itemize}
+	\item Die \emph{Proxy Based Firewall} kann Netzwerkverkehr auf Applikationsebene filtern. Sie kann dabei gezielt auf applikationsspezifische Eigenheiten eingehen und die Kommunikation ggf. sogar verändern.
+\end{itemize}
+
+\subsection*{Nachteile}
+\begin{itemize}
+	\item Für jeden Dienst wird eine konkrete Proxyimplementierung benötigt.
+	\item Das Betreiben der Proxies sowie die genauere Analyse des kompletten IP-Pakets führt zu höheren Kosten sowie tendenziell höherem Performance Overhead.
+	\item Erhöhte Komplexität aufgrund der zusätzlichen Sicherungsebene.
+\end{itemize}
+
+
+\subsection*{Reallife Beispiele}
+\begin{itemize}
+	\item NAT - Network Address Translation
+\end{itemize}
+
+\subsection*{Mögliche Prüfungsfragen}
+\begin{itemize}
+	\item \emph{Nennen Sie konkrete Anwendungen für die Proxy Based Firewall.}\\
+	Zugang zu bestimmten Internetseiten blockieren (HTTP Proxy), ``Network Address Translation'' um die interne Netzwerkstruktur zu verschleiern. Idee: Telnet-Proxy welcher gewisse Kommandos nicht zulässt.
+\end{itemize}

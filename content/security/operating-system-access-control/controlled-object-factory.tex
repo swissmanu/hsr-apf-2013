@@ -1,0 +1,35 @@
+\subsection{Controlled Object Factory}
+\label{sec:controlled-object-factory}
+
+Die \emph{Controlled Object Factory} stellt sicher, dass neu erstellten Objekten (Files etc.) automatisch korrekte Rechte zugeteilt werden.
+
+\subsection*{Kontext}
+Ein System muss den Zugriff auf erstellte Objekte kontrollieren können. Dabei kommen Zugriffsregeln zum Zug, welche von der Klassifizierung der entsprechenden Objekte abhängig ist.
+
+\subsection*{Problem}
+Prozesse erstellen neue Objekte wie bspw. Dateien. Die Zugriffsregeln dieser Objekte sollen bei der Erstellung dieser gesetzt werden um unberechtigten Zugriff von Beginn an zu verhindern.
+
+Ein weiterer Faktor stellen gepoolte Objekte dar: Zum Zeitpunkt der Zuweisung zu einem konkreten Prozess soll diesem auch gleich dynamisch der Zugriff gewährt werden.
+
+\begin{itemize}
+	\item Prozesse erstellen verschiedene Arten von Objekten. Die Zuweisung von Zugriffsrechten soll jedoch generisch behandelt werden können.
+	\item Für gepoolte Objekte soll eine dynamische Zuweisung von Zugriffsrechten ermöglicht werden
+	\item Es gibt Richtlinien welche vorgeben, welche Zugriffsrechte neue Objekte erhalten sollen
+\end{itemize}
+
+
+\subsection*{Lösung}
+Jedem Objekt welches neu erstellt wird, wird automatisch und zentralisiert ein Set von Zugriffsrechten zugewiesen.
+
+
+\subsection*{Vorteile}
+\begin{itemize}
+	\item Es gibt keine neuen Objekte mehr, welche Standardzugriffrechte zugewiesen haben, weil jemand vergessen hat, diese zu überschreiben.
+	\item Es können Richtlinien definiert werden, welche Objekte wie geschützt werden sollen
+	\item Ergänzend kann ein Betriebssystem eine \emph{Ownership Policy} einführen. Der Besitzer eines Objekts hat dann bspw. alle möglichen Berechtigungen an einem Objekt.
+\end{itemize}
+
+\subsection*{Nachteile}
+\begin{itemize}
+	\item Es entsteht ein entsprechender Overhead für die Definition der Rechte
+\end{itemize}
