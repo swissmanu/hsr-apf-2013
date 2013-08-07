@@ -1,5 +1,5 @@
 # Advanced Patterns And Framework
-Dieses Dokument enhält zusammengetragene Ergebnisse aus den Workshops im Rahmen des Modules *Advanced Patterns and Frameworks* an der Hochschule für Technik in Rapperswil *HSR* vom Frühjahressemester 2013.
+Dieses Dokument enhält zusammengetragenen Ergebnisse aus den Workshops im Rahmen des Modules *Advanced Patterns and Frameworks* an der Hochschule für Technik in Rapperswil *HSR* vom Frühjahressemester 2013.
 
 Alle Texte sind in Originalform (Links in Spalte *Übung*) im HSR Wiki einsehbar:
 
