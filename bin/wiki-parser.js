@@ -6,6 +6,17 @@
  *
  * Where FILENAME is the full path to the file and the file has
  * a .tex extension.
+ *
+ * Supported Syntax:
+ *   - Unordered List
+ *   - Ordered List
+ *   - Section, Subsection, Subsubsection
+ *   - Horizontal line (replaced with empty.)
+ *
+ * Currently not supported:
+ *   - Bold
+ *   - Italic
+ *   - and what else exists.
  */
 var fs = require('fs')
 	, http = require('http')
