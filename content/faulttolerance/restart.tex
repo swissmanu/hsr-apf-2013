@@ -1,0 +1,45 @@
+\subsection{Restart}
+
+
+\subsubsection*{Problem}
+
+
+Ein schwerwiegender Fehler wurde detektiert und kein Mechanismus kann bzw. konnte den Fehler beheben; D.h. alle Schritte der Escalation haben versagt. Wie kann das System wieder in einen fehlerfreien Zustand zurück geführt werden?
+
+\subsubsection*{Lösung}
+
+
+Als letzte Möglichkeit für einen Software-Fehler, der mittels Escalation nicht behoben werden konnte, kann das System neu gestartet werden. Dieser radikale Ansatz wird Restart genannt. Ein Restart hilft aber nur, wenn es sich um ein Software-problem handelt. z.B. Bei einem Hardwarefehler würde der Fehler auch dem Restart im System erhalten bleiben.
+
+Nachfolgeden Patterns sehen Sprünge zu fehlerfreien Zuständen vor wie Roolback, Roll-Forward  und Return to Reference Point. Restart hingegen setzt alles auf den initialen Zustand zurück. Da dies aber der grösste Sprung und meist auch der zeitaufwändigste ist, sollte dieser nur wenn nötig ausgeführt werden. Es gibt auch die Möglichkeit, den Restart in verschiedene Stufen zu unterteilen. Eine mögliche Unterteilung wäre:
+
+\begin{itemize}
+	\item warm: Es werden nur gewisse Teile des Systems initialisiert (bei den Teilsystemen, welche nicht neu gestartet werden, wird davon ausgegangen, dass sie noch einwandfrei funktionieren).
+	\item cold: Das komplette System wird neu gestartet (nicht aber die Umgebung).
+	\item reload: Das System wird neu in den Speicher gelesen und dann gestartet.
+	\item reboot: Die Umgebung, auf der das System läuft, wird komplett neu gestartet.
+\end{itemize}
+
+Der „warm“ Restart wird meist bei transienten Fehlern verwendet, da diese mit grosser Wahrscheinlichkeit nicht nochmals auftreten werden und nicht das gesamte System betroffen ist.
+
+\subsubsection*{Beispiel}
+
+
+\begin{itemize}
+	\item Bluescreen seit Windows XP
+\end{itemize}
+
+\subsubsection*{Tradeoff}
+
+
+\begin{itemize}
+	\item Cold reloads/reboots können zu inkonstistenten Daten führen.
+	\item Sehr zeitaufwendig (Downtime/Availability)
+\end{itemize}
+
+\subsubsection*{Prüfungsfragen}
+
+\begin{itemize}
+	\item Nennen Sie drei verschiedene Stufen des Restarts?
+\end{itemize}
+

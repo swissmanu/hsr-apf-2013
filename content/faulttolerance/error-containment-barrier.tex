@@ -1,0 +1,17 @@
+\section{Error containment barrier}
+
+
+\subsection{Problem}
+
+
+Was soll das System als erstes tun, wenn ein Error detektiert wird? Ohne Behandlung wird er für immer im System bleiben oder aber früher oder später in einem Failure enden. Was genau geschehen wird kann allerdings selten genau vorausgesagt werden.
+
+Was aber soll getan werden? Eine Möglichkeit ist, 'HILFE' zu schreien und zu beenden, was aber MINIMIZE HUMAN INTERVENTION widerspricht (kann aber nötig sein, wenn sicherheitskritische Fehler geschehen). Den Fehler weitestgehend zu ignorieren ist auch nicht immer die beste Lösung. Es ist auch nicht immer möglich, schadensbegrenzende Schritte (CORRECTING AUDITS etc.) einzuleiten.
+
+Bis sie jemand stoppt, breiten sich Errors durch das System von Komponente zu Komponente aus.
+
+\subsection{Lösung}
+
+Der Error muss in einer UNIT OF MITIGATION isoliert und der Fluss in andere Teile des Systems mit einer Barriere gestoppt werden (Stichwort QUARANTINE).
+
+Der Error darf nicht unbehandelt bleiben. Löse parallel dazu geeignete Benachrichtigungen, Logging, Mitigation und Recovery Funktionen aus.

@@ -1,0 +1,21 @@
+\subsection{Return to Reference Point}
+
+
+\subsubsection*{Ausgangslage}
+
+
+Wenn ein Ablauf nicht Teil der eigentlichen Applikation ist, sondern von einer externen Quelle bearbeitet wird, kann hier kein Rollback durchgeführt werden, weil keine Informationen über Checkpoints bestehen.
+
+\subsubsection*{Lösung}
+
+
+Beim Design der Software wurden statische Punkte im Programmcode definiert, welche sich eigenen um die Ausführung fortzuführen. Dabei ist nicht definiert, ob diese Punkte vor oder nach dem Fehler sind, da sie eben statisch definiert wurden.
+
+Gute Reference Points sind die Initialisierung einer Routine oder die Wiedereingliederung in den normalen Programmfluss.
+
+\subsubsection*{Prüfungsfragen}
+
+\begin{itemize}
+	\item Wann und von wem werden Reference Points festgelegt?
+\end{itemize}
+

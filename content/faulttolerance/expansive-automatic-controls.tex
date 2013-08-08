@@ -1,0 +1,21 @@
+\section{Expansive Automatic Controls}
+
+\subsection{Ausgangslage}
+
+Wie kann man es vermeiden Zeit unötig für nicht behandelbare Anfragen zu vergeuden und gleichzeitig andere Anfragen schnellst möglich abarbeiten?
+
+\subsection{Lösungsansatz}
+
+Versuche das System so zu designen, dass bei Überlast alternative Wege genommen werden können. Dies könnte zu nicht Lastzeiten mit zusätzlichen Ressourcen erreicht werden, welche bei Last eingreifen können.
+
+\subsection{Schlussfolgerung}
+
+Dieses Pattern versucht Zusatzwege in ein zu entwickelndes System einzubauen, welche eingeschlagen werden falls eine Grenze überschritten wird. Erst wenn die Überlast nicht trotz zusätzlicher Ressourcen nicht gelöst werden kann soll Shed Load (49) eingesetzt werden.
+
+\subsection{Verwandte Patterns}
+
+Anwendung bei zu wenig Ressourcen:
+\begin{itemize}
+	\item Shed Load (49)
+\end{itemize}
+

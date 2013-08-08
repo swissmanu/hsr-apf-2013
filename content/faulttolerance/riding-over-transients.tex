@@ -1,0 +1,23 @@
+\section{Riding over transients}
+
+
+\subsection{Problem}
+
+
+Einige Probleme treten nur sehr selten bis einmalig auf. Eine Bodenwelle bringt den Stossdämpfer kurzzeitig in Unruhe, sonst ist aber meist nicht viel los. Genau so können in Software Fehler selten auftreten und nur kurzzeitig eine Auswirkung haben (Rauschen auf einem Bus, Alphateilchen, ...). Wie kann man jetzt verhindern, dass das System für solche transiente Fälle unnötig viele Ressourcen verbraucht?
+
+\subsection{Lösung}
+
+
+Führe FAULT CORRELATION durch, wenn ein Fehler auftritt. Kann er keiner Kategorie zugeordnet werden, so beginne sofort mit der Fehlerbehandlung. Sieht er wie ein transienter Fehler aus, so rapportiere den Auftritt und unternimm nur etwas, wenn die Auftrittsfrequenz unerwartet hoch ist.
+
+"Unerwartet hoch" kann natürlich je nach Anwendungsfall unterschiedlich verstanden werden. Wenn andere Daten in Mitleidenschaft gezogen werden muss schneller gehandelt werden, als z.B. bei Web Requests.
+
+Geduld ist eine Kunst! Nicht immer sind die ersten Hinweise die echte Unterschrift eines Errors, weshalb zu frühes Handeln zu falschen Aktionen führen kann.
+
+Beispiele von riding over transients:
+\begin{itemize}
+	\item Ignorieren des Rückgabewerts bei Festplatten Schreibvorgängen
+	\item Laden einer Webpage schlägt fehl. "Versuchen Sie es später noch einmal"
+\end{itemize}
+

@@ -1,0 +1,28 @@
+
+\section{Fault correlation}
+
+
+\subsection{Problem}
+
+Ein Fehler ist aufgetreten und wurde detektiert. Es gibt aber viele verschiedene mögliche Ursachen.
+Die Frage lautet nun: Welcher Fault führte zum Fehler?
+
+\subsection{Lösung}
+
+
+Ein Error oder Failure kann von diversen Faults ausgelöst werden. Beim Auftritt eines Fehlers sollten diverse Fragen gestellt werden, wie z.B.:
+\begin{itemize}
+	\item Was hat der Fehler im System schon angestellt?
+	\item Wurde die Ausführung gestoppt? Wenn ja, welche Funktionen sind nicht mehr verfügbar?
+	\item Wurden Logs erstellt?
+	\item Welche Daten waren nicht korrekt?
+	\item ...
+\end{itemize}
+
+Die ursprüngliche Fehlerquelle zu finden ist extrem wichtig!
+\begin{itemize}
+	\item Ein Error kann weitere Errors verursachen.
+	\item Ähnliche Errors oder Failures könnten evtl. die gleiche Behandlungsprozedur besitzen. So kann z.B. in einem Redundanten System auf eine andere Komonente ausgewichen werden und die Fehlerbehebung hat noch etwas Zeit. Andererseits kann es sein, dass der Fehler so schnell wie möglich behoben werden muss, damit das System nicht davon 'verseucht' wird.
+\end{itemize}
+
+Um letzteres zu ermöglichen, sollten gewisse Bug-Kategorien erstellt werden, damit klar ist, wie mit einem entdeckten Fault umgegangen werden muss.

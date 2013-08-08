@@ -1,0 +1,21 @@
+\subsection{Reproducible Error}
+
+
+\subsubsection*{Problem}
+
+
+Es ist ein Fehler aufgetreten. Durch Error-Mitigation konnte das System weiterlaufen. Nun geht es darum, den Fehler zu korrigieren. Zum Glück müssen wir nicht bei Null beginnen, sondern haben Informationen über den Fehler, welche vom System geloggt wurden.
+
+Es ist wichtig, den eigentlichen Fehler zu behandeln und sich nicht mit einem eingebildeten Fehler zu versäumen. Das System ist nicht in einem statischen Zustand; seit dem Auftreten des Fehlers kann sich das System verändert haben. Vielleicht gab es unterdessen ein Software Update durch welches als Seiteneffekt der Fehler bereits behoben wurde.
+Ausserdem muss sichergestellt werden, dass derjenige Fault behandelt wird, der den konkreten Error oder Failure auch wirklich ausgelöst hat.
+
+\subsubsection*{Lösung}
+
+
+Löse auf kontrollierte Art und Weise den Fehler aus, um sicherzustellen, dass auch wirklich ein Fehler existiert. Dabei sollte das so beobachtete Verhalten mit der Systemspezifikation verglichen werden. Ein Fault wurde erst identifiziert wenn dieser mit bekannten Stimuli immer wieder reproduziert werden kann!
+
+\subsubsection*{Trade-off}
+
+
+Die Fehlersuche kann sehr zeitintensiv sein! Faults sind nicht nur im Quellcode zu suchen; Die Kombination aus Hardware, Software und Konfiguration muss untersucht werden.
+

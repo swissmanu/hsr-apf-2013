@@ -1,0 +1,39 @@
+\subsection{Let Sleeping Dogs Lie}
+
+
+\subsubsection*{Problem}
+
+
+Das System hat einen Error detektiert und ihn anschliessend korrigiert (Error Processing Patterns: Recovery oder Mitigation). Nun geht es darum, den Fault, welcher den Error aktiviert hat, zu korrigieren.
+
+\subsubsection*{Lösung}
+
+
+\begin{itemize}
+	\item \textbf{Sollen alle Faults, welche vom System oder von einem Entwickler gefunden wird, behoben werden?}
+\end{itemize}
+
+Diese Frage lässt sich nicht generell beantworten! Einen Fehler in einem Software-System zu beheben verhält sich ähnlich wie ein medizinischer Eingriff. Der Eingriff an einem Patienten (die Software), birgt immer ein gewisses Risiko für Komplikationen. Deshalb muss vor einem solchen Eingriff geprüft werden, ob sich dieser überhaupt sinnvoll ist.
+
+Dabei werden die Vorteile/Belohnung des Bugfixing den Kosten/Risiken gegenübergestellt. Folgende Fragen helfen bei der Entscheidung, ob ein bekannter Fault korrigiert werden sollte oder nicht:
+
+\begin{itemize}
+	\item Welchen Risiken setzen wir das System aus, wenn der Fault nicht korrigiert wird?
+	\item Wie stark wird das System durch die Fehlerbehebung verkompliziert?
+	\item Wie gross ist die Wahrscheinlichkeit dass der Fehler korrigiert wird, ohne neue Fehler zu verursachen?
+	\item Wie gross ist die Wahrscheinlichkeit, dass die Software neu installiert wird, ohne neue Fehler zu verursachen?
+	\item Was kostest es uns neue Tests zu schreiben?
+	\item Was kostet es uns den Fehler zu beheben und anschliessend erneut zu testen?
+	\item Was kostet es uns eine verbesserte Software zu erstellen und anschliessend zu deployen?
+	\item Wie teuer ist die Downtime des Systems, während gepatched wird?
+\end{itemize}
+
+Je nach dem entscheiden Sie sich den Fault zu suchen und zu beheben, oder Sie entscheiden sich den schlafenden Hund liegen zu lassen ;-)
+
+\subsubsection*{Prüfungsfragen}
+
+\begin{itemize}
+	\item Welche Faktoren stellen Sie einander gegenüber, wenn Sie entscheiden müssen ob ein neu entdeckter Fault korrigiert werden soll?
+	\item Was ist mit \textbf{Let Sleeping Dogs Lie} gemeint? Erläutern Sie.
+\end{itemize}
+

@@ -1,0 +1,14 @@
+\section{Final Handling}
+
+\subsection{Ausgangslage}
+
+Braucht es einen eigen Mechanismus um besetzte Ressourcen frei zu gegeben, welche von irregulär beendeten Prozessen besetzt sind?
+
+\subsection{Lösungsansatz}
+
+Die einfachste Lösung wäre sich nicht um die Ressourcenfreigabe zu kümmern und falls vorhanden den Garbage Collector seine Arbeit machen lassen. Der bessere Ansatz ist jedoch zur Programmierzeit bereits einen Ressourcenfreigabemechanismus einzubauen, welcher bei normaler und irregulärer Beendigung von Prozessen zum Zuge kommt. Dies vereinfacht die Programmierung und stellt sicher das Ressourcen freigegeben wurden.
+
+\subsection{Schlussfolgerung}
+
+Integriere das freigeben von Ressourcen in den normalen Programmfluss, so dass auch nach einem Fehler und dessen Behandlung genügend Ressourcen zur Verfügung stehen.
+

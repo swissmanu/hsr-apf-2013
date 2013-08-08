@@ -1,0 +1,21 @@
+\subsection{Small Patches}
+
+
+\subsubsection*{Problem}
+
+
+Es gibt einen bekannten Fehler der zu beheben ist. Die Option LETTING SLEEPING DOGS LIE wurde ausgeschlossen. Es ist bekannt, wie der Fehler korrigiert werden kann.
+
+Es geht nun darum, die Ausfallzeit des Systems und das Risiko für neu eingeführte Fehler zu minimieren. Je grösser das Update ist, je grösser der Codeumfang des Updates ist, um so grösser ist die Komplexität und umso mehr Möglichkeiten gibt es, einen neuen Fehler einzubauen. Ausserdem steigt der Aufwand für die Entwicklung und das Testen.
+
+\subsubsection*{Lösung}
+
+
+Mache Updates so klein wie möglich. Dies hängt von den Tools und dem zu patchenden Bug ab.
+
+\subsubsection*{Trade-off}
+
+
+Es ist nicht immer möglich, ein Patch in ein laufendes System einzuspielen. Sind keine ``Hot Deployment''-Mechanismen vorhanden, muss das System neu gestartet werden.
+
+Bei einem System ohne physischen Zugriff besteht die Gefahr, dass nach einem fehlerhaften Path nicht mehr darauf zugegriffen werden kann!

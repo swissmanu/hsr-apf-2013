@@ -1,0 +1,32 @@
+\subsection{Limit Retries}
+
+
+\subsubsection*{Ausgangslage}
+
+
+Nach dem die Error Revocery abgeschlossen ist, kann passieren, dass ein Fehler erneut auftritt. Dies kann dazu führen, dass das System in eine Endlosschliefe der Fehlerkorrektur gerät und die Anforderungen an die Availability nicht einhalten kann.
+
+\subsubsection*{Lösung}
+
+
+Die Wiederholungen müssen limitiert werden: ``Don’t retry if errors are likely!''
+
+Um zu verhindern, dass das System zu lange mit dem Error Processing beschäftigt ist, muss der Loop von Error -> Error Detection -> Error Recovery durchbrochen werden. Um die Wahrscheinlichkeit des Erfolges zu steigern, kann bei den jeweiligen Wiederholungen unter Umständen der Input geändert werden. Sogenannte „Killer Messages“ können entfernt werden, falls die Gefahr besteht, dass bei deren Verarbeitung wieder ein Fehler auftritt. Dazu muss sich das System, welche Messages/Requests zum Zeitpunkt des Fehlers präsent waren.
+
+Falls das System den Verlust einzelner Meldungen nicht tolerieren kann, müssen potentiell fehlerhafte Meldungen in einem separaten Buffer gespeichert werden, so dass Someone in Charge entscheiden kann, was mit den Messages passiert.
+
+
+\subsubsection*{Beispiel}
+
+
+\begin{itemize}
+	\item SMTP Mail Versand; Inkrementelle Wartezeit bis Retry
+\end{itemize}
+
+\subsubsection*{Prüfungsfragen}
+
+\begin{itemize}
+	\item Welches Problem löst das Pattern Limit Retreis?
+	\item Falls keine Meldungen verloren gehen dürfen, was muss beim Einsatz von Limit Retry beachtet werden?
+\end{itemize}
+

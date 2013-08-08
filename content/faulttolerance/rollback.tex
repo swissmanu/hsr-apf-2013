@@ -1,0 +1,25 @@
+\subsection{Roll Back}
+
+
+\subsubsection*{Problem}
+
+
+Ein Fehler ist aufgetreten und behandelt worden. Da das System keinen Input ignorieren soll, muss es nach erlangen eines fehlerfreien Zustandes "angestaute" Requests/Messages verarbeiten. Wie soll das bewerkstelligt werden?
+
+\subsubsection*{Lösung}
+
+
+Das System kann an eine Position zurückspringen, an der bekannt ist, dass der Fehler noch nicht aufgetreten ist. Dies ist meist der Anfang der aktuellen Verarbeitung oder ein Punkt, wo alle Komponenten synchronisiert werden/synchron sind.
+
+Um nicht zu grosse Sprünge in Kauf zu nehmen, können mittels Checkpoints die Distanzen und somit die erneut auszuführenden Aktionen minimiert werden. Dies erfordert aber den grösseren Aufwand bei der Speicherung von Zustandsinformationen.
+
+Wird ein Rollback durchgeführt, können zwangläufig Aktionen mehrfach ausgeführt werden. Es ist deshalb wichtig, dass Seiteneffekte vermieden werden. Hier ist auch zu beachten, dass in hard-realtime Systemen eventuell Deadlines nicht eingehalten werden können. Springt man also an einen Punkt zurück, können respektive müssen nachfolgende Aktionen ausgelassen werden (da sie bereits einmal erfolgreich waren), die zu Seiteneffekten führen könnten oder einer zu langen Laufzeit.
+
+Rollbacks sollten einem Fault Observer gemeldet werden. Someone in Charge kann helfen den „richtigen“ Checkpoint für den Rollback zu finden.
+
+\subsubsection*{Prüfungsfragen}
+
+\begin{itemize}
+	\item Was muss beim Einsatz von Roll Back beachtet werden?
+\end{itemize}
+

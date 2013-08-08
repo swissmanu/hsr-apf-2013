@@ -1,0 +1,37 @@
+\section{Overload Toolboxes}
+
+\subsection{Ausgangslage}
+
+Das System stellt einen Fehler fest, erkennt aber, dass es sich nicht um einen Bug in der Hard- oder Software handelt sondern dieser ist entstanden durch zu viele Anfragen.
+
+\subsection{Lösungsansatz}
+
+Zu viele Anfragen können ein System auf drei verschiedene Arten beeinträchtigen:
+\begin{enumerate}
+	\item \textbf{Memory:} Mehr Speicher wird benötigt um neue Anfragen zwischen zu speichern und abzuarbeiten. Dies kann dazu führen das aktuell abzuarbeitende Anfragen keinen Speicher mehr zur Verfügung haben.
+	\item \textbf{Tangible (greifbar) Resources:} Anfragen können weitere, periphere Ressourcen anfordern, die aber noch durch eine frühere Anfrage blockiert sind. Dies kann zu Verzögerungen in der Verarbeitung und zu weiteren Fehler führen.
+	\item \textbf{Processor CPU Time:} Anfragen abzuarbeiten kann mehr Zeit in Anspruch nehmen als dem System zu Verfügung stehen. Dies führt dazu, dass Anfragen nicht mehr (richtig) verarbeitet werden können.
+\end{enumerate}
+
+Falls diese Probleme in eine Knoten eines Netzes auftreten, kann auch eine Strategie entwickelt und umgesetzt werden, bei der, der entsprechende Knoten seine Nachbarn über die Überlastung informiert und diese ihm bei der Verarbeitung helfen können.
+
+\subsection{Schlussfolgerung}
+
+Verwende mehrere Toolboxes um jedes Problem auf die bestmögliche Art abzuschwächen. Eine Toolbox soll sich um Buffer und Ports kümmern, die vom System verwaltet werden. Eine andere soll sich um den Speicher kümmern und eine weitere um die CPU. Vermeide Toolboxes, die mehrere Probleme versuchen zu lösen, da diese kaum eines richtig behandeln können.
+
+\subsection{Verwandte Patterns}
+
+Anwendung bei zu wenig Ressourcen:
+\begin{itemize}
+	\item Queue for Resources (46)
+	\item Equitable Resource Allocation (45)
+	\item Finish Work in Progress (54)
+\end{itemize}
+
+\begin{itemize}
+	\item Fresh Work before Stale (55)
+	\item Share the Load (51)
+	\item Shed Load (49)
+	\item Finish Work in Progress (54)
+\end{itemize}
+

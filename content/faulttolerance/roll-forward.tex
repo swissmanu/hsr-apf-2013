@@ -1,0 +1,24 @@
+\subsection{Roll Forward}
+
+
+\subsubsection*{Ausgangslage}
+
+
+Ein Fehler ist aufgetreten und wurde behandelt. Es kann in Kauf genommen werden, dass Requests, welche zwischen Fehlererkennung und –behandlung eingetroffen sind, ignoriert werden können.
+
+\subsubsection*{Lösung}
+
+
+Nach der Fehlerbehandlung muss entschieden werden, wo das System weiterfahren soll. Sofern Checkpoints angelegt wurden, könnte zu diesen zurückgesprungen werden. Je nachdem sind diese aber so nahe an der Stelle, an der der Fehler passiert ist, dass sie wieder zum selben Fehler führen würden. Aus diesem Grund kann es Sinn machen, dass man die aktuelle Verarbeitung verlässt und an einen Punkt springt, wo die nächste Aktionen (z.B. der nächste Request) verarbeitet werden kann. Hier ist aber darauf zu achten, dass der Fehler korrigiert wurde, denn dieser sollte beim nächsten Durchlauf nicht nochmals auftreten und sich nicht im System verteilen können.
+
+Roll-Forward kann zudem schneller ausgeführt werden als Rollback. In hard-realtime Systemen wird es deshalb gegenüber dem Rollback bevorzugt. Roll-Forward darf aber nur eingesetzt werden, wenn das Verwerfen der aktuellen Daten in Kauf genommen werden kann. Ist dies nicht möglich, muss zwangsläufig Rollback eingesetzt werden.
+
+Man soll zu einem zukünftigen Zustand springen, den man auch ohne Fehler erreicht hätte und von dem bekannt ist, dass der nicht fehlerbehaftet und mit allen Komponenten synchronisiert ist.
+
+\subsubsection*{Prüfungsfragen}
+
+\begin{itemize}
+	\item Was ist der Vorteil von Roll Forward gegenüber Rollback?
+	\item Kann es vorkommen, dass durch ein Roll Forward daten verloren gehen?
+\end{itemize}
+

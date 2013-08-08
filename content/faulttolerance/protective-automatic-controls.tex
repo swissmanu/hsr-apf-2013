@@ -1,0 +1,17 @@
+\section{Protective Automatic Controls}
+
+\subsection{Ausgangslage}
+
+Wie soll das System mit dem Overhead von zu vielen Anfragen umgegangen werden die bearbeitet werden müssen?
+
+\subsection{Lösungsansatz}
+
+Hierbei bestehen drei mögliche Ansätze:
+\begin{enumerate}
+	\item Versuche alles zu unternehmen um das System nicht zum Absturz zu bringen, dies könnte auch heissen keine Anfragen zu beantworten.
+	\item Versuche so viele Anfragen wie möglich zu beantworten und lass dabei unnötige Vorberitungsarbeiten weg.
+	\item Mache gar nichts, was jedoch meist in Instabilität endet.
+\end{enumerate}
+
+Ein gutes Beispiel für dieses Pattern ist, ein Lichtsignal an der Einfahrtsrampe einer Autobahn, welches in Aktion tritt sobald die Autobahn anfängt zu verstopfen. Diese Pattern wird verwendet, wenn die Ressourcen begrenzt sind.
+

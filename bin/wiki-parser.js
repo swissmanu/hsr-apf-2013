@@ -27,7 +27,7 @@ var filename = process.argv[2]
 
 var WIKI_URL = "http://wiki.ifs.hsr.ch/APF";
 
-var ITEMIZE = /\*\s?([\S ]+)/
+var ITEMIZE = /^[\*\-]{1}\s?([\S ]+)/
 	, ENUMERATE = /\d\.\)?\s?([\S ]+)/
 	, FIGURE = /http\:(?!\/)(.+)/i
 

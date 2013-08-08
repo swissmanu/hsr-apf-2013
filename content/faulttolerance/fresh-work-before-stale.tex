@@ -1,0 +1,23 @@
+\section{Fresh work before stale}
+
+\subsection{Ausgangslage}
+
+
+Es kommen mehr Requests ins System rein, als es bearbeiten kann. Man möchte QoS jedoch so hoch wie möglich halten.
+Der Benutzer ist in der Lage, Requests abzubrechen und neue zu starten (Beispiel: Webseiten-Requests).
+Das System hat die Fähigkeit, eingehende Requests in unterschiedliche Kategorien zu sortieren. Dies ermöglicht dem System, FINISH WORK IN PROGRESS (54) sowie SHED LOAD (49) anzuwenden.
+
+\subsection{Frage}
+
+
+Wie kann man sicherstellen, dass so viele Requests als möglich den bestmöglichen Service erhalten?
+
+\subsection{Lösungsansatz}
+
+
+Wenn Requests sehr lange dauern, gibt der Nutzer meist auf und bricht ihn ab. Dies kann dazu führen, dass das System noch mehr zu tun hat, wenn es beispielsweise den Request startet und erst dann merkt, dass dieser bereits von der Userseite her abgebrochen wurde.
+Wenn das System so viele Requests behandelt wie es nur kann, ist es dazu gezwungen, die Requests in einer Queue zu halten. Der einfachste Weg für eine Queue ist ein Buffer, welcher wie eine FiFo Queue funktioniert. Das Problem bei diesem Buffer ist jedoch, dass abgebrochene Requests erst dann entdeckt werden, wenn sie behandelt werden.
+
+Requests können schnell behandelt werden, wenn ein Stack eingesetzt wird (LiFo-Queue). Dies ermöglich dem System, mit dem aktuellsten Requests zu arbeiten. Dies impliziert, dass es wahrscheinlicher ist, dass die Requests noch nicht abgebrochen wurden.
+
+Wenn das System weiss, wie lange Requests warten bis sie abgebrochen werden, kann es besser entscheiden, welche Requests bearbeitet werden müssen. Es ist jedoch schwierig die Übersicht zu behalten, welche Requests bereits wie lange warten. Dies führt darüber hinaus auch zu mehr Overhead.
