@@ -1,0 +1,43 @@
+\section{Scoped Locking}
+
+
+The \emph{Scoped Locking} C++ idiom ensures that a lock is acquired when control enters a scope and released automatically when control  leaves the scope, regardless of the return path from the scope
+
+\subsection{Kontext}
+
+Shared resources welche gleichzeitig von mehreren Threads manipuliert werden
+
+\subsection{Problem}
+
+Um eine Methode Thread-Safe zu machen wird vielfach z.B. ein Mutex innerhalb der Methode acquired. Da eine Methode aber mehrere Return-Paths haben kann (u.a. auch Exceptions, continue, break,  etc.), wird dies pro Zeile Code immer wie schwieriger.
+
+\subsection{Lösung}
+
+Erstelle eine Klasse, welche im Konstruktur ein Lock acquired und im Destruktor dieses wieder freigibt. Diese Klasse dann jeweils in Methoden/Block scopes von Kritischen Code-Teilen instantieren.
+Der Destruktor wird automatisch aufgerufen wenn die geschützte Methode verlassen wird. Somit ist sichergestellt, dass Locks immer wieder freigegeben werden.
+
+\subsection{Varianten}
+
+\begin{itemize}
+	\item \emph{Explicit Accessors}: Ein Nachteil dieser Implementation: Ein Lock wird immer nur nach dem verlassen der geschützten Methode freigegeben. Falls es gewünscht ist, explizit dieses freizugeben, müsste eine public Methode \emph{release()} in der Guard Klasse erstellt werden. Über diese Methode kann dann explizit das Lock freigegeben werden.
+\end{itemize}
+
+\subsection{Known Uses}
+
+\begin{itemize}
+	\item Java: \emph{synchronized} Methoden.
+\end{itemize}
+
+\subsection{Vorteile}
+
+\begin{itemize}
+	\item Increased Robustness
+\end{itemize}
+
+\subsection{Nachteile}
+
+\begin{itemize}
+	\item Potential für Deadlocks falls es rekursiv verwendet wird
+	\item Limitationen aufgrund von Sprach-spezifischer Semantik (whenn das \emph{C}-Feature \emph{longjmp} verwendet wird, werden keine Destruktoren aufgerufen)
+\end{itemize}
+
