@@ -4,7 +4,7 @@ In unserer Welt verlassen wir uns darauf, dass Dinge (in unserem Fall Programme)
 \subsection*{Introduction to Fault Tolerance}
 Patterns for Fault Tolarant Software versucht mögliche Lösungen aufzuzeigen wie auf das Auftreten von Fehlern in Systemen reagiert werden kann. Und wie ein System noch lauffähig ist, auch wenn gewisse Teile ausgefallen sind oder nicht mehr korrekt funktionieren. Um aber über die Fehler Toleranz diskutieren zu können, müssen nachfolgenden Begriffe definiert werden.
 
-\subsection*{Fault, Error, Failure}
+\subsection{Fault, Error, Failure}
 \begin{itemize}
 	\item Failure (Ausfall): Ein System liefert nicht mehr die erwarteten Ergebnisse, da ein Fehler (Error) aufgetreten ist. Ausfälle können aber nur passieren, wenn definiert ist, was als korrektes Verhalten angesehen wird. Ist dies nicht spezifiziert, kann ein System auch nicht ausfallen.
 	\item Error (Fehler): Der Zustand des Systems, wenn ein Defekt aufgetreten ist. Ein Fehler kann abgefangen werden, wenn er auftritt sodass ein Ausfall (Failure) vermieden werden kann.
@@ -38,10 +38,10 @@ Fehlertolerantes Design versucht, inkonsistente Fehler in konsistente Fehler umz
 	\caption{Minimale Anzahl an Komponenten um Failures auszugleichen}
 \end{figure}
 
-\subsection*{Coverage}
+\subsection{Coverage}
  Die Absicherung (Coverage) ist die Wahrscheinlichkeit, dass ein System in vorgegebener Zeit einen Fehler automatisch beheben kann.
 
-\subsection*{Reliability}
+\subsection{Reliability}
 
 Die Zuverlässigkeit (Reliability) ist die Wahrscheinlichkeit, dass in einem System in vorgegebener Zeit keine Fehler auftreten.
 
@@ -55,7 +55,7 @@ Die Zuverlässigkeit (Reliability) ist die Wahrscheinlichkeit, dass in einem Sys
 \textbf{Berechnung der Zuverlässigkeit:}
 $reliability = e^{-(\frac{1}{\gls{MTTF}})}$
 
-\subsection*{Availability}
+\subsection{Availability}
 Die Verfügbarkeit (Availability) ist die Wahrscheinlichkeit in der Zeit, dass ein System erreichbar ist und seine vorgesehenen Aufgaben korrekt erledigen kann.
 
 \begin{figure}[H]
@@ -67,11 +67,11 @@ Die Verfügbarkeit (Availability) ist die Wahrscheinlichkeit in der Zeit, dass e
 \textbf{Berechnung der Verfügbarkeit:}
 $availability = \frac{\gls{MTTF}}{\gls{MTTF} + \gls{MTTR}}$
 
-\subsection*{Dependability}
+\subsection{Dependability}
 
 Die Verlässlichkeit (Dependability) ist die Masseinheit für ein System wie stark man sich auf dessen Verlässlichkeit, Verfügbarkeit und Sicherheit verlassen kann. Die Sicherheit wird durch zwei Faktoren beeinflusst. Zu meinem der „Safety“ (Nichtauftreten von Ausfällen, die einen grösseren Schaden anrichten, als der Mehrwert, aller Vorteile eines System, mit sich bringt) und der „Security“ (Verhinderung von unautorisierten Zugriffen/Aktionen).
 
-\subsection*{Performance}
+\subsection{Performance}
 
 Die Leistungsfähigkeit (Performance) ist stark gekoppelt an die Zuverlässigkeit. Anforderungen an die Leistungsfähigkeit, können auch als Anforderungen an die Zuverlässigkeit gesehen werden und umgekehrt. Grundsätzlich kann festgehalten werden, dass Ausfälle, welche auf zu viele Anfragen zurückzuführen werden können, die Leistungsfähigkeit betreffen.
 

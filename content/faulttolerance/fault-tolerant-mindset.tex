@@ -1,31 +1,109 @@
 \section{Fault Tolerant Mindset}
+ Die Fehlertoleranz im Hinterkopf zu behalten ist essentiell für die Entwicklung einer fehlertoleranten Software. Dabei ist es wichtig sich in allen Phasen der Entwicklung fortlaufend zu fragen: Was könnte falsch laufen bzw. zu Fehlern führen?
 
-\subsection*{Kontext}
+\subsection{Design Tradeoffs}
 
+\begin{quote}
+Every problem in computer science boils down to tradeoffs.
+ -- Professor L. J. Henschen
+ \end{quote}
+ Dies trifft natürlich auch auf Fehlertoleranz zu, hierbei findet der Tradeoff zwischen \gls{MTTF} und \gls{MTTR} statt. Es kann sein, dass es wichtiger ist, dass die \gls{MTTR} klein ist und es nicht so sehr auf die \gls{MTTF} ankommt. Wiederum gibt es andere Beispiele, wie in der Raumfahrt, in der die \gls{MTTR} länger dauern kann, die \gls{MTTF} jedoch auch sehr lange sein muss, nämlich solange, wie die Mission dauert, also bis das Shuttle wieder zurück auf der Erde ist.
 
-\subsection*{Problem}
+\subsection{Quality vs Fault Tolerance}
 
+Der wesentliche Unterschied besteht darin, dass sich Fault Tolerance darum kümmert, dass sich ein Programm fehlerfrei ausführen lässt. Die Qualität bezieht sich dagegen darauf, wie wenige Faults sich im Code finden lassen. Somit steht Qualität für möglichst wenige Faults im Code, was jedoch nicht zu einem fehlerfreien Betrieb führen muss.
 
-\subsection*{Lösung}
+\subsection{Keep it Simple (KIS)}
 
+Wichtigster Punkt ist, dass je komplexer/länger ein Codestück ist, desto schwieriger wird es, dass ein Programm fehlerfrei bleibt. Eine mögliche Variante ist die Anzahl der Zeilen zu reduzieren und z.B. lieber den einfachen Mechanismus zu implementieren und dadurch den Unterhalt des Codes zu vereinfachen.
 
-\subsection*{Vorteile}
+\subsection{Incremental Additions of Reliability}
+
+= nicht alle "Fault Tolerant"-Patterns auf einmal anwenden, da sich dadurch meist neue Fehler einschleichen.
+
+\subsection{Defensive Programming}
+
+Mit defensivem Programmieren wird beschrieben, dass man sich in jeder Situation folgende Fragen beantworten soll:
 \begin{itemize}
-	\item
+	\item Was kann momentan falsch laufen?
+    \item Welche Fehler können auftreten?
+    \item Wie kann dieses Codestück scheitern?
+    \item Wie kann ich diesen Code vor Fehlern schützen bzw. diese beheben?
 \end{itemize}
 
-\subsection*{Nachteile}
-\begin{itemize}
-	\item
-\end{itemize}
+\subsubsection*{Faults in Fault Tolerance Code}
 
-\subsection*{Reallife Beispiele}
-\begin{itemize}
-	\item
-\end{itemize}
+Immer im Hinterkopf halten: mit komplexen Fehlerbehandlungen wird die Möglichkeit von Fehlern erhöht.
 
-\subsection*{Mögliche Prüfungsfragen}
+\subsubsection*{Memory Corruption}
+
+Es kann immer vorkommen, dass ein Hardwareteil Fehler aufweist, wodruch Daten, die gelesen werden, fehlerhaft werden können. Deshalb ist es wichtig, Daten immer auf ihre Richtigkeit zu prüfen, vorallem in Fällen, in denen die Daten den weiteren Verlauf des Programms entscheiden.
+
+\subsubsection*{Data Structures}
+
+Datenstrukturen sollten immmer so designt werden, dass sie auf Korrektheit geprüft werden können (Wenn möglich immer bereits implementierte Datenstrukturen verwenden und nicht eine neue Linked List implementieren).
+
+\subsubsection*{Design for Maintainability}
+
+Systeme, die Fehler tolerant sind, leben sehr lange. Deshalb ist es wichtig sie wartbar zu halten. Dies bedeutet, den Code simpel zu gestalten, verständliche Funktionsnamen zu verwenden und wenn nötig Kommentare zu setzen. -> KIS
+
+\subsubsection*{Coding Standards}
+
+Damit die Qualität des Code hoch gehalten wird, sollten Coding Standards verwendet werden. Jedoch sollten nur eine übersehbare Anzahl Coding Guidelines erstellt werden, da es dadurch einfacher ist, sie einzuhalten und zu verifizieren.
+
+\subsubsection*{Redundancy}
+
+Es ist wichtig das Redundanz Fault Tolerance unterstützt und nicht weitere Funktionalität hinzufügt.
+
+\subsubsection*{Static Analysis Tools}
+
+Statische Code-Analyse oder kurz statische Analyse ist ein statisches Software-Testverfahren welches zur Compilezeit stattfindet. Der Quelltext wird hierbei einer Reihe formaler Prüfungen unterzogen, bei denen bestimmte Sorten von Fehlern entdeckt werden können, noch bevor die entsprechende Software (z. B. im Modultest) ausgeführt wird. Die Methodik gehört zu den falsifizierenden Verfahren, d. h. es wird die Anwesenheit von Fehlern bestimmt. Quelle: \url{http://de.wikipedia.org/wiki/Statische_Code-Analyse}
+
+\subsubsection*{N-Version Programming (NVP)}
+
+Die Idee dahinter ist, die Implementation eines Anforderungskatalogs durch 2+ Teams in unterschiedlichen Sprachen implmentieren zu lassen. Vorteil daraus ist, dass jedes Programm meist an unterschiedlichen Stellen Fehler aufweist, wodurch die Codes optimiert werden können.
+
+\subsubsection*{Redundant Disks (RAID)}
+
+Die Möglichkeit mehrere Festplatten zusammenzufassen und dadurch die Fehlertoleranz und Redundanz zu erhöhen.
+
+\subsection{The Role of Verification}
+
+Verifikation ist wichtig, da aufgrund von Tests und Verifikation Berechnungen zur Verfügbarkeit erstellt werden können.
+
+\subsection{Fault Insertion Testing}
+
+Beschreibt das Testverfahren mit der Absicht fehlerhafte Eingaben zu tätigen, damit der Verlauf des Programms bei Fehleingaben analysiert werden kann. Damit werden oft auch Grenzverhalten getestet.
+
+\subsection{Fault Tolerant Design Methodology}
+
+\begin{enumerate}
+	\item Finde Punkte die scheitern können
+	\item Definiere Strategien zur Fehlerminderung
+	\item Definiere Systemgrenzen und Teile die redundant sein müssen
+	\item Architektur und Haupt-Design Entscheide können nun stattfinden
+	\item Kontrolliere, ob die zuvor definierten Fehlmöglichkeiten abgedeckt sind oder ob sich neue aufgetan haben
+	\item Identifiziere Probleme, die mit der Interaktion eines Benutzers entstehen und behoben werden können
+\end{enumerate}
+
+ \subsection{Fragen}
+ \textbf{Beschreiben sie ein realistisches Beispiel in welchem der Tradeoff zwischen \gls{MTTF} und \gls{MTTR} stimmt.}\\
+In einem Telefon Netzwerk ist der Tradeoff der Switches wichtig. Dabei kann die \gls{MTTF} eher vernachlässigt werden, solange die \gls{MTTR} kurz ist. \\
+
+\textbf{Ist ein Pointer eine potentielle Fehlerquelle? Wenn ja, was kann dagegen gemacht werden?}\\
+Ja, es ist wichtig sich immer zu fragen wie der Pointer genutzt werden kann und wie er geprüft werden soll. \\
+
+\textbf{Was ist der Vorteil von RAID5 gegenüber RAID0?}\\
+RAID0: nur Verteilen der Daten auf unterschiedliche Festplatten wodurch nur die Performance besser wird, jedoch nicht die Redundanz.
+
+RAID5: durch Paritätsbereiche gibt es die Möglichkeit, dass eine Festplatte ausfallen kann -> Redundanz. \\
+
+\textbf{Nennen sie die 6 Punkte der "Fault Tolerant Design Methodology"}
 \begin{itemize}
-	\item \emph{Frage?}\\
-	Antwort.
+	\item Was könnte scheitern bzw. welche Fehler könnten auftreten
+	\item Definiere Strategien zur Fehlerminderung
+	\item Definiere Systemgrenzen und Teile die redundant sein müssen
+	\item Architektur und Haupt-Design Entscheide können nun stattfinden
+    \item Kontrolliere ob die zuvor definierten Fehlmöglichkeiten abgedeckt sind oder ob sich neue aufgetan haben
+    \item Identifiziere Probleme die mit der Interaktion eines Benutzers entstehen und behoben werden können
 \end{itemize}
