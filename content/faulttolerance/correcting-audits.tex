@@ -1,0 +1,59 @@
+\section{Correcting Audits}
+
+\subsection{Begriffe}
+
+\subsubsection*{dynamisch vs. statisch}
+
+Daten können dynamisch oder statisch sein. Die Telefonvorwahl eines bestimmten Kantons wird wohl nicht so bald ändern und gehört somit zu den statischen Daten. Der Wechselkurs einer Fremdwährung dagegen ändert sich sehr dynamisch.
+
+\subsection{Problem}
+
+Defekte (faulty) Daten führen zu Fehlern (error). Solche Fehler können und werden immer wieder auftauchen, und müssen auch nicht deterministisch sein. Die Gründe sind vielfältig:
+\begin{itemize}
+	\item Verfälschung auf Hardware-Ebene: Memory, Strahlung, ...
+	\item Andere Systemfunktionen, welche Daten falsch gespeichert haben
+\end{itemize}
+
+
+Dauert die Erkennung des Fehlers zu lange, kann es sein, dass andere Module die Daten nutzen und im schlimmsten Fall das System zum Crashen bringen.
+
+\subsection{Lösung}
+
+\textbf{\textit{Finde und korrigiere defekte Daten so früh wie möglich. Prüfe, ob ähnliche, bzw. zugehörige, Daten auch korrupt sind und protokolliere den Fehlerauftritt.}}
+
+\subsubsection*{Finden und Korrigieren}
+
+Daten können anhand verschiedener Kriterien geprüft werden:
+\begin{itemize}
+	\item Struktur: Prüfe, ob (double) linked lists korrekt verkettet sind, Pointers auf Listen oder Queues innerhalb der bekannten Grenzen sind, Sizecounters die korrekte Anzahl Elemente angeben, ...
+	\item Zusammenhang: Passen gleiche opder ähnliche Daten zueinander? (z.B. könnten Daten an einem Ort in °C gespeichert sein, an einem anderen Ort in °F.)
+	\item 'Ergibt das Sinn?': Ein int mit Wert 2013 kann zwar ein gültiges Jahr repräsentieren, aber kaum ein gültiges Jahr. Checksummen können hier helfen, Fehler zu erkennen.
+	\item Vergleich: Redundant gespeicherte Daten können direkt miteinenander verglichen und so auf Fehler überprüft werden. Dies macht v.a. für statische Daten Sinn, zum teil aber auch für sehr wichtige dynamische.
+\end{itemize}
+
+Daten müssen natürlich so designet werden, dass sie geprüft werden können:
+\begin{itemize}
+	\item Doppelt verkettete Listen halten die Verkettung redundant
+	\item Nutze redundante Speicherorte an verschiedenen Stellen im System
+	\item Nutze nicht-triviale Wertevorgaben; Fehler werden so offensichtlicher
+\end{itemize}
+
+Verschiedene Patterns helfen, defekte Daten zu korrigieren:
+\begin{itemize}
+	\item Data Reset
+	\item Error Correcting Code
+	\item Marked Data
+	\item Complete Parameter Check
+	\item Rollback
+	\item Return To Reference Point
+\end{itemize}
+
+Falls die Korrektur erfolgreich war, führe den Schritt noch einmal mit den korrigierten Daten aus.
+
+\subsubsection*{Korrupte Verwandte}
+
+Wurde ein Fehler automatisch gefunden, sollte überprüft werden, ob nicht andere Daten an anderen Orten auch betroffen sind. Möglicherweise entstand der Fehler aus der Berechnung von schon fehlerhaften Daten. Oder der kurrpte Datenbestand wird für die Berechnung weiterer Daten gebraucht. Diese Daten sind potenzielle weitere Fehlerquellen und sollten dann ebenfalls überprüft werden.
+
+\subsubsection*{Protokollieren}
+
+Ein gefundener Fehler sollte immer geloggt werden. Wiederholte Auftritte von Fehlern können helfen, die defekten Daten zu finden.

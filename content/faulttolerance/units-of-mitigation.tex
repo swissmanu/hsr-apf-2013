@@ -1,5 +1,6 @@
 \section{Units of mitigation}
 
+
 \subsection{Einleitung}
 
 Dieses, wie auch die folgenden Patterns, zielen auf alle Teile eines Systems ab, und nicht nur auf ein bestimmtes Modul oder eine bestimmte Klasse.
@@ -12,6 +13,7 @@ Die Architektur eines Systems hat einen beträchtlichen Einfluss auf die Fehlert
 	\caption{unitsOfMitigation}
 \end{figure}
 
+
 \subsection{Problem}
 
 Wie kann ich verhindern, dass das ganze System ausfällt, sobald irgendwo ein Fehler auftritt? Es sollte möglich sein, dass nur ein Teil ausfällt, den Fehler bestenfalls behebt und sich dann wieder ins System einklinkt.
@@ -23,7 +25,7 @@ Ist sie zu gross, sind wir wieder beim Beispiel, dass das ganze System ausfällt
 
 \subsection{Lösung}
 
-\textbf{\textit{Teile das System so ein, dass jeder Teil sowohl mögliche Fehlerquellen wie auch Massnahmen zur Erkennung und Behebung beinhaltet.}} Wähle die Aufteilung so, dass sie für dein System Sinn macht.
+''' ''Teile das System so ein, dass jeder Teil sowohl mögliche Fehlerquellen wie auch Massnahmen zur Erkennung und Behebung beinhaltet.'' ''' Wähle die Aufteilung so, dass sie für dein System Sinn macht.
 
 Als mögliche, natürliche Trennlinien können in Frage kommen:
 \begin{itemize}
