@@ -14,24 +14,17 @@ Ein Objekt wird von mehreren Threads/Processes benutzt, dabei soll aber eine blo
 Clients rufen Methoden des Objekts via Proxy auf. Die Proxy wandelt die Aufrufen in MethodRequest's um welche in eine Queue eingefügt werden welche dann von einem Scheduler abgearbeitet wird.
 Der Rückgabewert wird via Future-Objekt zurückgegeben.
 
-\subsection{Struktur}
-
-
-\subsubsection*{Klassendiagramm}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{content/posa2/active-object/images/act-obj_class-diagram.png}
-	\caption{act obj class diagram}
+	\caption{active object class diagram}
 \end{figure}
 
-
-\subsubsection*{Sequenzdiagramm}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{content/posa2/active-object/images/act-obj_sequence-diagram.png}
-	\caption{act obj sequence diagram}
+	\caption{active object sequence diagram}
 \end{figure}
 
 
