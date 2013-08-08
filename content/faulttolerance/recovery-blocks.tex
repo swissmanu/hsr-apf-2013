@@ -1,0 +1,46 @@
+\section{Recovery Blocks}
+
+
+\subsection{Einleitung}
+
+Im Kapitel \url{http://wiki.ifs.hsr.ch/APF/U11_3_Redundancy} wurde bereits darauf hingewiesen, dass eine exakte Kopie auch die gleichen Fehler produzieren wird. Daher müssen alternative Lösungen für eine Problemstellung unterschiedlich implementiert werden. Dies kann wie folgt bewerkstelligt werden
+\begin{itemize}
+	\item Redundante Implementierungen parallel ausgeführt. Mittels Voting wir anschliessend das beste Resultat gewählt. (Nachteil: Overhead)
+	\item Alternative werden nur ausgeführt, wenn das erste Resultat nicht befriedigend war, die ist die Recovery Block Strategie.
+\end{itemize}
+
+\subsection{Beispiel}
+
+\begin{verbatim}
+  Try
+    Heap sort
+    if not okay then throw
+  Catch
+    Try
+      Insertion sort
+      if not okay then throw
+    Catch
+      Bubble sort
+\end{verbatim}
+
+\subsection{Tradeoff}
+
+\begin{itemize}
+	\item Akzeptanz-Tests: Es ist nicht immer einfach zu entscheiden ob ein Resultat akzeptiert werden kann.
+	\item Alternativen: Für gewisse Algorithmen gibt es keine oder nur unbefriedigende Alternativen.
+	\item State: Der System State muss vor dem ersten Block gespeichert werden, damit für den nächsten Block die gleichen Bedingungen herrschen.
+	\item Komplexität: Recovery Blocks an sich führen zu mehr Code und somit zu mehr Komplexität. Auch die vorherigen Punkte tragen zu einer höheren Komplexität bei.
+\end{itemize}
+
+\subsection{Prüfungsfragen}
+
+\begin{itemize}
+	\item Um welchen Typ von Redundanz handelt es sich bei Recovery Blocks?
+	\item Stellen Sie die Funktionsweise von Recovery Blocks anhand von Pseudocode und einem Fluss-Diagramm dar.
+	\item Nennen Sie drei Nachteile von Recovery Blocks.
+\end{itemize}
+
+\begin{itemize}
+	\item Nennen Sie drei Nachteile von Recovery Blocks.
+\end{itemize}
+

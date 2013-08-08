@@ -29,7 +29,7 @@ var WIKI_URL = "http://wiki.ifs.hsr.ch/APF";
 
 var ITEMIZE = /\*\s?([\S ]+)/
 	, ENUMERATE = /\d\.\)\s?([\S ]+)/
-	, FIGURE = /http\:(.+)/i
+	, FIGURE = /http\:(?!\/)(.+)/i
 
 	, SECTION = /^!!(?!\!)\s?([\S ]+)$/
 	, SUBSECTION = /^!!!(?!\!)\s?([\S ]+)$/

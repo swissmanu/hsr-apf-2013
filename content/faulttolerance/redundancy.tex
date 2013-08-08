@@ -1,0 +1,66 @@
+\section{Redundancy}
+
+
+\subsection{Definition}
+
+
+Redundanz bedeutet, dass man über zusätzliche bzw. andere Wege verfügt, um die gleiche Arbeit zu verrichten.
+
+\subsection{Einleitung}
+
+Es gibt zwei Arten wie Errors mit Hilfe von Redundanz behandelt werden können; Mit einigen Verfahren gelingt es, Errors zu behandeln ohne den Systemzustand zu ändern (z.B. Block code). Normalerweise ist dies jedoch nicht möglich und erst nach der Behandlung des Errors kann das System wieder in einen fehlerfreien Zustand überführt werden.
+
+Für beide Arten der Fehlerbehandlung kann Redundanz helfen, einen solchen Error zu behandeln bzw. dessen Auswirkungen so gut wie möglich zu überbrücken. (MTTR)
+
+\subsection{Typen von Redundanz}
+
+\subsubsection*{Spatial}
+
+Von räumlicher Redudanz spricht man, wenn von einem System mehrere Kopien existiren. Die Zeit welche zwischen dem Erkennen des Fehlers bis zur Rückführung in einen fehlerfreien Zustand verstreicht, wird als „Recovery Time“  bezeichnet. Räumlich redundante Systeme können diese Zeit mit einer fehlerfreien Kopie des Systems überbrücken.
+
+Beispiel: Nameserver (DNS), RAID1, N-Version Programming
+
+\subsubsection*{Temporal}
+
+Zeitliche Redundanz, wobei die Redundanz über eine Zeitdauer vorhanden ist, um korrekte Resultate zu erhalten. (Nachteil: Unavailability kann erhöht werden)
+
+Beispiel: I-frame ( http://en.wikipedia.org/wiki/I-frame )
+
+\subsubsection*{Informational}
+
+Informatorische Redundanz, wobei Information zur Erkennung und Behebung von Fehlern wiederholt wird.
+
+Beispiel: Block Code
+
+\subsection{Methoden für Temporal Redundancy}
+
+
+\subsubsection*{Active-Active}
+
+Vollständig Redundante Systeme agieren parallel und teilen sich die Arbeit (Load Balancing). Trotzdem ist jedes System fähig die gesamte Arbeit alleine zu verrichten.
+
+\subsubsection*{Active-Passive}
+
+Eine Abwandlung von Active-Active wobei das zweite/"redundante" System erst beim Auftreten eines Errors die Arbeit übernimmt.
+
+\subsubsection*{N+M Redundancy}
+
+Active-Active bzw. Active-Passive setzen eine teure 1:1-Assoziation zwischen den Systemen voraus. N+M Redundancy reduziert die Kosten indem für N aktive Systeme M redundante Systeme bestehen, wobei M < N
+
+\subsection{Tradeoff}
+
+
+Redundanz bedeutet auch immer einen Mehraufwand und somit höhere Kosten. Ausserdem handelt es sich bei Computern um deterministische Maschinen welche bei gleichen Rahmenbedingungen, Konfiguration und Input auch gleichermassen auf Fehlsituationen reagieren.
+
+\subsection{Prüfungsfragen}
+
+\begin{itemize}
+	\item Definieren Sie den Begriff Redundanz.
+	\item Nennen Sie je ein Beispiel für Spatial, Temporal und Informational Redundancy.
+	\item Unterscheiden Sie die Begriffe Active-Active, Active-Passive und N+M Redundancy.
+\end{itemize}
+
+\begin{itemize}
+	\item Unterscheiden Sie die Begriffe Active-Active, Active-Passive und N+M Redundancy.
+\end{itemize}
+
