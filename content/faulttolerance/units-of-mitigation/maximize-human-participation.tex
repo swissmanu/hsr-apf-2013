@@ -1,10 +1,10 @@
-\section{Maximize Human Participation}
+\subsection{Maximize Human Participation}
 
-\subsection{Ausgangslage}
+\subsubsection*{Ausgangslage}
 
 Soll ein System Anwender total ignorieren, um die prozeduralen Fehler zu minimieren?
 
-\subsection{Lösungsansatz}
+\subsubsection*{Lösungsansatz}
 
 Das System soll dem Benutzer die Möglichkeit bieten das Systems bei der Fehlerbehandlung zu unterstützen. Beispielsweise versucht das System immer wieder mit einem ROLLBACK zu einem CHECKPOINT (37) zu springen, obwohl der Speicher, an dem der CHECKPOINT gespeichert wurde, beschädigt ist. Der Benutzer könnte nun das System dazu zwingen einen RESTART (31) durchzuführen, anstatt eines ROLLBACK (32).
 
@@ -12,7 +12,7 @@ Wichtig ist dem Benutzer die wichtigsten Systeminformation zu präsentieren. Dab
 
 Das System sollte weiter einen 'Safe Mode' bieten, in welchem es keine weiteren automatischen Fehlerbehandlungen vornimmt. Dies ist vor allem in Kritischen System sehr wichtig.
 
-\subsection{Schlussfolgerung}
+\subsubsection*{Schlussfolgerung}
 
 Ein System soll so designet werden, dass es für erfahrene Benutzer einfach ist in einem positiven Weg auf das laufende System einzuwirken. Hierzu kann ein gutes MAINTANCE INTERFACE (7) und ein gescheiter FAULT OBSERVER (10) hilfreich sein.
 

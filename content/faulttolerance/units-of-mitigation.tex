@@ -1,7 +1,7 @@
 \section{Units of mitigation}
 
 
-\subsection{Einleitung}
+\subsection*{Einleitung}
 
 Dieses, wie auch die folgenden Patterns, zielen auf alle Teile eines Systems ab, und nicht nur auf ein bestimmtes Modul oder eine bestimmte Klasse.
 
@@ -14,7 +14,7 @@ Die Architektur eines Systems hat einen beträchtlichen Einfluss auf die Fehlert
 \end{figure}
 
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Wie kann ich verhindern, dass das ganze System ausfällt, sobald irgendwo ein Fehler auftritt? Es sollte möglich sein, dass nur ein Teil ausfällt, den Fehler bestenfalls behebt und sich dann wieder ins System einklinkt.
 
@@ -23,7 +23,7 @@ Dieser eine Teil wird hier 'unit of mitigation' genannt. Wieviele davon das Syst
 Wie alle Massnahmen zur Fehlertoleranz liefert auch die unit of mitigation ('Einheit zur Schadensmilderung') einen overhead an Code und Komplexität. Sie sollte deshalb nicht zu klein gewählt werden (beispielsweise jeden Ort 'einkapseln', an dem ein Fehler auftreten kann).
 Ist sie zu gross, sind wir wieder beim Beispiel, dass das ganze System ausfällt. Es gilt also, einen guten Mittelweg zu finden.
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 \textbf{\textit{Teile das System so ein, dass jeder Teil sowohl mögliche Fehlerquellen wie auch Massnahmen zur Erkennung und Behebung beinhaltet.}} Wähle die Aufteilung so, dass sie für dein System Sinn macht.
 
