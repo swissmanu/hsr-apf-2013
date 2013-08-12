@@ -1,14 +1,14 @@
-\section{Marked Data}
+\subsection{Marked Data}
 
-\subsection{Ausgangslage}
+\subsubsection*{Ausgangslage}
 
 Ein Fehler wurde entdeckte, kann aber nicht korrigiert werden. Wie kann dieser verhindert werden, dass er sich im System weiterverbreitet?
 
-\subsection{Lösungsansatz}
+\subsubsection*{Lösungsansatz}
 
 Falls der Fehler bereits im Speicher vorhanden ist, können die Error Correcting Codes des Speichers verwendet werden, um den Fehler zu erkennen. Wurde der Fehler nicht erkannt können die Daten beim ersten Gebrauch geprüft werden und als fehlerhaft markiert werden. Oftmals hilft eine Markierung nicht aus, da danach jeweils geprüft werden muss ob diese Markierung vorhanden ist oder nicht. Deshalb könnten wie im Beispiel des IEEE Standards für NaN, ein neuer Wert eingeführt werden der im Fehlerfall zur weiteren Verarbeitung weitergegeben wird. Dabei ist das Verhalten bei der weiteren Verarbeitung definiert, also wie sich das System Verhalten soll falls der Wert für eine Berechnung verwendet wird.
 
-\subsection{Schlussfolgerung}
+\subsubsection*{Schlussfolgerung}
 
 Markiere fehlerhafte Daten und definiere geeignete Regeln für die Verwendung dieser Daten.
 

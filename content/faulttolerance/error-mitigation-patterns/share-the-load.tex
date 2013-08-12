@@ -1,17 +1,17 @@
-\section{Share the load}
+\subsection{Share the load}
 
-\subsection{Ausgangslage}
+\subsubsection*{Ausgangslage}
 
 
 Das System soll grossen Workload bearbeiten können. Es besteht evtl. aus mehreren parallelen Elementen, z.B. in einem Cluster oder mit Multicore.
 
-\subsection{Frage}
+\subsubsection*{Frage}
 
 
 Wie kann die verfügbare 'processing power' vergrössert werden?
 Einfach Prozessoren hinzuzufügen erhöht die Komplexität. Auch muss man aufpassen, was mit Funktionalitäten in Mehrkernsystemen passiert. Wird dabei viel herum geschoben, so ergibt sich erheblichen Overload (Synchronisation etc.).
 
-\subsection{Lösungsansatz}
+\subsubsection*{Lösungsansatz}
 
 
 Lasse gewisse Arbeit von anderen Prozessoren erledigen. Wähle Arbeiten aus, welche nur geringen Synchronisationsaufwand benötigen.

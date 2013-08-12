@@ -1,19 +1,19 @@
-\section{Finish work in progress}
+\subsection{Finish work in progress}
 
-\subsection{Ausgangslage}
+\subsubsection*{Ausgangslage}
 
 
 Requests können in verschiedener Art und Weise miteinander in Beziehung stehen. Z.B. kann es sein, dass Requests auf früheren aufbauen.
 
 Ansätze wie Slow it down und Shed load sind zwar im System eingebaut, scheinen aber nicht viel zu nützen.
 
-\subsection{Frage}
+\subsubsection*{Frage}
 
 
 Welche Requests soll das System akzeptieren und welche verwerfen?
 Besteht ein solcher z.B. aus mehreren Sub-Requests, so will man sicher nicht den letzten davon verwerfen, da sonst das System schon bald wieder mit dem ganzen Requestsatz bombardiert wird
 
-\subsection{Lösungsansatz}
+\subsubsection*{Lösungsansatz}
 
 
 Verarbeite zusammenhängende Requests (von denen der Super-Request schon verarbeitet wurde) und verwerfe solche, die neu ankommen.

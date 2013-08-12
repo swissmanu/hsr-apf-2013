@@ -1,10 +1,10 @@
-\section{Overload Toolboxes}
+\subsection{Overload Toolboxes}
 
-\subsection{Ausgangslage}
+\subsubsection*{Ausgangslage}
 
 Das System stellt einen Fehler fest, erkennt aber, dass es sich nicht um einen Bug in der Hard- oder Software handelt sondern dieser ist entstanden durch zu viele Anfragen.
 
-\subsection{Lösungsansatz}
+\subsubsection*{Lösungsansatz}
 
 Zu viele Anfragen können ein System auf drei verschiedene Arten beeinträchtigen:
 \begin{enumerate}
@@ -15,11 +15,11 @@ Zu viele Anfragen können ein System auf drei verschiedene Arten beeinträchtige
 
 Falls diese Probleme in eine Knoten eines Netzes auftreten, kann auch eine Strategie entwickelt und umgesetzt werden, bei der, der entsprechende Knoten seine Nachbarn über die Überlastung informiert und diese ihm bei der Verarbeitung helfen können.
 
-\subsection{Schlussfolgerung}
+\subsubsection*{Schlussfolgerung}
 
 Verwende mehrere Toolboxes um jedes Problem auf die bestmögliche Art abzuschwächen. Eine Toolbox soll sich um Buffer und Ports kümmern, die vom System verwaltet werden. Eine andere soll sich um den Speicher kümmern und eine weitere um die CPU. Vermeide Toolboxes, die mehrere Probleme versuchen zu lösen, da diese kaum eines richtig behandeln können.
 
-\subsection{Verwandte Patterns}
+\subsubsection*{Verwandte Patterns}
 
 Anwendung bei zu wenig Ressourcen:
 \begin{itemize}

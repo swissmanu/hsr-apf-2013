@@ -1,7 +1,7 @@
-\section{Error containment barrier}
+\subsection{Error containment barrier}
 
 
-\subsection{Problem}
+\subsubsection*{Problem}
 
 
 Was soll das System als erstes tun, wenn ein Error detektiert wird? Ohne Behandlung wird er für immer im System bleiben oder aber früher oder später in einem Failure enden. Was genau geschehen wird kann allerdings selten genau vorausgesagt werden.
@@ -10,7 +10,7 @@ Was aber soll getan werden? Eine Möglichkeit ist, 'HILFE' zu schreien und zu be
 
 Bis sie jemand stoppt, breiten sich Errors durch das System von Komponente zu Komponente aus.
 
-\subsection{Lösung}
+\subsubsection*{Lösung}
 
 Der Error muss in einer UNIT OF MITIGATION isoliert und der Fluss in andere Teile des Systems mit einer Barriere gestoppt werden (Stichwort QUARANTINE).
 

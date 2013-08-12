@@ -1,10 +1,10 @@
-\section{Queue For Resources}
+\subsection{Queue For Resources}
 
-\subsection{Ausgangslage}
+\subsubsection*{Ausgangslage}
 
 Ein System versucht eine Überlastung zu verhindern. Es ist aber nicht mit einer Fehlerbehandlung beschäftigt sondern erhält einfach zu viele Anfragen.
 
-\subsection{Lösungsansatz}
+\subsubsection*{Lösungsansatz}
 
 Eine Möglichkeit wäre, nur die Anfragen zu behandeln, welche mit den freien Ressourcen behandelt werden können. Alle anderen werden verworfen. Shed Load (49) löst eine Überlastung so. Mit diesem Ansatz gibt es aber einige Probleme:
 \begin{itemize}
@@ -19,7 +19,7 @@ Eine Möglichkeit wäre, nur die Anfragen zu behandeln, welche mit den freien Re
 	\item Die Verwaltung der Queue benötigt zusätzliche Ressourcen und kann sehr ineffizient umgesetzt sein.
 \end{itemize}
 
-\subsection{Schlussfolgerung}
+\subsubsection*{Schlussfolgerung}
 
 Speichere Anfragen, die nicht direkt verarbeitet werden können, in einer Queue.
 
@@ -30,7 +30,7 @@ Speichere Anfragen, die nicht direkt verarbeitet werden können, in einer Queue.
 \end{figure}
 
 
-\subsection{Verwandte Patterns}
+\subsubsection*{Verwandte Patterns}
 
 Queues:
 \begin{itemize}
