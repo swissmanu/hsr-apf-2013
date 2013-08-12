@@ -3,12 +3,12 @@
 The Active Object design pattern decouples method execution from method invocation to enhance concurrency and simplify synchronized access to objects that reside in their own threads of control.
 
 
-\subsection{Problem}
+\subsection*{Problem}
 
 
 Ein Objekt wird von mehreren Threads/Processes benutzt, dabei soll aber eine blockierende Operation nicht alle anderen Clients blockieren.
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 
 Clients rufen Methoden des Objekts via Proxy auf. Die Proxy wandelt die Aufrufen in MethodRequest's um welche in eine Queue eingefügt werden welche dann von einem Scheduler abgearbeitet wird.
@@ -30,7 +30,7 @@ Der Rückgabewert wird via Future-Objekt zurückgegeben.
 
 
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 
 \begin{itemize}
@@ -38,7 +38,7 @@ Der Rückgabewert wird via Future-Objekt zurückgegeben.
 	\item ActiveObject und Proxy können z.B. auch via Netzwerk gekoppelt werden.
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 
 \begin{itemize}
@@ -46,9 +46,9 @@ Der Rückgabewert wird via Future-Objekt zurückgegeben.
 	\item Potentieller Performanzverlust
 \end{itemize}
 
-\subsection{Known Uses}
+\subsection*{Known Uses}
 
 
-\subsection{Prüfungsfragen}
+\subsection*{Prüfungsfragen}
 
 

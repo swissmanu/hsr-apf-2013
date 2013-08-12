@@ -2,15 +2,15 @@
 
 The Strategized Locking design pattern parameterizes synchronization mechanisms that protect a component's critical sections from concurrent access
 
-\subsection{Kontext}
+\subsection*{Kontext}
 
 Eine Applikation welche effizient auf verschiedenen Concurrency-Architekturen laufen muss (z.B. Single-Threaded und Multi-Threaded)
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Unterschiedliche Applikationen könnten unterschiedliche Synchronisations-Strategien (Mutex, Reader/Writer lock, Semaphore) verwenden/erfordern. Es sollte daher möglich sein, den Synchronisations-Mechanismus ohne neuschreiben der Funktionalität auszutauschen.
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 \begin{figure}[H]
 	\centering
@@ -20,7 +20,7 @@ Unterschiedliche Applikationen könnten unterschiedliche Synchronisations-Strate
 
 Um z.B. eine Single-Threaded Applikation so schnell wie möglich zu machen, kann ein Null-Objekt als Lock verwendet werden.
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 \begin{itemize}
 	\item Flexibilität und Anpassbarkeit wird erhöht
@@ -28,7 +28,7 @@ Um z.B. eine Single-Threaded Applikation so schnell wie möglich zu machen, kann
 	\item Wiederverwendbarkeit verbessert
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item Obtrusive Locking: Wenn templates für das Locking verwendet werden, wird die Locking Strategie dem Applikations-Code überlassen. Obwohl das Design flexibel ist, kann dies auch ein Nachteil sein, insbesondere wenn Compiler Templates nicht gut unterstützen.

@@ -4,7 +4,7 @@
 The interceptor architectural pattern allows services to be added transparently to a framework and triggered automatically when certain events occur.
 
 
-\subsection{Begriffe}
+\subsection*{Begriffe}
 
 \begin{itemize}
 	\item \emph{Application}: Implementiert Framework
@@ -15,23 +15,23 @@ The interceptor architectural pattern allows services to be added transparently 
 \end{itemize}
 
 
-\subsection{Kontext}
+\subsection*{Kontext}
 
 Frameworks welche transparent erweitert werden können.
 
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Frameworks können nicht voraussehen, welche Services ihre User benutzen müssen/wollen und User können insbesondere Black-Box Frameworks nicht erweitern, wenn sie nicht ursprünglich dafür gedacht waren.
 Frameworks müssen daher Integrationen von Dritt-Services ohne Modifikation der Architektur erlauben. Auch sollen solche Modifikationen keine existierenden Framework-Komponenten oder Applikationen des Frameworks beeinflussen.
 
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 Applikationen welche bestimmte Frameworks einsetzen müssen sich daher transparent beim Framework für bestimmte Services oder Events registrieren können. Durch die Implementation von bestimmten Schnittstellen, welche das Framework zur Verfügung stellt, muss die Applikation einzelne Aspekte des Frameworks kontrollieren und auf das Framework zugreifen können.
 
 
-\subsection{Implementation}
+\subsection*{Implementation}
 
 Das Interceptor Callback Interface ist dabei eine Implementation zu diesem Problem. Das Framework stellt dieses Interface zur Verfügung und Applikationen können concrete interceptors aufgrund dieses Interfaces implementieren. Diese Klassen registrieren sie bei einem Dispatcher für bestimmte Ereignisse und werden danach vom Framework mit context Objekten aufgerufen.
 Typischerweise existiert ein Dispatcher pro Interceptor.
@@ -43,7 +43,7 @@ Typischerweise existiert ein Dispatcher pro Interceptor.
 \end{figure}
 
 
-\subsection{Varianten}
+\subsection*{Varianten}
 \begin{itemize}
 	\item \emph{Interceptor}\\
 	Wird häufig auf der Server-Seite von Verteilten Systemen verwendet. Dabei wird ein Proxy (POSA1) instanziert, welcher eine Referenz auf das concrete framework bzw. den lokalen server hält. Sobald ein Client eine Anfrage macht, erhält das Proxy-Objekt diesen und führt u.U. Pre-Processing Funktionalität aus. Danach wird es dem Lokalen Server übergeben, welcher dann wiederum mittels dem Proxy dem Client antwortet.
@@ -56,7 +56,7 @@ Typischerweise existiert ein Dispatcher pro Interceptor.
 \end{itemize}
 
 
-\subsection{Verwendung}
+\subsection*{Verwendung}
 
 \begin{itemize}
 	\item \emph{Component-based application servers}
@@ -67,7 +67,7 @@ Typischerweise existiert ein Dispatcher pro Interceptor.
 \end{itemize}
 
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 \begin{itemize}
 	\item Extensibility/Flexibility des Frameworks
@@ -78,7 +78,7 @@ Typischerweise existiert ein Dispatcher pro Interceptor.
 \end{itemize}
 
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item Architektur/Design wird komplexer

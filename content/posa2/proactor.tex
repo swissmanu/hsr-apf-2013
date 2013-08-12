@@ -4,12 +4,12 @@
 The Proactor architectural pattern allows event-driven applications to efficiently demultiplex and dispatch service requests triggered by the completion of asynchronous operations, to achieve the performance benefits of concurrency without incurring certain of its liabilities.
 
 
-\subsection{Context}
+\subsection*{Context}
 
 An event-driven application that receives and processes multiple service requests asynchronously.
 
 
-\subsection{Problem}
+\subsection*{Problem}
 
 By processing multiple requests asynchronously, the performance of event-driven applications, such as servers, can often be increased. To support asynchonous operations, the application must be able to react to completion events of the async operations, which are delivered by the operating system. Typically four aspects need to be taken into account:
 
@@ -21,12 +21,12 @@ By processing multiple requests asynchronously, the performance of event-driven 
 \end{itemize}
 
 
-\subsection{Solution}
+\subsection*{Solution}
 
 Split each application service into long-duration operations and completion handlers. Long-duration operations are executed asynchronously and the completion handlers processes the result of these operations as they finish. Further, decouple dispatcher and completion event demultiplexing from the application-specific processing (so the application specific code only has to provide a long-duration async operation and a completion handler).
 
 
-\subsection{Structure}
+\subsection*{Structure}
 
 \begin{itemize}
 	\item \emph{handle}: provided by operating systems to identify entities which can generate completion events (i.e. for a file or socket)
@@ -41,7 +41,7 @@ Split each application service into long-duration operations and completion hand
 \end{itemize}
 
 
-\subsection{Implementation}
+\subsection*{Implementation}
 
 Two layers:
 \begin{itemize}
@@ -56,7 +56,7 @@ Two layers:
 \end{figure}
 
 
-\subsection{Varianten}
+\subsection*{Varianten}
 \begin{itemize}
 	\item \emph{Asynchronous Completion Handlers}\\
 	Completion handlers act as initiators, so they can also perform long-duration async operations.
@@ -69,7 +69,7 @@ Two layers:
 \end{itemize}
 
 
-\subsection{Known uses}
+\subsection*{Known uses}
 
 \begin{itemize}
 	\item Completion ports in Windows NT: OS is the async operation processor and provides the completion event queue with the complection ports.
@@ -80,7 +80,7 @@ Two layers:
 \end{itemize}
 
 
-\subsection{Benefits}
+\subsection*{Benefits}
 
 \begin{itemize}
 	\item Separation of Concerns
@@ -92,7 +92,7 @@ Two layers:
 \end{itemize}
 
 
-\subsection{Liabilities}
+\subsection*{Liabilities}
 
 \begin{itemize}
 	\item Restricted applicability

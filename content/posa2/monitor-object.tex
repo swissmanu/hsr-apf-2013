@@ -6,7 +6,7 @@ execution to ensure that only one method at a time runs within an
 object. It also allows an object’s methods to cooperatively schedule
 their execution sequences.
 
-\subsection{Problem}
+\subsection*{Problem}
 
 
 Mehrere Threads greifen gleichzeitig auf Methoden desselben Objektes zu. Die Methoden ändern Felder des Objektes, was somit dessen Zustand ändert. Um dies zu gewährleisten, müssen folgende Probleme berücksichtig werden:
@@ -19,7 +19,7 @@ Mehrere Threads greifen gleichzeitig auf Methoden desselben Objektes zu. Die Met
 	\item Bei der freiwilligen Abgabe muss das Objekt jedoch in einem stabilen Zustand sein.
 \end{enumerate}
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 
 Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss einen Monitor Lock implementieren. Die Methoden, welche als synchronized deklariert sind, teilen sich einen gemeinsamen Montitor Lock. Wird dieser Monitor Lock von einer Methode beansprucht, können andere synchronized Methoden nicht zur Ausführung kommen. Die Kommunikation zwischen den Threads geschieht dann über die sogenannten Monitor Conditions (wait(), notify(), notifyAll(),..), worüber die Methoden die Ausführung selbst stoppen und wiederaufnehmen können.
@@ -39,7 +39,7 @@ Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss eine
 \end{figure}
 
 
-\subsection{Implementation}
+\subsection*{Implementation}
 
 \begin{enumerate}
 	\item Monitor Object Interface definieren
@@ -49,7 +49,7 @@ Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss eine
 \end{enumerate}
 
 
-\subsection{Varianten}
+\subsection*{Varianten}
 
 \begin{itemize}
 	\item Timed Synchronisation Method Invocations
@@ -62,7 +62,7 @@ Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss eine
 	\end{itemize}
 \end{itemize}
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 
 \begin{itemize}
@@ -70,7 +70,7 @@ Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss eine
 	\item Vereinfachung der Planung der Methodenausführungen. Mit Hilfe der Monitor Conditions (wait()..)
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 
 \begin{itemize}
@@ -80,7 +80,7 @@ Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss eine
 	\item Nested monitor lockout: Methoden können sich gegenseitig ausschliessen (durch Verschachtelung von Monitor Locks)
 \end{itemize}
 
-\subsection{Known Uses}
+\subsection*{Known Uses}
 
 
 \begin{itemize}
@@ -90,7 +90,7 @@ Jedes Objekt, welches vor parallelem Zugriff geschützt werden sollte, muss eine
 	\item Fast food restaurant
 \end{itemize}
 
-\subsection{Prüfungsfragen}
+\subsection*{Prüfungsfragen}
 
 
 \begin{itemize}

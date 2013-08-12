@@ -2,11 +2,11 @@
 
 The Component Configurator design pattern allows an application to link and unlink its componentn implementations at run-time without having to modify, recompile, or statically relink the application. Component Configurator further supports the reconfiguration of components into different application processes without having to shut down and re-start running processes.
 
-\subsection{Kontext}
+\subsection*{Kontext}
 
 Ein System/eine Applikation in welcher Komponenten so flexibel und transparent wie möglich neugestartet, suspendiert oder wieder aufgeweckt werden muss.
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Komponenten-basierte Applikationen müssen einen Mechanismus zur Verfügung stellen, um diese Komponenten in mehrere Prozesse aufteilen zu können (konfigurierbar).
 Die Lösung zu diesem Problem ist durch 3 Bedingungen eingeschränkt:
@@ -24,11 +24,11 @@ Die Lösung zu diesem Problem ist durch 3 Bedingungen eingeschränkt:
 	\item Das Konfigurieren, Initialisieren und Kontrollieren von Kopmonents (Administrative Tätigkeiten) müssen einfach und Komponenten-unabhängig sein
 \end{itemize}
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 Komponenten-Schnittstellen von der Implementation und Applikationen von der Konfiguration der Komponenten unabhängig machen.
 
-\subsection{Struktur}
+\subsection*{Struktur}
 
 \begin{itemize}
 	\item ein Komponenten-Interface definiert eine gleichartige Schnittstelle um diese zu Konfigurieren und Administrieren
@@ -38,7 +38,7 @@ Komponenten-Schnittstellen von der Implementation und Applikationen von der Konf
 	\item Applikationen verwenden diese Interfaces um Komponenten zu administrieren
 \end{itemize}
 
-\subsubsection*{Klassendiagramm}
+\subsubsection**{Klassendiagramm}
 
 
 \begin{figure}[H]
@@ -48,7 +48,7 @@ Komponenten-Schnittstellen von der Implementation und Applikationen von der Konf
 \end{figure}
 
 
-\subsubsection*{Sequenzdiagramm}
+\subsubsection**{Sequenzdiagramm}
 
 
 \begin{figure}[H]
@@ -58,7 +58,7 @@ Komponenten-Schnittstellen von der Implementation und Applikationen von der Konf
 \end{figure}
 
 
-\subsubsection*{Zustandsdiagramm einer einzelnen Konkreten Komponente}
+\subsubsection**{Zustandsdiagramm einer einzelnen Konkreten Komponente}
 
 
 \begin{figure}[H]
@@ -68,11 +68,11 @@ Komponenten-Schnittstellen von der Implementation und Applikationen von der Konf
 \end{figure}
 
 
-\subsection{Implementation}
+\subsection*{Implementation}
 
 Das Komponente-Interface kann entweder über Inheritance oder über Message Passing implementiert werden
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 \begin{itemize}
 	\item Uniforme Konfiguration und Administration von Komponenten
@@ -82,7 +82,7 @@ Das Komponente-Interface kann entweder über Inheritance oder über Message Pass
 	\item Optimierung und Tuning während der Laufzeit möglich
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item Determinismus ist schwer nachzuvollziehen bis die Applikation vollständig konfiguriert ist
@@ -98,14 +98,14 @@ Das Komponente-Interface kann entweder über Inheritance oder über Message Pass
 	\item Interfaces der Komponenten könnten zu tightly coupled oder zu komplex sein, um uniform ausgeführt zu werden
 \end{itemize}
 
-\subsection{Known Uses}
+\subsection*{Known Uses}
 
 \begin{itemize}
 	\item Windows NT Service Control Manager
 	\item Device Drivers
 \end{itemize}
 
-\subsection{Prüfungsfragen}
+\subsection*{Prüfungsfragen}
 
 
 

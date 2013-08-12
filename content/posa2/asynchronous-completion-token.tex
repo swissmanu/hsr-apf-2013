@@ -3,11 +3,11 @@
 
 The Asynchronous Completion Token design pattern allows an application to demultiplex and process efficiently the responses of asynchronous operations it invokes on services.
 
-\subsection{Kontext}
+\subsection*{Kontext}
 Ein Event-gesteuertes System in welchem Applikationen asynchrone Operationen auf Diensten aufrufen und nach der Komplettierung die (natürlich asynchron eintreffenden) Event Responses verarbeiten.
 
 
-\subsubsection*{Terminologie}
+\subsubsection**{Terminologie}
 
 \begin{itemize}
 	\item Service (Dienst) stellt eine Funktionalität zur Verfügung, welcher asynchron angesprochen werden kann
@@ -20,7 +20,7 @@ Ein Event-gesteuertes System in welchem Applikationen asynchrone Operationen auf
 \end{itemize}
 
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Wenn eine Applikation mehrere asynchrone Operationen ausführt, wird jeder Dienst die Antwort an die Applikation zurückgeben. Um die Komplettierungs-Events korrekt verarbeiten zu können, muss die Applikation die Events demultiplexen und somit zum richtigen Handler weiterleiten.
 Drei Faktoren sind dabei wichtig und müssen gelöst werden:
@@ -32,7 +32,7 @@ Drei Faktoren sind dabei wichtig und müssen gelöst werden:
 \end{itemize}
 
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 Zusätzlich zu den normalen Informationen über den Event werden auch noch Daten mitgegeben, welche dem Initiator mitteilen, wie dieser den Event weiterverarbeiten soll.
 
@@ -51,7 +51,7 @@ Zusätzlich zu den normalen Informationen über den Event werden auch noch Daten
 \end{figure}
 
 
-\subsection{Varianten}
+\subsection*{Varianten}
 
 \begin{itemize}
 	\item Chain of Service ACTs
@@ -74,21 +74,21 @@ Zusätzlich zu den normalen Informationen über den Event werden auch noch Daten
 \end{itemize}
 
 
-\subsection{Verwendung}
+\subsection*{Verwendung}
 \begin{itemize}
 	\item AJAX
 	\item JSONP
 \end{itemize}
 
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 \begin{itemize}
 	\item Initiator muss keine komplexen Datenstrukturen unterhalten, um die Antworten des Services mit den Completion Handler zu verknüpfen. ACT kann beispielsweise ein Pointer auf einen Completion Handler sein.
 	\item ACTs sind flexibel und müssen kein bestimmtes Interface implementieren.
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item Wenn Pointer als ACTs verwendet werden, kann das zu Memory Leaks führen, wenn der entsprechende Callback nie kommt.
@@ -96,7 +96,7 @@ Zusätzlich zu den normalen Informationen über den Event werden auch noch Daten
 \end{itemize}
 
 
-\subsection{Prüfungsfragen}
+\subsection*{Prüfungsfragen}
 
 \begin{itemize}
 	\item Was muss beim Dienst beachtet werden, wenn die aufgerufene asynchrone Methode selber auch asynchron abläuft?

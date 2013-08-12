@@ -2,11 +2,11 @@
 
 The Half-Sync/Half-Async architectural pattern decouples asynchronous and synchronous service processing in concurrent systems, to simplify programming without unduly reducing performance. The pattern introduces two intercommunicating layers, one for asynchronous and one for synchronous service processing.
 
-\subsection{Kontext}
+\subsection*{Kontext}
 
 Ein nebenläufiges (concurrent) System, welches untereinander kommunizierende synchrone und asynchrone Dienste laufen lässt.
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Asynchrones Programmieren erlaubt schnellere Programme, ist aber grundsätzlich schwieriger für den Software Entwickler.
 Synchrone Programme sind einfach zu verstehen, u.U aber langsamer (da Signale grundsätzlich asynchron sind).
@@ -17,11 +17,11 @@ Um in einem Software-System beides zu erlauben, müssen folgende Punkte eingehal
 	\item Asynchrone und synchrone Services sollen untereinander kommunizieren können, ohne die Performance anderer Programmteile zu beeinträchtigen.
 \end{itemize}
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 Das System in zwei Layer aufteilen (sync und async) und dazwischen ein Queue-Layer setzen, damit sie untereinander kommunizieren können.
 
-\subsection{Struktur}
+\subsection*{Struktur}
 
 \begin{itemize}
 	\item \emph{synchrones Service Layer} betreibt High-Level Dienste. Dienste im Sync. Service Layer laufen in separaten Threads/Prozessen, welche blockieren können
@@ -48,7 +48,7 @@ Das System in zwei Layer aufteilen (sync und async) und dazwischen ein Queue-Lay
 	\item Zentralisierung von Inter-Layer Kommunikation
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item Boundary-Crossing Penalty: Für die Kontextwechsel, die notwendige Synchronisation und das Datenkopieren für die inter-layer Kommunikation (letzteres kann durch gemeinsam genutzte Speicherbereiche verhindert werden)

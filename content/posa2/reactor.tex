@@ -5,7 +5,7 @@ The Reactor architectural pattern allows event-driven applications to demultiple
 Das Reaktor Pattern erlaubt es, einer ereignis-gesteuerten Anwendung eine oder mehrere Client Anfragen gleichzeitig anzunehmen und auf verschiedene Serviceanbieter zu verteilen.
 
 
-\subsection{Beispiel}
+\subsection*{Beispiel}
 
 Verteiltes Logging System: Mehrere Clients können, per TCP verbunden, ihre Lognachrichten an einen Logging Server senden, der diese entsprechend weiterverarbeitet (z.B. Schreiben in Datenbank, Console, Drucker, ...)
 
@@ -20,7 +20,7 @@ Für jede Verbindung einen Thread. Nachteile davon sind jedoch:
 \end{itemize}
 
 
-\subsection{Problem}
+\subsection*{Problem}
 Event-gesteuerte Applikationen müssen viele Anfragen simultan beantworten können, auch wenn sie seriell abgearbeitet werden. Jeder Request wird durch ein indication event ausgelöst, z.B. CONNECT oder READ. Somit muss der Server zuerst die indication events an die entsprechenden Serviceimplementierungen dispatchen und demultiplexen.\\
 \\
 Für die Implementierung muss für die Applikation folgendes gewährleistet sein, sie:
@@ -32,13 +32,13 @@ Für die Implementierung muss für die Applikation folgendes gewährleistet sein
 \end{itemize}
 
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 Synchron auf die Ankunft von indication events auf ein oder mehreren Eventquellen, z.B. sockets, warten.
 Für jeden Service, der eine Applikation anbietet, einen eigenen event handler anbieten, der gewisse Events von den Eventsources behandelt. Die Eventhandler registrieren sich beim Reactor, welcher einen synchronen event demultiplexer benutzt. Dieser informiert den Reaktor beim Auftreten eines Events, welcher dann synchron den event handler dispatched, um den Request abzuarbeiten.
 
 
-\subsection{Struktur}
+\subsection*{Struktur}
 
 \begin{enumerate}
 	\item \emph{Handles}\\
@@ -69,12 +69,12 @@ Für jeden Service, der eine Applikation anbietet, einen eigenen event handler a
 \end{figure}
 
 
-\subsection{Implementierung}
+\subsection*{Implementierung}
 
 Die Implementierung des Reactors lässt sich in zwei Layer unterteilen. Der Frameworklayer, die die applikationsunabhängige demultiplex/dispatch Infrastruktur zur Verfügung stellt und der Applikationslayer, die die konkreten event handler liefert.
 
 
-\subsection{Varianten}
+\subsection*{Varianten}
 
 \begin{itemize}
 	\item \emph{Thread-Safe Reactor}
@@ -98,7 +98,7 @@ Die Implementierung des Reactors lässt sich in zwei Layer unterteilen. Der Fram
 \end{itemize}
 
 
-\subsection{Verwendung}
+\subsection*{Verwendung}
 \begin{itemize}
 	\item libevent
 	\item Apache Mina
@@ -109,7 +109,7 @@ Die Implementierung des Reactors lässt sich in zwei Layer unterteilen. Der Fram
 \end{itemize}
 
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 \begin{itemize}
 	\item klare Trennung von Framework- und Applikationslogik
@@ -119,7 +119,7 @@ Die Implementierung des Reactors lässt sich in zwei Layer unterteilen. Der Fram
 \end{itemize}
 
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item setzt einen event demultiplexer voraus
@@ -128,7 +128,7 @@ Die Implementierung des Reactors lässt sich in zwei Layer unterteilen. Der Fram
 \end{itemize}
 
 
-\subsection{Prüfungsfragen}
+\subsection*{Prüfungsfragen}
 \begin{itemize}
 	\item Was ist der Unterschied zum Proactor?
 	\begin{itemize}

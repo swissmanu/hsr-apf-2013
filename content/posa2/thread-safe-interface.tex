@@ -3,11 +3,11 @@
 
 The \emph{Thread-Safe Interface} design pattern minimizes locking overhead and ensures that intra-component method calls do not incur 'self-deadlock' by trying to reacquire a lock that is held by the component already.
 
-\subsection{Kontext}
+\subsection*{Kontext}
 
 Komponenten in multi-threaded Applikationen, welche intra-Komponenten Methoden aufrufe benutzen.
 
-\subsection{Problem}
+\subsection*{Problem}
 
 Multi-Threaded Komponenten haben häufig mehrere öffentliche Interface Methoden (und private Implementations-Methoden), welche den Zustand der Komponente ändern können.
 Um Race-Conditions zu verhindern, kann ein Lock intern für die Komponente verwendet werden, um Aufrufe solcher Methoden seriell zu machen.
@@ -18,28 +18,28 @@ Falls das gemacht wird, werden folgende Punkte bei intra-komponenten-methoden Au
 	\item Der overhead durchs Locking sollte so klein wie möglich gehalten werden
 \end{itemize}
 
-\subsection{Lösung}
+\subsection*{Lösung}
 
 \begin{itemize}
 	\item Das Interface sollte das Lock machen, die eigentliche Implementation sollte erst nach dem Locken aufgerufen werden.
 	\item Implementations-Methoden sollten nur etwas machen, wenn sie von den Interface-Methoden aufgerufen werden.
 \end{itemize}
 
-\subsection{Varianten}
+\subsection*{Varianten}
 
 \begin{itemize}
 	\item Thread-Safe Facade: Kann verwendet werden, wenn der Zugriff auf ein ganzes Subsystem synchronisiert werden muss.
 	\item Thread-Safe Wrapper Facade: Hilft den Zugriff auf eine nicht-synchronisierte Klasse zu synchronisieren
 \end{itemize}
 
-\subsection{Kown uses}
+\subsection*{Kown uses}
 
 \begin{itemize}
 	\item Java: java.util.Hashtable verwendet dies
 	\item Security Checkpoints: Im Real-Life wird das z.B. beim Zoll verwendet: Man darf nur rein, wenn der Security Guard an der Grenze den einlass gewährt
 \end{itemize}
 
-\subsection{Vorteile}
+\subsection*{Vorteile}
 
 \begin{itemize}
 	\item Increased Robustness (kein self-deadlock)
@@ -47,7 +47,7 @@ Falls das gemacht wird, werden folgende Punkte bei intra-komponenten-methoden Au
 	\item Vereinfachung der Software
 \end{itemize}
 
-\subsection{Nachteile}
+\subsection*{Nachteile}
 
 \begin{itemize}
 	\item Mehr Indirektionen und extra Methoden (Komplexität)
@@ -56,7 +56,7 @@ Falls das gemacht wird, werden folgende Punkte bei intra-komponenten-methoden Au
 	\item Overhead
 \end{itemize}
 
-\subsection{See also}
+\subsection*{See also}
 
 \begin{itemize}
 	\item Decorator pattern
