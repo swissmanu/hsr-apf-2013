@@ -1,0 +1,186 @@
+\section{Layers}
+
+Das Layer (Schichten?) Pattern hilft Anwendungen zu strukturieren welche in Gruppen von Unteraufgaben zerlegt werden können, wobei jede Gruppe von Unteraufgaben einen bestimmten Abstraktionsgrad besitzt.
+
+\subsection*{Example: OSI Schichten Modell}
+
+\begin{itemize}
+	\item Layer 1: Überträgt Bits auf physikalischem Träger
+	\item Layer 2: Erkennt und korrigiert Fehler der physikalischen Übertragung
+	\item Layer 3: Kontrolliert die Wegsuche zw. Sender und Empfänger
+	\item ...
+\end{itemize}
+
+Applikation Low- to High-Level
+
+\begin{itemize}
+	\item Low-Level: Lesen von Sensordaten, Dateien, ...
+	\item Mid-Level: Business-Cases, z.b. Berechnungen
+	\item High-Level: User-Interface
+\end{itemize}
+
+\subsection*{Context}
+
+Ein grosses System welches eine Zerlegung nötig hat.
+
+\subsection*{Problem}
+
+
+Grosse Systeme benötigen nicht nur eine horizontale Aufteilung (verschiedene Abstraktionsgrade), sondern auch eine vertikale Aufteilung (Schichten). Dies ist der Fall wenn Operationen auf der selben Abstraktionsstufe stattfinden, aber dennoch grösstenteils unabhängig voneinander sind.
+
+\subsection*{Forces}
+
+
+Folgende Forces müssen beachtet (ausbalanciert?) werden:
+
+\begin{itemize}
+	\item Änderungen am Quelltext sollen keine Auswirkungen auf das ganze System haben
+	\item Schnittstellen (Interfaces) sollten stabil sein, möglicherweise einem Standard folgen
+	\item Teile des System sollen austauschbar sein
+	\item Es kann nötig sein später ein anderes System auf den gleichen Low-Level Issues(???) zu bauen.
+	\item Ähnliche Verantwortlichkeiten (Responsibilities) sollen so gruppiert werden, dass diese einfach zu verstehen und zu warten sind.
+	\item Es gibt keien "standard" Granularität für Komponenten
+	\item Komplexe Komponenten müssen weiter zerlegt/unterteilt werden
+	\item Das Überschreiten von Komponentgrenzen kann negative Auswirkungen auf die Performance haben.
+	\item Das System wird von einem Team aus Programmieren gebaut. Die Arbeit muss dazu durch klare Granzen unterteilt werden. (diese Anforderung wird bei der Architektur oft vernachlässigt)
+\end{itemize}
+
+\subsection*{Solution}
+
+
+Das System ist in eine angemessene Anzahl von Schichten (Layers) zu strukturieren  welche aufeinander aufsetzen. Die Dienste jeder Schicht kombinieren dabei die Dienste der darunterliegenden Schicht.
+
+\subsection*{Structure}
+
+
+Einzelne Schichten können mit hilfe von CRC (Class, Responsibility, Collaborator) Karten beschrieben werden.
+
+Die Hauptcharakteristik des Layers Pattern ist, dass die Dienste einer Schicht nur von der darüberliegenden Schicht genutzt werden. Jede Schicht schirmt somit alle niedrigeren Schichten von einem direkten Zugriff durch höhere Schichten ab indem der Dienst an die tiefere Schicht delegiert wird.
+
+\subsection*{Dynamics}
+
+
+Beschreiben mögliche Szenarien für Kommunikation zwischen Schichten.
+
+\subsection*{Szenario I}
+
+Oberste Schicht erhält eine Anfrage, die sie nicht selbst verarbeiten kann. Daher gibt die Schicht die Anfrage an die Subschicht weiter (oftmals als mehrere spezifischere Anfragen). Dies geht bis zur untersten Schicht. Wo nötig werden die Antworten wieder nach oben gegeben.
+
+\subsection*{Szenario II}
+
+Die unterste Schicht erhält eine Eingabe und gibt diese nach oben. Als Beispiel kann eine Tastatureingabe verwendet werden. Die Hardwareschnittstelle erhält das Signal einer gedrückten Taste. Dieses Signal wird nach oben gegeben bis der entsprechende Buchstabe auf dem Bildschirm erscheint.
+
+\subsection*{Szenario III}
+
+Anfragen durchlaufen nur ein Teil der Schichten. Dies ist insbesondere der Fall, wenn eine Schicht als Cache fungiert. Als Beispiel die Möglichkeit mit HTML5 \& Javascript eine Website auf dem Computer zu speichern und später ohne Internetverbindung verfügbar zu haben.
+
+\subsection*{Szenario IV}
+
+Die unterste Schicht erhält eine Eingabe. In diesem Szenario wird die Eingabe nicht nach ganz oben gegeben sondern in einer Zwischenschicht abgefangen (und verworfen). Als Beispiel erhält ein Server von einem ungeduldigen Client eine wiederholte Anfrage. Die erneute Anfrage hat sich mit der Antwort gekreuzt. Anstatt die wiederholte Anfrage erneut zu beantworten wird die Anfrage verworfen (da die Antwort schon gesendet wurde)
+
+\subsection*{Szenario V}
+
+Dieses Szenario benötigt zwei Stacks von N Layer. Eine Anfrage wandert von Stack 1 vom N Layer zu Layer 1, wird dem Layer 1 von Stack 2 übergeben und wandert bei diesem zum Layer N. Die Antwort geht entsprechend in die gegenentsetzte Richtung. Als Beispiel kann das OSI Modell für eine Server-Client-Kommunikation verwendet werden.
+
+\subsection*{Implementation}
+
+
+Schritt für Schritt Vorgehen (nicht alle Schritte sind nötig)
+
+\begin{enumerate}
+	\item Definiere das abstrakte Kriterium um Aufgaben in Schichten zu gruppieren.
+	\item Bestimme die Anzahl der Abstraktionsschichten
+	\item Benenne die Schichten und weise jeder Aufgaben zu
+	\item Spezifiziere die Dienste
+	\item Verfeinere die Schichten. Iteriere die Schritte 1 bis 4.
+	\item Spezifiziere eine Schnittstelle für jede Schicht
+	\item Sturkturiere die einzelne Schichten
+	\item Spezifiziere die Kommunikaton zwischen benachbarten Schichten
+	\item Entkopple benachbarte Schichten
+	\item Entwirf eine Strategie zur Behandlung von Fehlern
+\end{enumerate}
+
+\subsection*{Variants}
+
+\begin{itemize}
+	\item Relaxed Layered System: Variante welche weniger strikt bei der Beziehung zwischen Schichten ist. Eine Schicht kann die Dienste aller darunterliegenden Schichten benutzen; nicht nur die der direkt darunter ligenden Schicht.
+	\item Layering throug inheritance: Tiefere Layer sind als Basisklassen implementiert; Dienste auf einer höheren Ebene, die auf die Low Level Funktionalitäten angewiesen sind, erben von der Low Level Implementation. Höhere Layer können dadurch die Low Level Implementation je nach Bedarf auch verändern.
+\end{itemize}
+
+\subsection*{Known Uses}
+
+
+\begin{itemize}
+	\item Virtual Machines
+	\item APIs
+	\item Information Systems (Presentation, Application logic, Domain layer, Database)
+	\item Windows NT (System services, Resource Management Layer, Kernel, Hardware Abstraction Layer, Hardware)
+\end{itemize}
+
+\subsection*{Consequences}
+
+
+\begin{itemize}
+	\item Layer können wiederverwendet werden
+
+	\begin{itemize}
+	\item z.B. UDP und TCP bauen beide auf IP auf
+	\item Voraussetzung ist, dass die entsprechenden Layer über genau spezifizierte Interfaces beschrieben werden.
+	\end{itemize}
+
+	\item Standardisierung wird ermöglicht
+	\begin{itemize}
+		\item Unterschiedliche Implementierungen des selben Interfaces können stellvertretend benutzt werden
+		\item z.B. POSIX ist eine standartisierte Schnittstelle für den Zugriff auf Betriebssystemfunktionen
+	\end{itemize}
+	\item Arbeit kann klar abgegerenzt und verteilt werden
+	\item Abhängigkeiten sind lokal begrenzt
+	\begin{itemize}
+		\item z.B. Änderungen am Betriebssystem betreffen nur die POSIX Schnittstelle
+	\end{itemize}
+	\item Layerimplementationen sind austauschbar
+	\item Testen wird vereinfacht, Faking \& Mocking ermöglicht
+	\begin{itemize}
+		\item Konsequenz von Austauschbarkeit und lokal begrenzten Abhängigkeiten
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Liabilities}
+
+\begin{itemize}
+	\item Änderungkaskaden wenn sich das verhalten eines Layers ändert
+
+	\item Performanceeinbussen:
+	\begin{itemize}
+		\item Kommunikation zwischen oberster und unterster Schicht muss alle Zwischenschichten passieren und die Daten werden unter umständen mehrmals konvertiert.
+		\item z.B. OSI: Protokollspezifische Header werden beim Absteigen durch die Layer hinzugefügt
+		\item "Durchlauferhitzer"
+	\end{itemize}
+
+	\item Unnecessary work
+	\begin{itemize}
+		\item Low Level Layer führen aufwendige Arbeiten durch, die von den oberen Layern nicht benutzt werden
+		\item z.B. Fehlerkorrektur bei Datenübertragung: Low Level Layer stellt eine grundlegende Fehlerkorrektur zur Verfügung, höherer Layer ist aber auf eine höhere Zuverlässigkeit angewiesen und implementiert eine Fehlerbehandlung die den Mechanismus des unteren Layers überflüssig macht.
+	\end{itemize}
+	\item Ermittlen der richtigen Granularität der Layer ist nicht immer einfach
+	\begin{itemize}
+		\item Zu wenige Layer schöpfen das Potential der Wiederverwendbarkeit des Layer-Patterns nicht voll aus
+		\item Zu viele Layer führen zu unnötiger Komplexität und Overhead
+	\end{itemize}
+\end{itemize}
+
+\subsection*{See Also}
+\begin{itemize}
+	\item Composite Message
+	\item Microkernel architecture
+	\item PAC architectural pattern
+\end{itemize}
+
+
+\subsection*{Mögliche Prüfungsfragen}
+\begin{itemize}
+	\item Was ist der Nachteil des relaxed layerings?
+	\item Was ist der Nachteil des Layering-Through-Inheritance?
+	\item Inwiefern ist das Layer Pattern in der JVM erkennbar?
+\end{itemize}
+

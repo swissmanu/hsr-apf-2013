@@ -1,0 +1,168 @@
+\section{Microkernel}
+
+
+Das Microkernel Architektur Pattern passt zu Software Systemen welche sich an ändernden System-Anforderungen anpassen müssen. Es trennt einen minimalen Funktions-Kern von erweiterter Funktionalität und kundenspezifischen Teilen. Der Microkernel dient zudem als Sockel um diese Erweiterungen anzubringen und ihre Zusammenarbeit zu koordinieren.
+
+\subsection*{Example}
+
+
+Ja mer programmiered es eignis Betriebssystem wo mer anderi Betreibssystem als Prozess emulierende chönd, wie zum Biispiil Microsoft Windows...
+
+:: TODO: bessere Beispiele? Evtl. kennt einer ein Web-Framework das wie ein Microkernel funktioniert? Mer nämmed au gueti PHP-Bispiil... ::
+@frag:
+Gits glaub als solches gar nöd? aber ähnlichi funktione büted wine, mono, javvm, clr?
+
+\subsection*{Context}
+
+
+Die Entwicklung von verschiedenen Anwendungen welche eine ähnliche Programmierschnittstelle benutzen und auf der selben Kernfunktionalität aufbauen.
+
+\subsection*{Problem}
+
+
+Das Entwickeln von Software für eine Anwendungsdomäne welches ein breites Spektrum von ähnlichen Stardanrds und Technologien abdecken muss ist kein leichtes Unterfangen. Bekannte Beispiele hierfür sind Betriebssysteme und Grafische Benutzerschnittstellen. Solche Systeme haben oft eine lange Lebensdauer, manchmal zehn Jahre oder länger. Über diese Zeit können neue Technologien aufkommen und alte sich verändern.
+
+\subsubsection*{Forces}
+
+
+
+\begin{itemize}
+	\item Die Anwendungsplattform muss mit der fortlaufenden Hardware- und Software-Entwicklung zurechtkommen.
+	\item Die Anwendungsplattform muss portabel, erweiterbar und anpassbar sein um möglichst einfach neu aufkommende Technologien zu integrieren.
+\end{itemize}
+
+\subsection*{Solution}
+
+
+Kapsle die grundlegenden Dienste deiner Anwendungsplattform in eine Microkernel-Komponente. Der Microkernel beinhaltet Funkionalität welche anderen, in eigenen Prozessen laufende, Komponenten erlauben miteinander zu kommunizieren. Er ist ebenfalls verantwortlich systemweite Resourcen zu verwalten, wie Dateien oder Prozesse. Zudem stellt er eine Schnittstelle bereit welche es anderen Komponente ermöglicht seine Funktionalität zu nutzen.
+
+Grundfunktionalität welche nicht in den Microkernel integriert werden kann ohne diesen unnötig aufzublähen soll in "Internal Servers" ausgelagert werden.
+
+"External Servers" implementiere ihre eigene Sicht auf den darunterliegenden Microkernel.
+
+"Clients" kommunizieren mit "External Servers" indem sie die Kommunikationsinfrastruktur des Mircokernel ntzen.
+
+\subsection*{Structure}
+
+
+Das Microkernel Pattern definiert fünf Arten von beteiligten Komponenten.
+
+\begin{itemize}
+	\item Internal Servers
+	\item External Servers
+	\item Adapters
+	\item Clients
+	\item Microkernel
+\end{itemize}
+
+Der Microkernel representiert die Hauptkomponente des Patterns. Er implementiert zentrale Dienste wie die Kommunikationsinfrastruktur oder die Resourcen-Verwaltung. Die atomaren Dienste welche der Microkernel implementiert werden "Mechanisms" genannt. Komplexere Funktionalitäten welche darauf aufbauen werden "Policies" genannt.
+
+Internal-Servers, auch bekannt als Subsysteme, erweitert die Funktialität des Microkernels. Sie können auch Abhängigkeiten von der zugrunde liegendend Hardware kapseln. Bei einem Betriebsystem werden solche "internal servers" auch Geräte-Treiber (device drivers) genannt.
+
+Ein External-Server, auch bekannt als "personality", ist eine Komponente welche den Microkernel nutzt um seine eigene View auf die zugrundeliegende Anwendungsdomäne zu implementieren. Er nimmt, über die Kommunkationsinfrastruktur des Microkernels, Service-Requests von Client-Anwendungen entgegen, interpretiert sie, führt den entsprechenden Service aus und gibt das Ergebnis der Client-Anwendung zurück.
+
+Ein Client ist eine Anwendung welche mit genau einem External-Server verknüpft ist. Er greift nur auf Schnittstellen des External-Servers zu.
+
+Adapters, auch bekannt als "emulators", sind Schnittstellen zwischen Clients und External-Servers, welche direkte Abhängikeiten zwischen diesen vermeiden.
+
+\subsection*{Dynamics}
+
+
+Szenario 1: Ein Client ruft einen Serivce seines External-Servers auf
+
+\begin{enumerate}
+	\item bmp
+	\item Der Client beansprucht einen Dienst eines External-Servers indem er den Adapter aufruft.
+	\item Der Adapter erstellt einen Request und fragt den Microkernel für eine Kommunkationsverbindung mit dem External-Server.
+	\item Der Microkernel gibt die physikalische Adresse des External-Servers an den Adapter zurück.
+	\item Der Adapter baut daraufhin eine direkte Verbindung mit dem External-Server auf.
+	\item Der Adapter senden den Request mit RPC (remote procedure call)
+	\item Der External-Server erhält den Request, entspackt die Nachricht und delegiert die Aufgabe an seine eigenen Methoden weiter. Schlussendlich sendet der External-Service alle Ergebnisse zurück an den Adapter.
+	\item Der Adapter gibt diese an den Client weiter, welcher nun mit in seinem Kontrollfluss weiterfahren kann.
+\end{enumerate}
+
+
+\begin{enumerate}
+	\item bmp
+	\item Der External-Server sendet einen Service-Request an den Microkernel.
+	\item Der Microkernel sendet einen Request an den Internal-Server.
+	\item Nachdem der Interal-Server den Request erhalten hat führ er den entsprecheden Dienst aus und sendet alle Resultate zurück an den Microkernel.
+	\item Der Microkernel gibt die Resultate zurück an den External-Server
+	\item Schlussendlich erhält der External-Server die Resultate und fährt mit seinem Kontrollfluss fort.
+\end{enumerate}
+
+
+\begin{enumerate}
+	\item  Analysiere die Anwendungsdomäne.
+	\item  Analysiere die External-Servers.
+	\item  Kategorisiere die Dienste in semantsich unabhängige Kategorien.
+	\item  Unterteile die Kategorien in Dienste welche Teil des Microkernels sind und solche welche als Interal-Servers verfügbar sein sollen.
+	\item  Finde eine Menge von Operationen und Abstraktionen für jede Kategorie. Der Microkernel stellt "Mechanisms", keine "Policies" zur verfügung.
+	\item  Finde Strategien für das Senden und Empfangen von Requests. Mögliche Design Patterns: Forwarder-Receiver und Client-Dispatcher-Server
+	\item  Strukturiere die Microkernel-Komponente. Falls möglich setze das Layers-Pattern ein.
+	\item  Spezifiziere die Schnittstellen des Microkernels.
+	\item  Der Microkernel ist verantwortlich alle Systemresourcen zu verwalten. Resourcen können über Handles an andere Komponente zur Verfügung gestellt werden. Der Microkernel muss diese erstellen und das Mapping zwischen einem Handle und der eigentlichen Resource sicherstellen. Die kann mit hilfe von Hash-Tabellen implementiert werden.
+	\item Entwirft und implementiere die Interal-Servers als eigene Prozesse (Active Server) oder Shared Libraries (passive Server).
+	\item Implementiere die External-Servers.
+	\item Implementeire die Adapters. Entweder als statisch- oder dynamische gelinkte Library. Ein Adapter kann auch als Proxy betrachtet werden wodurch das Proxy-Pattern benutzt werden kann.
+	\item Entwickle Client-Anwendungen.
+\end{enumerate}
+
+
+\begin{itemize}
+	\item Microkernel mit indirekten Client-Server Verbindungen. Dabei muss ein External-Server den Microkernel für einen Kommunikationskanal anfragen. Dadurch werden alle Requests durch den Microkernel geschleusst.
+	\item Distributed Microkernel System. Auch hier werden die Request über den Mircokernel geleitet, wobei dieser die Nachrichten an Remote-Rechner schickt oder von diesen empfängt. Jede Maschine in einem so einem "Distributed System" hat seinen eigenen Microkernel. Aus Sicht des Benutzers erscheint das ganze System jedoch als ein einziger Microkernel.
+\end{itemize}
+
+\subsection*{Known Uses}
+
+
+\begin{itemize}
+	\item Mach Operating System - Ein Betriebssystem
+	\item Amoeba - Noch ein Betriebssystem
+	\item Chorus - Ein Microkernel von Franzosen
+	\item Windows NT - Aus Architektursicht ein Microkernel mit External-Servers für OS/2, POSIX und Win32
+	\item MKDE (Microkernel Databank Engine) - Datenbank Engine mit Microkernel
+\end{itemize}
+
+Eigene:
+
+\begin{itemize}
+	\item JBoss - Java EE Server
+	\item OSGi - Dynamisches Komponentenmodell für Java
+	\item HK2 (used in GlassFish V3) - Java EE Server
+\end{itemize}
+
+\subsection*{Consequences}
+
+
+\subsubsection*{Benefits}
+
+
+\begin{itemize}
+	\item External-Servers müssen meist nicht potiert werden, wenn man den Microkernel potiert
+	\item Migration zu neuer Hardware benötigt nur Modifikationen an Hardware abhängigen Teilen.
+	\item Flexibilität und Erweiterbarkeit
+	\item Trennung von "Policy" und "Mechanism"
+	\item Skalierbarkeit
+	\item Zuverlässigkeit
+	\item Transparenz
+\end{itemize}
+
+\subsubsection*{Liabilities}
+
+
+\begin{itemize}
+	\item Performance
+	\item Komplexität des Designs und der Implementierung
+\end{itemize}
+
+\subsection*{See also}
+
+
+\begin{itemize}
+	\item Broker pattern
+	\item Reflection pattern
+	\item Layers pattern (Microkernel kann als Variante angesehen werden)
+\end{itemize}
+
