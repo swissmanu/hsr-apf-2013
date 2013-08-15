@@ -43,31 +43,7 @@ Die Korrektheit der \emph{Policies} wiederum wird über das Biba-Modell\cite{Bib
 
 
 \begin{figure}[H]
-	\begin{center}
-	\begin{tikzpicture}
-		\umlemptyclass[x=0,y=0]{TrustedProcess}
-
-		\umlemptyclass[x=-3,y=-3]{Subject}
-		\umlemptyclass[name=SubjectCategory,x=-5,y=-6]{Category}
-		\umlemptyclass[x=-2,y=-6]{ClearanceLevel}
-
-		\umlemptyclass[x=3,y=-3]{Data}
-		\umlemptyclass[name=DataCategory,x=6,y=-6]{Category}
-		\umlemptyclass[x=2.7,y=-6]{ClassificationLevel}
-
-
-		\umlassoc[arg2=AssignLevel,geometry=-|,mult1=*,mult2=*,pos1=0.3,pos2=1.9]{TrustedProcess}{Subject}
-		\umlassoc[arg2=AssignLevel,geometry=-|,mult1=*,mult2=*,pos1=0.3,pos2=1.9]{TrustedProcess}{Data}
-
-		\umlassoc[arg=canAccess,pos1=0.1,pos2=1,mult1=*,mult2=*,align2=right]{Subject}{Data}
-
-		\umlcompo[geometry=|-|,mult=*,pos=2.8]{Subject}{SubjectCategory}
-		\umlcompo[geometry=|-|,mult=1,pos=2.7]{Subject}{ClearanceLevel}
-
-		\umlcompo[geometry=|-|,mult=*,pos=2.8]{Data}{DataCategory}
-		\umlcompo[geometry=|-|,mult=1,pos=2.7]{Data}{ClassificationLevel}
-	\end{tikzpicture}
-	\end{center}
+	\includegraphics[width=\textwidth]{content/security/accesscontrolmodels/images/multilevelsecurity.png}
 \caption{Multilevel Security Klassendiagramm}
 \end{figure}
 

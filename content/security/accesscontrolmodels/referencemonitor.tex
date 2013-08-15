@@ -18,23 +18,7 @@ Folgendes Klassendiagramm zeigt den Ansatz des abstrakten \emph{Reference Monito
 Die Collection aus \emph{Authorization Rules} ist konkret mit einer \gls{ACL} vergleichbar.
 
 \begin{figure}[H]
-	\begin{center}
-	\begin{tikzpicture}
-		\umlemptyclass[x=-5,y=0]{Subject}
-		\umlemptyclass[x=0,y=0]{ReferenceMonitor}
-		\umlemptyclass[x=0,y=-5]{Concrete ReferenceMonitor}
-		\umlemptyclass[x=6,y=0,type=collection]{AuthorizationRules}
-		\umlemptyclass[x=6,y=-2.8]{Authorization}
-
-		\umlassoc[name=subjectToRefMon,arg=requests,pos=0.95,mult1=*,mult2=*,align2=right]{Subject}{ReferenceMonitor}
-		\umlassocclass[geometry=|-|,x=-2.5,y=-2.8]{Request}{subjectToRefMon-1}{proectionObject\\accessType}{}
-		\umlassoc[arg=exists,pos=0.95,mult1=*,mult2=*,align2=right]{ReferenceMonitor}{AuthorizationRules}
-
-		\umlinherit{Concrete ReferenceMonitor}{ReferenceMonitor}
-
-		\umlcompo[mult=*]{AuthorizationRules}{Authorization}
-	\end{tikzpicture}
-	\end{center}
+	\includegraphics[width=\textwidth]{content/security/accesscontrolmodels/images/referencemonitor.png}
 \caption{Reference Monitor - Klassendiagramm}
 \end{figure}
 
