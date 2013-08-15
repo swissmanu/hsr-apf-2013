@@ -1,27 +1,74 @@
-\subsection{Check Point}
-\label{sec:checkpoint}
+\section{Security Pattern - Check Point}
 
 
+\subsection*{Beispiel}
+
+Als Beispiel wird der Wall mit dem einzelnen Tor (Single Access Point) verwendet. Nun möchte der Bürgermeister am Tag die Geschäfte nicht stören und daher ein offenes Tor haben, hingegen in der Nacht vor Räubern schützen.
 
 \subsection*{Kontext}
 
+System soll vor nicht befugten Zugriffen geschützt werden, hingegen Berechtigte Zugriffe sollen weiterhin möglich sein.
 
 \subsection*{Problem}
 
+Bei der Einführung eines Sicherheitssystems weis man nie genau welche möglichen Schwachstellen es gibt. Das System muss unbefugte Zugriffe blocken und umgekehrt die befugten Benutzer nicht hemmen.
+
+Wie sieht eine Architektur aus, welche in der Lage ist, ein System ausreichend zu schützen und zugleich die Flexibilität bei I\&A wahrt für zukünftige Veränderungen in den Anforderungen?
+
+\begin{itemize}
+	\item Fehleingabe Passwort --> Nicht gleich System komplett blocken
+	\item Mehrere falsche Passwörter hintereinander --> schon eher verdächtig
+	\item Ausbalancierte Gegenmassnahmen (z.B. mit Accountsperre)
+	\item Wechselnde Anforderungen gerecht werden
+	\item Code im Sicherheitsbereich ist kritisch und sollte möglichst mehrfach überprüft und getestet werden.
+\end{itemize}
+
 \subsection*{Lösung}
 
-\subsection*{Vorteile}
+Das Strategy Pattern sorgt für das verschiedene Verhalten des Single Access Point. Check Point definiert dabei die Schnittstelle für konkrete I\&A Dienste, welche von einem Single Access Point genutzt werden. Eine separate Konfiguration sagt aus welche genaue Implementation verwendet werden soll.
+
+Nebst I\&A kann der Check Point auch andere sicherheitstechnische Aufgaben übernehmen, wie zum Beispiel die Erkennung von Angriffen.
+
+
+\subsubsection*{Implementation}
+
+\begin{enumerate}
+	\item Schnittstelle für Check Point definieren (oder wiederverwenden)
+	\item Implementiere die Eingangsprüfung am Single Access Point. Der Single Access Point sorgt dabei dafür, dass der Eingang nicht übergangen werden kann.
+	\item Konfiguration-Mechanismus um konkreten Check-Point auswählen zu können.
+	\item Implementiere konkreten Check Point, mindestens ein solcher wird benötigt. Mehrere Check Points kann hilfreich sein, vor allem um verschiedene Szenarien zu testen.
+	\item Behandle Benutzer Fehler am Check Point. Betreffend des Security Levels können verschiedene Aktionen einer Fehleingabe folgen. Als Beispiel könnte einfach eine Warnung ausgegeben werden. Dabei ist es auch möglich nach einer gewissen Anzahl an Fehleingaben den Account zu sperren.
+	\item Falls einzelne Checks nicht am Check Point durchgeführt werden können, benötigt es ein Application Level API für den Check Point. Damit können auch zu anderen Zeitpunkten als am Eingang die Checks durchgeführt werden.
+\end{enumerate}
+
+\subsubsection*{Vorteile}
+
 \begin{itemize}
-	\item
+	\item Flexibles Sicherheitssystem
+	\item Einfacheres Testing und Entwicklung
+	\item Verschiedene Szenarien können getrennt getestet werden
+	\item Wiederverwendung von Sicherheits-Komponenten möglich
 \end{itemize}
 
-\subsection*{Nachteile}
+
+\subsubsection*{Nachteile}
+
 \begin{itemize}
-	\item
+	\item Check Points sind kritisch. Fehler im Check Point können das ganze Sicherheitskonzept einer Architektur irrelevant machen.
+	\item Komplexität des Algorithmus. Die Algorithmen für die Unterscheidung zwischen alltäglichen Fehleingaben und Angriffsversuchen und die dabei ausgelösten Aktionen können sehr komplex sein.
+	\item Manche Sicherheitsprüfungen können schlichtweg nicht am Anfang durchgeführt werden.
+	\item Konfiguration und Schnittstellen zu Check Points können komplex werden.
 \end{itemize}
 
-\subsection*{Mögliche Prüfungsfragen}
-\begin{itemize}
-	\item \emph{?}\\
+\subsection*{Fragen}
 
+Was genau versteht man unter einem PAM
+\begin{itemize}
+	\item PAM - Pluggable Authentication Module beschreibt ein Modul Interface dass es dem Administrator erlaubt einfach die Authentifizierungs Mechanismen anzupassen in dem dass entsprechende Modul ausgetauscht wird.
 \end{itemize}
+
+\begin{itemize}
+	\item Login Prozess für FTP
+	\item Apache Webserver für die Validierung der HTTP-Requests.
+\end{itemize}
+
