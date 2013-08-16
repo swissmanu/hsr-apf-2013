@@ -16,7 +16,16 @@ Organisationen bieten normalerweise bereits mehr oder weniger wohldefinierte Gru
 Ein gutes Sicherheitskonzept sollte bestrebt sein, dass jedes Subjekt genau auf die Objekte Zugriff hat, mit welchen es täglich arbeitet (wiederum ''Need to know'').
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{content/security/accesscontrolmodels/images/rolebasedaccesscontrol.png}
+	\begin{center}
+	\begin{tikzpicture}
+		\umlclass[x=0,y=0]{User}{id\\name}{}
+		\umlclass[x=5,y=0]{Role}{id\\name}{}
+		\umlclass[x=12,y=0]{ProtectionObject}{id\\name}{}
+		\umlassoc[name=userrole,arg1=memberOf,mult1=*,mult2=*,align1=left,align2=right,pos1=0.1,pos2=0.9]{User}{Role}
+		\umlassoc[name=roleobject,mult1=*,attr2=isAuthorizedFor|*,align1=left,align2=right,pos1=0.1,pos2=0.9]{Role}{ProtectionObject}
+		\umlassocclass[geometry=|-|,x=7,y=-2.8]{Right}{roleobject-1}{accessType}{checkRights()}
+	\end{tikzpicture}
+	\end{center}
 	\caption{Basic Role Based Access Control Klassendiagramm}
 \end{figure}
 

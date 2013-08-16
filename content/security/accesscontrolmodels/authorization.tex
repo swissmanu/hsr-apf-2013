@@ -14,7 +14,14 @@ Des weiteren sollen diese Informationen so einfach wie möglich im Nachhinein ä
 Strukturell fällt die Lösung zum Authorization Pattern relativ simpel aus:
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{content/security/accesscontrolmodels/images/authorization.png}
+	\begin{center}
+	\begin{tikzpicture}
+		\umlclass[x=0,y=0]{Subject}{id\\name}{}
+		\umlclass[x=10,y=0]{ProtectionObject}{id\\name}{}
+		\umlassoc[name=assoc,mult1=*,mult2=*,arg=isAuthorizedFor]{Subject}{ProtectionObject}
+		\umlassocclass[geometry=|-|,x=5,y=-1.5]{Right}{assoc-1}{accessType}{checkRights()}
+	\end{tikzpicture}
+	\end{center}
 \caption{Authorization Klassendiagramm}
 \end{figure}
 
