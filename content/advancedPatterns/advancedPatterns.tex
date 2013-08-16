@@ -199,7 +199,55 @@ Alle ExtensionInterfaces müssen zudem von einem RootInterface erben, über welc
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/extensioninterface.jpg}
+	\includegraphics[width=0.6\textwidth]{content/advancedPatterns/extensioninterface.jpg}
 	\caption{Extension Interface}
 \end{figure}
 
+\begin{description}
+	\item[Component] Implementiert und aggregiert Service Funktionalitäten von mindestens einem Extension Interface; kann verschiedene Rollen einnehmen
+	\item[Root Interface] Definiert die Funktionalität, die jede Komponente mindestens zur Verfügung stellen muss; typischerweise eine getExtension(InterfaceId) Methode
+	\item[Extension Interface] Definiert rollenspezifische Funktionalitäten, die eine Komponente implementieren kann
+	\item[Client] Benutzt Factories um neue Components zu erhalten und benutzt diese über die Extension Interfaces
+	\item[Component Factory] Erzeugt Komponenten oder bietet Zugriff auf bereits existierende Komponenten
+\end{description}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{content/advancedPatterns/extensioninterfaceusage.png}
+	\caption{Zugriff auf Extension Interface}
+\end{figure}
+
+\textbf{Konsequenzen}
+
+\begin{itemize}
+	\item Erweiterbarkeit ohne aufgeblasene Interfaces
+	\item Polymorphismus ohne dass das erben von einem gemeinsamen Interface notwendig ist
+	\item Koppelung zwischen Clients und Komponenten wird verringert, da die Clients nur von den Extension Interfaces abhängig sind, die sie auch benutzen
+	\item Komponente können Interfaces von anderen Komponenten aggregieren und diese als eigene Rollen anbieten und anschliessend delegieren
+	\item Höhere Komplexität
+	\item Zusätzliche Indirektion
+\end{itemize}
+
+\section{Encapsulated Context}
+
+Wie können stetig wachsende Parameterlisten verhindert werden, die vor allem für das weiterreichen von oft bennötigten Services und Daten verwendet werden?
+
+Sammle die entsprechenden Daten und Objekte in einem Context Objekt und reiche dieses von Funktion zu Funktion weiter. Als Context Objekt kann auch ein Anything oder eine PropertyList verwendet werden.
+
+calc(receipt, logger, db, cmdOptions, ...);
+
+Wird zu
+
+calc(receipt, context);
+
+Es können auch mehrere Context Objekte in einem System definiert werden, die jeweils 
+
+\textbf{Konsequenzen}
+
+\begin{itemize}
+	\item Stabile Funktionssignaturen
+	\item Globale Daten werden nicht mehr benötigt
+	\item Instanzierung von Objekten im Context ist klar geregelt
+	\item Gefahr, dass der Context zu einem Blob Objekt mit sehr geringer Kohärenz wird
+	\item Gefahr von ``Hidden globals''
+\end{itemize}
