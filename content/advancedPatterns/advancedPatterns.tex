@@ -63,3 +63,56 @@ Gruppiere Objekte im selben Zustand in Collections sodass der State durch dazuge
 	\item Das halten von Zustandsabhängigen Daten für die Objekte ist schwieriger
 \end{itemize}
 
+\section{Value Patterns}
+
+\textbf{Objektmerkmale}
+
+Objekte können nach drei Aspekten charakterisiert werden:
+
+\begin{itemize}
+	\item Identität
+	\item Zustandslos / Zustandsbehaftet
+	\item Verhalten
+\end{itemize}
+
+Eine mögliche Kategorisierung von Objekten ist:
+
+\begin{itemize}
+	\item Entity - Drücken Systeminformationen aus und werden oft persistiert; Identität ist wichtig
+	\item Service - Kapseln Systemaktivitäten; Werden anhand ihres Verhaltens auseinandergehalten
+	\item \textbf{Value} - Werden durch ihren Inhalt charakterisiert; haben keine dauerhafte Identität; ``existieren ausserhalb von Raum und Zeit''
+	\item Task - Stellen ebenfalls Systemaktivitäten dar, verfügen jedoch über einen Zustand und eine Identität
+\end{itemize}
+
+\subsection{Whole Value}
+
+Wie können Mengen oder Grössen dargestellt werden, ohne deren Bedeutung zu verlieren? Primitive Datentypen verfügen nicht über Einheiten und bieten nur rudimentäre Typprüfung zur Compilezeit.
+
+Erstelle eine Klasse um die Menge auszudrücken (z.B. Date) und Kapsle so ein oder mehrere primitive Werte.
+
+Wichtig in Java: boolean equals(Object o), int hashCode() und Serializable falls angebracht. toString() kann ebenfalls nützlich sein.
+
+\subsection{Enumeration Values}
+
+Wie kann eine geschlossene Menge von konstanten Werten typsicher abgebildet werden (z.B. Monate)?
+
+Behandle alle Werte als konstante Whole Values und verhindere public Construction (Enum in vielen Sprachen).
+
+\subsection{Class Factory Method}
+
+Wie kann die Konstruktion von Value Objects vereinfacht und auf ``new'' Ausdrücke verzichtet werden?
+
+Benutze eine statische Methode für die Werterzeugung. Dies ist eine Variation von Factory Method, einfach dass die Factory Methode nur Instanzen der eigenen Klasse erzeugt.
+
+\begin{lstlisting}[language=Java, caption={Class Factory Method}]
+Date clumsy = new Date(new Year(2013), new Month(12), 30); // umständlich, keine Möglichkeit um Values wiederzuverwenden
+Date dangerous = new Date(2013, 4, 5); // keine Typsicherheit / Verwechslungsgefahr
+
+Date nice = new Date(Year.valueOf(2012), Month.valueOf(2), 30);
+\end{lstlisting}
+
+\subsection{Mutable Companion}
+
+Wie kann die Konstruktion von komplexen Immutable Objects vereinfacht werden? z.B. das Datum 15 Arbeitstage nach Übermorgen
+
+Benutze eine Companion Class für die Erstellung der Immutable Objects, wie z.B. StringBuffer und StringBuilder für Java Strings.
