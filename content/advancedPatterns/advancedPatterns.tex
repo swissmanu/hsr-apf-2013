@@ -116,3 +116,49 @@ Date nice = new Date(Year.valueOf(2012), Month.valueOf(2), 30);
 Wie kann die Konstruktion von komplexen Immutable Objects vereinfacht werden? z.B. das Datum 15 Arbeitstage nach Übermorgen
 
 Benutze eine Companion Class für die Erstellung der Immutable Objects, wie z.B. StringBuffer und StringBuilder für Java Strings.
+
+
+\section{Reflection Patterns}
+
+\subsection{Type Object}
+
+Wie können Objekte dynamisch kategorisiert werden obwohl kein genügend flexibles Typsystem zur Verfügung steht?
+
+Markiere Objekte mit anderen Objekten statt einer Klasse, sodass neue Kategorien zur Laufzeit hinzugefügt werden können.
+
+Objekte delegieren Serviceanfragen an ihren ``Typ''. Dieser kann durch den Client beliebig ausgewechselt werden, wobei die Objektidentität immer gewahrt ist.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/typeobject.png}
+	\caption{Type Object funktionsweise}
+\end{figure}
+
+\begin{itemize}
+	\item Neue Kategorien sind einfach hinzufügbar, auch zur Laufzeit
+	\item Verhindert unzählige triviale Unterklassen
+	\item Mehrere Meta Levels möglich (Typobjekte für Typobjekte)
+	\item Verwirrung wegen Separation
+	\item Effizienzeinbussen wegen Indirektion
+\end{itemize}
+
+\subsection{Property List}
+
+Wie können Attribute flexible zur Laufzeit zu Objekten hinzugefügt/entfernt werden? z.B. in einem Shop Items mit unterschiedlichen Attributen je nach Kategorie.
+
+Erweitere die Objekte um eine Property List in Form einer Map Attributname -> Wert.
+
+\begin{itemize}
+	\item Objekt kann erweitert werden während Identität erhalten bleibt
+	\item Falls alle Attribute in der Property List enthalten sind, kann die Persistierung einfach und ohne Sprachspezifische Reflexion umgesetzt werden
+	\item Methoden können mit flexiblen Parametern aufgerufen werden
+	\item Unterschiedliche Arten um auf reguläre und flexible Attribute zuzugreifen
+	\item Type Safety muss durch den Programmierer gewährleistet werden
+	\item Attributnamen werden nicht vom Compiler überprüft
+	\item Bedeutung von Attributen ist nicht durch die Klasse definiert
+	\item Hoher Overhead
+\end{itemize}
+
+
+\end{itemize}
+\end{itemize}
