@@ -158,3 +158,36 @@ Erweitere die Objekte um eine Property List in Form einer Map Attributname -> We
 	\item Bedeutung von Attributen ist nicht durch die Klasse definiert
 	\item Hoher Overhead
 \end{itemize}
+
+\subsection{Anything}
+
+Wie können Methodenparameter definiert werden, die die Anforderungen von zukünftigen Subklassen erfüllen? Wie gestaltet man einen flexiblen, strukturierten Konfigurationsmechanismus der einfach erweiterbar ist? Wie kann die Datenstruktur, die zwischen Subsysteme ausgetauscht wird, angepasst werden, ohne dass alle Subsysteme neu kompiliert werden müssen?
+
+Erstelle eine selbstbeschreibende, strukturierte Datenstruktur die über ein einfach lesbares externes Textformat verfügt (z.B. als XML oder JSON Dokument).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/anything.png}
+	\caption{Anything}
+\end{figure}
+
+\begin{itemize}
+	\item Einfach benutzbar
+	\item Lesbares externes Format -> gut für Konfigurationen
+	\item Universell und flexibel über Klassengrenzen einsetzbar
+	\item Erlaubt einfache aber brauchbare Interfaces ohne Methodenüberladung
+	\item Verminderte Typsicherheit
+	\item Zweck von Parametern nicht immer erkennbar
+	\item Performanceoverhead
+	\item Nicht wirklich Objekte, nur Daten (keine spezifischen Methoden)
+\end{itemize}
+
+\subsection{Extension Interface}
+
+\begin{itemize}
+	\item Alter Client Code soll bei Erweiterungen von Komponenten nicht betroffen sein, idealerweise auch nicht neu kompiliert werden müssen!
+	\item Hinzufügen von neuer, spezifischer Funktionalität zur Klassenhierarchie kann zum ``Fragile Base Class'' Problem führen (Hinzufügen von Methoden in der Basisklasse führt in Subklassen zu Fehlfunktionen)
+	\item Interfaces können nur schwer für noch unbekannte Szenarien entworfen werden
+\end{itemize}
+
+Wie können die Komponenten trotzdem für zukünftige Erweiterungen offen entworfen werden?
