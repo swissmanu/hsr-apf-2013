@@ -188,6 +188,18 @@ Erstelle eine selbstbeschreibende, strukturierte Datenstruktur die über ein ein
 	\item Alter Client Code soll bei Erweiterungen von Komponenten nicht betroffen sein, idealerweise auch nicht neu kompiliert werden müssen!
 	\item Hinzufügen von neuer, spezifischer Funktionalität zur Klassenhierarchie kann zum ``Fragile Base Class'' Problem führen (Hinzufügen von Methoden in der Basisklasse führt in Subklassen zu Fehlfunktionen)
 	\item Interfaces können nur schwer für noch unbekannte Szenarien entworfen werden
+	\item Neue Funktionalitäten sollen nicht zu Overhead bei alten Clients führen, die diese gar nicht benötigen
 \end{itemize}
 
 Wie können die Komponenten trotzdem für zukünftige Erweiterungen offen entworfen werden?
+
+Clients sollen auf Komponenten via einzelne Interfaces Zugreifen statt das die Komponente alle Funktionalitäten über ein Interface zur Verfügung stellt. Jedes Interface steht für eine Rolle, die die Komponente einnehmen kann. Clients haben somit nur Abhängigkeiten zu den Rollen der Komponente, die sie auch benutzen.
+
+Alle ExtensionInterfaces müssen zudem von einem RootInterface erben, über welches der Client auf weitere ExtensionInterfaces der Komponente zugreifen können.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/extensioninterface.jpg}
+	\caption{Extension Interface}
+\end{figure}
+
