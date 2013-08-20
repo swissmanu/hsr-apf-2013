@@ -57,6 +57,15 @@ Häufig wird es zum Beispiel für einen Logger oder ein Konfigurations-Objekt ve
 
 Singleton verletzt zudem einige OO Designprinzipien wie High Cohesion, Low Coupling und ``Program to an Interface, not an instance''.
 
+\subsection*{Alternativen}
+
+\begin{itemize}
+	\item Parameterize from Above
+	\item Monostate (auch gefährlich)
+	\item Limit Object Count for Class (Limitiere Anzahl erstellbare Instanzen im Konstruktor und werfe Exception falls überschritten)
+	\item Dependency Injection
+\end{itemize}
+
 \section{Factory Method}
 \textbf{Kategorie}: Creational
 
