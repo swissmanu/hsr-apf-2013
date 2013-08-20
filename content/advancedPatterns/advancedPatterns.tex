@@ -263,3 +263,12 @@ Es können auch mehrere Context Objekte in einem System definiert werden, die je
 
 \section{Pooling}
 
+Wie kann das aufwendige aquirieren und freigeben von Ressourcen vermindert werden?
+
+Recykliere Ressourcen statt sie freizugeben und neu zu belegen/erzeugen (z.B. Threads). Ressourcen werden dazu über einen Ressource Pool verwaltet. Der Client greift nur über den Ressource Pool auf diese zu.
+
+\section{Counting Handle}
+
+Wie kann die Verwaltung des Lebenszyklus von geteilten Objekten/Ressourcen vereinfacht und deren Verwendung überwacht werden? z.B. um zu überprüfen ob die Ressourcen in einem Pool rezykliert werden können.
+
+Führe ein Handle Objekt ein, welches einen Referenzcounter auf einer Ressource verändert. Clients greifen nur über den Handle auf die Ressource zu. In C++ soll der Handle als Value erzeugt werden, damit beim verlassen des Scopes der Dekonstruktor aufgerufen wird (ähnlich std::tr1::shared\_ptr). In Java kann mit Weak References ähnliches Verhalten nachgebildet werden.

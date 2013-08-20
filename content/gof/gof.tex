@@ -185,13 +185,13 @@ Um das Flyweight Objekt von mehreren Threads accessible machen zu können, muss 
 	\caption{Flyweight UML}
 \end{figure}
 
-Innerhalb des Flyweight Patterns werden mehrere andere Patterns angewendet:
+Innerhalb des Flyweights werden mehrere Patterns angewendet oder können zum Einsatz kommen. Der Zugriff auf eine Sammlung von Objekten über eine ``Manager'' Klasse ist z.B. eine Anwendung des Pooling Patterns.
 
-\begin{itemize}
-	\item Immutable Value
-	\item Factory Method als Teil eines Managers
-	\item Pooling
-\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{content/gof/images/09-flyweight-subpatterns.png}
+	\caption{Patterns, die im Flyweight zum Einsatz kommen (können)}
+\end{figure}
 
 \subsection*{Forces}
 
