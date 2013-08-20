@@ -84,6 +84,14 @@ Eine mögliche Kategorisierung von Objekten ist:
 	\item Task - Stellen ebenfalls Systemaktivitäten dar, verfügen jedoch über einen Zustand und eine Identität
 \end{itemize}
 
+\subsection{Immutable Value}
+
+Wie können Objekte ohne Probleme wegen Seiteneffekten / Nebenläufigkeit etc. geteilt werden?
+
+Definiere Typen, deren Instanzen nur über nicht mutable Attribute verfügen. Der interne Zustand der Objekte wird während der Konstruktion gesetzt und ändert nicht mehr. Änderungen am Zustand müssen über das Erzeugen von neuen Objekten geschehen.
+
+Verwende das ``final'' Schlüsselwort für Attribute in Java. Vorsicht: sind Attribute Objekttypen, so müssen diese ebenfalls Immutable sein!
+
 \subsection{Whole Value}
 
 Wie können Mengen oder Grössen dargestellt werden, ohne deren Bedeutung zu verlieren? Primitive Datentypen verfügen nicht über Einheiten und bieten nur rudimentäre Typprüfung zur Compilezeit.
@@ -251,3 +259,7 @@ Es können auch mehrere Context Objekte in einem System definiert werden, die je
 	\item Gefahr, dass der Context zu einem Blob Objekt mit sehr geringer Kohärenz wird
 	\item Gefahr von ``Hidden globals''
 \end{itemize}
+
+
+\section{Pooling}
+
