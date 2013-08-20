@@ -52,6 +52,18 @@ Häufig wird es zum Beispiel für einen Logger oder ein Konfigurations-Objekt ve
 	\item Kopplung wird erhöht und die Abhängigkeiten zum Singleton sind nicht über das Interface klar
 	\item Bei concurrent Applikationen wird es schwer, ein Singleton tatsächlich nur einmal zu erstellen
 	\item Testen von Singletons kann sehr schwer sein (Mocken ist aufwändig)
+	\item Refactoring von Design mit Singleton zu einem Design ohne ist sehr aufwendig. Die Anfroderung, dass das abgebildete Objekt im Singleton wirklich einzigartig ist, kann oft nicht über die ganze Lebenszeit einer Applikation erfüllt werden.
+\end{itemize}
+
+Singleton verletzt zudem einige OO Designprinzipien wie High Cohesion, Low Coupling und ``Program to an Interface, not an instance''.
+
+\subsection*{Alternativen}
+
+\begin{itemize}
+	\item Parameterize from Above
+	\item Monostate (auch gefährlich)
+	\item Limit Object Count for Class (Limitiere Anzahl erstellbare Instanzen im Konstruktor und werfe Exception falls überschritten)
+	\item Dependency Injection
 \end{itemize}
 
 \section{Factory Method}
@@ -62,8 +74,8 @@ Je nach Subklasse erstellt die Factory Method ein anderes Objekt.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{content/gof/images/04-builder-uml.png}
-	\caption{Builder UML}
+	\includegraphics[width=0.9\textwidth]{content/gof/images/03-factory-method.png}
+	\caption{Factory Method UML}
 \end{figure}
 
 \begin{lstlisting}[language=Java, caption={Factory Method}]
@@ -89,6 +101,8 @@ public class MagicMazeGame extends MazeGame {
 	}
 }
 \end{lstlisting}
+
+\section{Builder}
 
 \textbf{Kategorie}: Creational
 
@@ -183,6 +197,35 @@ Um das Flyweight Objekt von mehreren Threads accessible machen zu können, muss 
 	\caption{Flyweight UML}
 \end{figure}
 
+Innerhalb des Flyweights werden mehrere Patterns angewendet oder können zum Einsatz kommen. Der Zugriff auf eine Sammlung von Objekten über eine ``Manager'' Klasse ist z.B. eine Anwendung des Pooling Patterns.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{content/gof/images/09-flyweight-subpatterns.png}
+	\caption{Patterns, die im Flyweight zum Einsatz kommen (können)}
+\end{figure}
+
+\subsection*{Forces}
+
+\begin{itemize}
+	\item Es wird eine hohe Anzahl von Objekten benötigt
+	\item Dadurch steigen die Speicherkosten
+	\item Der Zustand der Objekte kann extrinsisch verwaltet werden (ausserhalb des Objekts selber, z.B. mit Collections for States)
+	\item Viele Objekte können durch gemeinsam verwendete Objekte ersetzt werden, nachdem der Zustand entfernt wurde
+	\item Die Identität der Objekte spielt keine Rolle (ValueObject)
+\end{itemize}
+
+\subsection*{Consequences}
+
+\begin{itemize}
+	\item Weniger Speicherverbrauch wird gegen einbussen der Runtime Performance ausgetauscht. Mehr Aufwand für das Auffinden der Objekte und der Verwaltung des extrinsischen Zustands.
+	\item Je mehr Instanzen geteilt werden, desto weniger Speicher wird verbraucht.
+	\item Zusätzliche Reduktion, wenn intrinsischer und extrinsischer Zustand auf ein Minimum reduziert werden können.
+	\item Extrinsischer Zustand kann z.T. auch berechnet statt abgelegt werden.
+	\item Flyweight kann oft zusammen mit dem Composite Pattern eingesetzt werden, wobei eine Hierarchie mit geteilten Blattknoten aufgebaut wird.
+\end{itemize}
+
+Extrinsischer Zustand kann zum Beispiel über das Collections for States Pattern oder über eine Map<Flyweight, ExtrinsicState> im Client verwaltet werden.
 
 \section{Facade}
 \textbf{Kategorie}: Structural
