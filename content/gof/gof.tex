@@ -52,7 +52,10 @@ Häufig wird es zum Beispiel für einen Logger oder ein Konfigurations-Objekt ve
 	\item Kopplung wird erhöht und die Abhängigkeiten zum Singleton sind nicht über das Interface klar
 	\item Bei concurrent Applikationen wird es schwer, ein Singleton tatsächlich nur einmal zu erstellen
 	\item Testen von Singletons kann sehr schwer sein (Mocken ist aufwändig)
+	\item Refactoring von Design mit Singleton zu einem Design ohne ist sehr aufwendig. Die Anfroderung, dass das abgebildete Objekt im Singleton wirklich einzigartig ist, kann oft nicht über die ganze Lebenszeit einer Applikation erfüllt werden.
 \end{itemize}
+
+Singleton verletzt zudem einige OO Designprinzipien wie High Cohesion, Low Coupling und ``Program to an Interface, not an instance''.
 
 \section{Factory Method}
 \textbf{Kategorie}: Creational

@@ -272,3 +272,45 @@ Recykliere Ressourcen statt sie freizugeben und neu zu belegen/erzeugen (z.B. Th
 Wie kann die Verwaltung des Lebenszyklus von geteilten Objekten/Ressourcen vereinfacht und deren Verwendung überwacht werden? z.B. um zu überprüfen ob die Ressourcen in einem Pool rezykliert werden können.
 
 Führe ein Handle Objekt ein, welches einen Referenzcounter auf einer Ressource verändert. Clients greifen nur über den Handle auf die Ressource zu. In C++ soll der Handle als Value erzeugt werden, damit beim verlassen des Scopes der Dekonstruktor aufgerufen wird (ähnlich std::tr1::shared\_ptr). In Java kann mit Weak References ähnliches Verhalten nachgebildet werden.
+
+\section{Monostate}
+
+Wie kann man erreichen, das alle Instanzen einer Klasse sich identisch verhalten?
+
+Implementiere alle Attribute als static Members.
+
+\subsection*{Konsequenzen}
+
+\begin{itemize}
+	\item Transparenz, kein wissen über Monostate notwendig um die Klasse zu benutzen
+	\item Ableitung ist möglich
+	\item Polymorphismus wird nicht eingeschränkt
+	\item Konstruktion / Dekonstruktion sind wohldefiniert
+	\item Über Vererbung kann nicht im nachhinein Monostate hinzugefügt werden
+	\item Effizienz, es werden leere Objekte erstellt
+	\item Zugriffssynchronisation teuer bei nebenläufigen Anwendungen
+	\item Plattformlokal, kann nicht auf mehreren Plattformen verteilt benutzt werden
+	\item Verwirrung (ich hab doch gar nichts geändert!?)
+\end{itemize}
+
+\section{Parameterize from Above}
+
+Wie können bestimmte Instanzen von Services und Konfigurationen zugänglich gemacht werden (ohne auf globale Variablen oder Singleton zu setzen)?
+
+Reiche Konfiguration und Services mit Methoden- und Konstruktoraufrufen weiter, statt diese über klasseninterne Mechanismen ``reinzuziehen'' (z.B. über Aufruf einer Singleton instance() Method). In der Regel werden dabei die Instanzen von höheren Layern zu tieferen Layern weitergereicht.
+
+\subsection*{Konsequenzen}
+
+\begin{itemize}
+	\item Entkoppelung, Klassen sind nicht mehr von globalen oder pseudoglobalen Variablen abhängig
+	\item Einfacheres Testing durch das Übergeben von Mock Objekten
+	\item ...
+\end{itemize}
+
+\subsection*{Siehe auch}
+
+\begin{itemize}
+	\item Encapsulated Context (Context Object), als Container für Services/Konfiguration
+	\item Anything / Property List, als flexibler Container der zur Laufzeit verändert werden kann
+	\item Dependency Injection Frameworks
+\end{itemize}
