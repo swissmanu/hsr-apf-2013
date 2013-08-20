@@ -183,6 +183,35 @@ Um das Flyweight Objekt von mehreren Threads accessible machen zu können, muss 
 	\caption{Flyweight UML}
 \end{figure}
 
+Innerhalb des Flyweight Patterns werden mehrere andere Patterns angewendet:
+
+\begin{itemize}
+	\item Immutable Value
+	\item Factory Method als Teil eines Managers
+	\item Pooling
+\end{itemize}
+
+\subsection*{Forces}
+
+\begin{itemize}
+	\item Es wird eine hohe Anzahl von Objekten benötigt
+	\item Dadurch steigen die Speicherkosten
+	\item Der Zustand der Objekte kann extrinsisch verwaltet werden (ausserhalb des Objekts selber, z.B. mit Collections for States)
+	\item Viele Objekte können durch gemeinsam verwendete Objekte ersetzt werden, nachdem der Zustand entfernt wurde
+	\item Die Identität der Objekte spielt keine Rolle (ValueObject)
+\end{itemize}
+
+\subsection*{Consequences}
+
+\begin{itemize}
+	\item Weniger Speicherverbrauch wird gegen einbussen der Runtime Performance ausgetauscht. Mehr Aufwand für das Auffinden der Objekte und der Verwaltung des extrinsischen Zustands.
+	\item Je mehr Instanzen geteilt werden, desto weniger Speicher wird verbraucht.
+	\item Zusätzliche Reduktion, wenn intrinsischer und extrinsischer Zustand auf ein Minimum reduziert werden können.
+	\item Extrinsischer Zustand kann z.T. auch berechnet statt abgelegt werden.
+	\item Flyweight kann oft zusammen mit dem Composite Pattern eingesetzt werden, wobei eine Hierarchie mit geteilten Blattknoten aufgebaut wird.
+\end{itemize}
+
+Extrinsischer Zustand kann zum Beispiel über das Collections for States Pattern oder über eine Map<Flyweight, ExtrinsicState> im Client verwaltet werden.
 
 \section{Facade}
 \textbf{Kategorie}: Structural
