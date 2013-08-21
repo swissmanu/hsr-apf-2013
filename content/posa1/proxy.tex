@@ -32,11 +32,12 @@ Es ist oft unangemessen auf Komponenten direkt zuzugreifen.
 Lass den Client mit einer Repräsentation anstatt der Komponente selbst kommunizieren. Diese Repräsentation - Proxy genannt - bietet die Schnittstelle (Interface) der Komponente an aber führt zusätliche Pre- und Postbearbeitung durch, wie Zugriffskontrollen oder das Erstellen von Read-Only-Kopien des Originals.
 
 \subsection*{Structure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{content/posa1/images/proxy-classes.png}
-	\caption{Proxy Klassendiagramm}
-\end{figure}
+% Das ist ein forwarder receiver. wtf.
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\textwidth]{content/posa1/images/proxy-classes.png}
+%	\caption{Proxy Klassendiagramm}
+%\end{figure}
 
 Der Client ist verantwortlich für eine bestimmte Aufgabe. Um diese zu erledigen führt er die Funktionalität des Originals indirekt auf, indem er einen Proxy benutzt.
 
@@ -46,11 +47,12 @@ Das "Abstract Original" liefert die vom Proxy und Original implementierte Schnit
 
 \subsection*{Dynamics}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{content/posa1/images/proxy-sequence.png}
-	\caption{Proxy Sequenzdiagramm}
-\end{figure}
+% Das ist ein forwarder receiver
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\textwidth]{content/posa1/images/proxy-sequence.png}
+%	\caption{Proxy Sequenzdiagramm}
+%\end{figure}
 
 \begin{enumerate}
 	\item png
