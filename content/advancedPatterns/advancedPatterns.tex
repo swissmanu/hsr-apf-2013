@@ -1,13 +1,13 @@
 \section{Enumeration Method}
 
-\textbf{Probleme mit Iterator}
+\subsection*{Probleme mit Iterator}
 
 \begin{itemize}
 	\item Iterator und Collection sind stark gekoppelt
-	\item Aufwendiges Lifecycle Management notwendig; Iterator muss Collection überwachen
+	\item Aufwändiges Lifecycle Management notwendig; Iterator muss Collection überwachen
 \end{itemize}
 
-\textbf{Alternative zu Iterator}
+\subsection*{Alternative zu Iterator}
 
 Kapsle Iterationslogik über eine Collection in eine Enumeration Method der Collection, die ein Command Object mit der Verarbeitungslogik entgegennimmt.
 
@@ -15,11 +15,11 @@ Auch als Internal Iterator bekannt, jedoch nur selten berücksichtigt.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/enumerationmethod.png}
+	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/images/enumerationmethod.png}
 	\caption{Enumeration Method}
 \end{figure}
 
-\textbf{Konsequenzen}
+\subsection*{Konsequenzen}
 
 \begin{itemize}
 	\item Client ist nicht für die Verwaltung eines Iterators zuständig
@@ -31,15 +31,15 @@ Auch als Internal Iterator bekannt, jedoch nur selten berücksichtigt.
 
 \section{State Patterns}
 
-\textbf{Objects for States}
+\subsection{Objects for States}
 
 Siehe GoF State Pattern
 
-\textbf{Methods for States}
+\subsection{Methods for States}
 
 Stelle jeden Zustand als Tabelle von Methoden oder Funktionen dar, die über diese Tabelle aufgerufen werden.
 
-\textbf{Konsequenzen}
+\subsubsection*{Konsequenzen}
 
 \begin{itemize}
 	\item Das Verhalten eines Objekts kann vollständig innerhalb der Klasse definiert werden (als private Methods); keine ``Verzettelung'' wie bei Objects for States
@@ -49,11 +49,11 @@ Stelle jeden Zustand als Tabelle von Methoden oder Funktionen dar, die über die
 	\item Nur geeignet in Sprachen, die das referenzieren und auflösen von Methoden einfach unterstützen. z.B. C++, Scala, Ruby im Gegensatz zu Java
 \end{itemize}
 
-\textbf{Collections for States}
+\subsection{Collections for States}
 
 Gruppiere Objekte im selben Zustand in Collections sodass der State durch dazugehörigkeit zu einer Collection repräsentiert wird. So können z.B. in einem Editor, der mehrere Dateien bearbeitet, alle veränderten Dateien in einer Collection ``changed'' abgelegt werden und alle unveränderten in der Collection ``saved''. Um nun alle Dateien zu speichern kann über alle ``changed'' Dateien iteriert werden, welche anschliessend nach ``saved'' verschoben werden.
 
-\textbf{Konsequenzen}
+\subsubsection*{Konsequenzen}
 
 \begin{itemize}
 	\item Aktionen über alle Aktionen eines bestimmten States sind effizient durchführbar
@@ -65,7 +65,7 @@ Gruppiere Objekte im selben Zustand in Collections sodass der State durch dazuge
 
 \section{Value Patterns}
 
-\textbf{Objektmerkmale}
+\subsection*{Objektmerkmale}
 
 Objekte können nach drei Aspekten charakterisiert werden:
 
@@ -98,7 +98,18 @@ Wie können Mengen oder Grössen dargestellt werden, ohne deren Bedeutung zu ver
 
 Erstelle eine Klasse um die Menge auszudrücken (z.B. Date) und Kapsle so ein oder mehrere primitive Werte.
 
-Wichtig in Java: boolean equals(Object o), int hashCode() und Serializable falls angebracht. toString() kann ebenfalls nützlich sein.
+Wichtig in Java:
+
+\begin{lstlisting}[language=Java, caption={Wichtige oder nützliche zu implementierende Methoden für Values}]
+public boolean equals(Object o) {}
+public int hashCode() {}
+
+// falls angebracht
+... implements Serializable
+
+// evtl. nützlich:
+public String toString() {}
+\end{lstlisting}
 
 \subsection{Enumeration Values}
 
@@ -138,7 +149,7 @@ Objekte delegieren Serviceanfragen an ihren ``Typ''. Dieser kann durch den Clien
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/typeobject.png}
+	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/images/typeobject.png}
 	\caption{Type Object funktionsweise}
 \end{figure}
 
@@ -175,7 +186,7 @@ Erstelle eine selbstbeschreibende, strukturierte Datenstruktur die über ein ein
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/anything.png}
+	\includegraphics[width=0.9\textwidth]{content/advancedPatterns/images/anything.png}
 	\caption{Anything}
 \end{figure}
 
@@ -207,7 +218,7 @@ Alle ExtensionInterfaces müssen zudem von einem RootInterface erben, über welc
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{content/advancedPatterns/extensioninterface.jpg}
+	\includegraphics[width=0.6\textwidth]{content/advancedPatterns/images/extensioninterface.jpg}
 	\caption{Extension Interface}
 \end{figure}
 
@@ -221,11 +232,11 @@ Alle ExtensionInterfaces müssen zudem von einem RootInterface erben, über welc
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{content/advancedPatterns/extensioninterfaceusage.png}
+	\includegraphics[width=0.6\textwidth]{content/advancedPatterns/images/extensioninterfaceusage.png}
 	\caption{Zugriff auf Extension Interface}
 \end{figure}
 
-\textbf{Konsequenzen}
+\subsubsection*{Konsequenzen}
 
 \begin{itemize}
 	\item Erweiterbarkeit ohne aufgeblasene Interfaces
@@ -242,15 +253,20 @@ Wie können stetig wachsende Parameterlisten verhindert werden, die vor allem f�
 
 Sammle die entsprechenden Daten und Objekte in einem Context Objekt und reiche dieses von Funktion zu Funktion weiter. Als Context Objekt kann auch ein Anything oder eine PropertyList verwendet werden.
 
+\begin{lstlisting}[language=Java, caption={Encapsulated Context Beispiel mit langer Parameter Liste}]
 calc(receipt, logger, db, cmdOptions, ...);
+\end{lstlisting}
 
 Wird zu
 
+\begin{lstlisting}[language=Java, caption={Encapsulated Context Beispiel mit Context}]
 calc(receipt, context);
+\end{lstlisting}
 
-Es können auch mehrere Context Objekte in einem System definiert werden, die jeweils 
+%Es können auch mehrere Context Objekte in einem System definiert werden, die jeweils
+% ... ???
 
-\textbf{Konsequenzen}
+\subsection*{Konsequenzen}
 
 \begin{itemize}
 	\item Stabile Funktionssignaturen
